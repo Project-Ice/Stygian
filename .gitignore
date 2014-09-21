@@ -1,10 +1,7 @@
 .gradle/
 .settings/
 build/
-eclipse/
 gradle/
-.classpath
-.project
 CREDITS-fml.txt
 forge-1.7.10-10.13.0.1208-changelog.txt
 gradlew
@@ -15,7 +12,10 @@ MinecraftForge-License.txt
 README.txt
 
 !bin/
+!eclipse/
 !src/
+!.classpath
 !.gitignore
+!.project
 !build.bat
 !LICENSE.TXT

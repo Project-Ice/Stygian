@@ -1,0 +1,20 @@
+tile.oreStygian.name=Stygian Ore
+
+item.iStygianCrystal.name=Inactive Stygian Crystal
+item.stygianCrystal.name=Active Stygian Crystal
+
+item.stygianSword.name=Stygian Sword
+item.stygianPickaxe.name=Stygian Pickaxe
+item.stygianShovel.name=Stygian Shovel
+item.stygianAxe.name=Stygian Axe
+item.stygianHoe.name=Stygian Hoe
+
+item.stygianHelmet.name=Stygian Helmet
+item.stygianChestplate.name=Stygian Chestplate
+item.stygianLeggings.name=Stygian Leggings
+item.stygianBoots.name=Stygian Boots
+
+death.attack.stygianDrain=%1$s's life was drained
+death.attack.stygianDrain.player=%1$s's life was drained by %2$s
+
+itemGroup.stygian=Stygian

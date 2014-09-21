@@ -1,0 +1,9 @@
+package net.condorcraft110.stygiance;
+
+public class Reflection
+{
+	public static Block getRawBlockInstance(Material material)
+	{
+		
+	}
+}
