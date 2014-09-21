@@ -16,6 +16,7 @@ item.stygianBoots.name=Stygian Boots
 
 item.hourglassIntact.name=Hourglass
 item.hourglassCracked.name=Cracked Hourglass
+item.lightningRod.name=Lightning Rod
 
 death.attack.stygianDrain=%1$s's life was drained
 death.attack.stygianDrain.player=%1$s's life was drained by %2$s

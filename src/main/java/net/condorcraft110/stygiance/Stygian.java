@@ -44,7 +44,7 @@ public class Stygian
 	
 	public static ItemHourglass hourglass = (ItemHourglass)new ItemHourglass(false).setUnlocalizedName("hourglassIntact");
 	public static ItemHourglass hourglassCracked = (ItemHourglass)new ItemHourglass(true).setUnlocalizedName("hourglassCracked");
-	public static Item lightningRod = new Item().setUnlocalizedName("lightningRod");
+	public static ItemLightningRod lightningRod = (ItemLightningRod)new ItemLightningRod().setUnlocalizedName("lightningRod");
 	
 	public static DamageSource damageSourceDrain = new DamageSource("stygianDrain").setDamageBypassesArmor().setDamageIsAbsolute().setMagicDamage();
 	
@@ -78,6 +78,7 @@ public class Stygian
 		
 		GameRegistry.registerItem(hourglass, "hourglass", "stygiance");
 		GameRegistry.registerItem(hourglassCracked, "hourglassCracked", "stygiance");
+		GameRegistry.registerItem(lightningRod, "Lightning Rod", "stygiance");
 		
 		GameRegistry.registerBlock(stygianOre, "stygianOre");
 		
@@ -103,11 +104,13 @@ public class Stygian
 		
 		hourglass.setTextureName("stygian:hourglass");
 		hourglassCracked.setTextureName("stygian:hourglassCracked");
+		lightningRod.setTextureName("stygian:lightningRod");
 		
 		stygianOre.setBlockTextureName("stygian:stygianOre");
 
 		inactiveStygianCrystal.setCreativeTab(tabStygian);
 		stygianCrystal.setCreativeTab(tabStygian);
+		lightningRod.setCreativeTab(tabStygian);
 		
 		stygianSword.setCreativeTab(tabStygian);
 		stygianPickaxe.setCreativeTab(tabStygian);
