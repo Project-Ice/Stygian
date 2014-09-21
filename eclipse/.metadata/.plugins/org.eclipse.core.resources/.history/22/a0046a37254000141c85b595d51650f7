@@ -1,0 +1,21 @@
+package net.condorcraft110.stygiance;
+
+import java.lang.reflect.*;
+
+import net.minecraft.block.*;
+import net.minecraft.block.material.*;
+
+public class Reflection
+{
+	public static Block getRawBlockInstance(Material material)
+	{
+		try
+		{
+			Constructor constructor = Block.class.getDeclaredConstructor(Material.class);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+}

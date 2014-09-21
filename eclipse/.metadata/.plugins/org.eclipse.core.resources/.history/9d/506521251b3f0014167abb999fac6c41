@@ -1,0 +1,8 @@
+package net.condorcraft110.mc.testing17;
+
+import net.minecraft.world.*;
+
+public class WorldProvider17Diamond extends WorldProvider
+{
+	
+}
