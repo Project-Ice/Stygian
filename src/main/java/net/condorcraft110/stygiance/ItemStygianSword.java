@@ -17,8 +17,6 @@ public class ItemStygianSword extends ItemSword
 		entity0.attackEntityFrom(Stygian.damageSourceDrain, damage);
 		entity1.heal(damage);
 		
-		System.out.println("TEST");
-		
 		return super.hitEntity(stack, entity0, entity1);
 	}
 }
