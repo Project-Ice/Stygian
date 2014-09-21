@@ -44,7 +44,10 @@ public class Stygian
 	
 	public static ItemHourglass hourglass = (ItemHourglass)new ItemHourglass(false).setUnlocalizedName("hourglassIntact");
 	public static ItemHourglass hourglassCracked = (ItemHourglass)new ItemHourglass(true).setUnlocalizedName("hourglassCracked");
+
+	public static Item stygianCore = new Item().setUnlocalizedName("stygianCore");
 	public static ItemLightningRod lightningRod = (ItemLightningRod)new ItemLightningRod().setUnlocalizedName("lightningRod");
+	
 	
 	public static DamageSource damageSourceDrain = new DamageSource("stygianDrain").setDamageBypassesArmor().setDamageIsAbsolute().setMagicDamage();
 	
@@ -78,7 +81,9 @@ public class Stygian
 		
 		GameRegistry.registerItem(hourglass, "hourglass", "stygiance");
 		GameRegistry.registerItem(hourglassCracked, "hourglassCracked", "stygiance");
-		GameRegistry.registerItem(lightningRod, "Lightning Rod", "stygiance");
+		
+		GameRegistry.registerItem(stygianCore, "stygianCore", "stygiance");
+		GameRegistry.registerItem(lightningRod, "lightningRod", "stygiance");
 		
 		GameRegistry.registerBlock(stygianOre, "stygianOre");
 		
@@ -104,13 +109,14 @@ public class Stygian
 		
 		hourglass.setTextureName("stygian:hourglass");
 		hourglassCracked.setTextureName("stygian:hourglassCracked");
+		
+		stygianCore.setTextureName("stygian:stygianCrystal_old");
 		lightningRod.setTextureName("stygian:lightningRod");
 		
 		stygianOre.setBlockTextureName("stygian:stygianOre");
 
 		inactiveStygianCrystal.setCreativeTab(tabStygian);
 		stygianCrystal.setCreativeTab(tabStygian);
-		lightningRod.setCreativeTab(tabStygian);
 		
 		stygianSword.setCreativeTab(tabStygian);
 		stygianPickaxe.setCreativeTab(tabStygian);
@@ -122,6 +128,12 @@ public class Stygian
 		stygianChestplate.setCreativeTab(tabStygian);
 		stygianLeggings.setCreativeTab(tabStygian);
 		stygianBoots.setCreativeTab(tabStygian);
+
+		hourglass.setCreativeTab(tabStygian);
+		hourglassCracked.setCreativeTab(tabStygian);
+		
+		stygianCore.setCreativeTab(tabStygian);
+		lightningRod.setCreativeTab(tabStygian);
 
 		stygianArmourMaterial.customCraftingMaterial = stygianCrystal;
 		stygianToolMaterial.customCraftingMaterial = stygianCrystal;
@@ -140,6 +152,9 @@ public class Stygian
 		GameRegistry.addRecipe(new ItemStack(stygianChestplate, 1), "@ @", "@@@", "@@@", '@', stygianCrystal);
 		GameRegistry.addRecipe(new ItemStack(stygianLeggings, 1), "@@@", "@ @", "@ @", '@', stygianCrystal);
 		GameRegistry.addRecipe(new ItemStack(stygianBoots, 1), "@ @", "@ @", '@', stygianCrystal);
+		
+		GameRegistry.addRecipe(new ItemStack(stygianCore, 1), "-#-", "#@#", "-#-", '@', stygianCrystal, '#', Items.ender_pearl, '-', Items.diamond);
+		GameRegistry.addRecipe(new ItemStack(lightningRod, 1), "  @", " # ", "#  ", '@', stygianCore, '#', Items.blaze_rod);
 		
 		GameRegistry.addSmelting(inactiveStygianCrystal, new ItemStack(stygianCrystal, 1), 48.0F);
 	}
