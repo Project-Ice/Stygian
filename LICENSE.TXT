@@ -1,0 +1,23 @@
+===== Ice License version 1.0 =====
+
+This license states what you can and cannot do with any piece of code written by Project Ice ('us', 'we'). If you break any term laid down in this license, you may not continue to use any of Project Ice's code in any form (source, compiled or packaged).
+
+You may:
+	- Download and use our Minecraft mods to play without restriction.
+
+	- Use our Minecraft mods in any modpack, provided that:
+		a) You make it clear to any user of the pack which of our mods is in your pack and that they are written by us.
+		b) You do not make any money with the modpack. This includes adverts and URL shorteners such as Adfly.
+		c) You provide a clearly visible link back to the Project Ice GitHub page (https://www.github.com/Project-Ice/).
+
+	- Use our code in any of your projects, provided that:
+		a) You make the entirety of the code in your project (including that not written by Project Ice) freely available to the public under any license approved by the Free Software Foundation (http://www.fsf.org/).
+		b) You do not make any money using our code. This includes adverts and URL shorteners such as Adfly.
+		c) You make it clear to any user that our code was written by us.
+
+You may not:
+	- Redistribute any of our code under any license (except the Ice License) not approved by the Free Software Foundation.
+
+	- Make any money using our code. This includes adverts and URL shorteners such as Adfly.
+
+	- Claim that you wrote any of our code. We put a lot of work into what we do, and it makes us sad to see it taken away from us. :(
