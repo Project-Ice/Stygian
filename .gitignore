@@ -3,8 +3,6 @@
 !bin/
 !eclipse/
 !src/
-!.classpath
 !.gitignore
-!.project
 !build.bat
 !LICENSE.TXT
