@@ -1,7 +1,9 @@
 package net.condorcraft110.stygiance;
 
+import java.util.*;
 import net.minecraft.init.*;
 import net.minecraft.item.*;
+import net.minecraft.util.*;
 import net.minecraft.block.*;
 import cpw.mods.fml.common.*;
 import net.minecraft.item.Item.*;
@@ -12,12 +14,13 @@ import net.minecraft.block.material.*;
 import cpw.mods.fml.client.registry.*;
 import cpw.mods.fml.common.registry.*;
 import net.minecraft.item.ItemArmor.*;
-import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.util.*;
 
 @Mod(name = "Stygian Complex Edition", modid = "stygiance", version = "1.6")
 public class Stygian
 {
+	public static final Random stygianRandom = new Random();
+	
 	@SidedProxy(clientSide = "net.condorcraft110.stygiance.ClientProxy", serverSide = "net.condorcraft110.stygiance.CommonProxy")
 	public static CommonProxy proxy;
 	
@@ -31,6 +34,7 @@ public class Stygian
 	
 	public static Item inactiveStygianCrystal = new ItemStygianCrystal(false).setUnlocalizedName("iStygianCrystal");
 	public static Item stygianCrystal = new ItemStygianCrystal(true).setUnlocalizedName("stygianCrystal");
+	
 	public static ItemStygianSword stygianSword = (ItemStygianSword)new ItemStygianSword(stygianToolMaterial).setUnlocalizedName("stygianSword");
 	public static ItemStygianPickaxe stygianPickaxe = (ItemStygianPickaxe)new ItemStygianPickaxe(stygianToolMaterial).setUnlocalizedName("stygianPickaxe");
 	public static ItemSpade stygianShovel = (ItemSpade)new ItemSpade(stygianToolMaterial).setUnlocalizedName("stygianShovel");
@@ -42,12 +46,12 @@ public class Stygian
 	public static ItemStygianArmour stygianLeggings;
 	public static ItemStygianArmour stygianBoots;
 	
+	public static Item sceptreCoreCradle = new Item().setUnlocalizedName("sceptreCoreCradle");
+	
 	public static ItemHourglass hourglass = (ItemHourglass)new ItemHourglass(false).setUnlocalizedName("hourglassIntact");
 	public static ItemHourglass hourglassCracked = (ItemHourglass)new ItemHourglass(true).setUnlocalizedName("hourglassCracked");
 
 	public static Item stygianCore = new Item().setUnlocalizedName("stygianCore");
-	public static ItemLightningRod lightningRod = (ItemLightningRod)new ItemLightningRod().setUnlocalizedName("lightningRod");
-	
 	
 	public static DamageSource damageSourceDrain = new DamageSource("stygianDrain").setDamageBypassesArmor().setDamageIsAbsolute().setMagicDamage();
 	
@@ -58,6 +62,8 @@ public class Stygian
 		
 		StygianConfig.readAndSet(event.getModConfigurationDirectory());
 		
+		FocusRegistry.registerFoci();
+		
 		stygianArmourRenderIndex = proxy.getStygianRenderIndex();
 		
 		stygianHelmet = (ItemStygianArmour)new ItemStygianArmour(stygianArmourMaterial, stygianArmourRenderIndex, 0).setUnlocalizedName("stygianHelmet");
@@ -65,25 +71,24 @@ public class Stygian
 		stygianLeggings = (ItemStygianArmour)new ItemStygianArmour(stygianArmourMaterial, stygianArmourRenderIndex, 2).setUnlocalizedName("stygianLeggings");
 		stygianBoots = (ItemStygianArmour)new ItemStygianArmour(stygianArmourMaterial, stygianArmourRenderIndex, 3).setUnlocalizedName("stygianBoots");
 		
-		GameRegistry.registerItem(inactiveStygianCrystal, "stygianCrystalInactive", "stygiance");
-		GameRegistry.registerItem(stygianCrystal, "stygianCrystal", "stygiance");
+		GameRegistry.registerItem(inactiveStygianCrystal, "stygianCrystalInactive");
+		GameRegistry.registerItem(stygianCrystal, "stygianCrystal");
 		
-		GameRegistry.registerItem(stygianSword, "stygianSword", "stygiance");
-		GameRegistry.registerItem(stygianPickaxe, "stygianPickaxe", "stygiance");
-		GameRegistry.registerItem(stygianShovel, "stygianShovel", "stygiance");
-		GameRegistry.registerItem(stygianAxe, "stygianAxe", "stygiance");
-		GameRegistry.registerItem(stygianHoe, "stygianHoe", "stygiance");
+		GameRegistry.registerItem(stygianSword, "stygianSword");
+		GameRegistry.registerItem(stygianPickaxe, "stygianPickaxe");
+		GameRegistry.registerItem(stygianShovel, "stygianShovel");
+		GameRegistry.registerItem(stygianAxe, "stygianAxe");
+		GameRegistry.registerItem(stygianHoe, "stygianHoe");
 		
-		GameRegistry.registerItem(stygianHelmet, "stygianHelmet", "stygiance");
-		GameRegistry.registerItem(stygianChestplate, "stygianChestplate", "stygiance");
-		GameRegistry.registerItem(stygianLeggings, "stygianLeggings", "stygiance");
-		GameRegistry.registerItem(stygianBoots, "stygianBoots", "stygiance");
+		GameRegistry.registerItem(stygianHelmet, "stygianHelmet");
+		GameRegistry.registerItem(stygianChestplate, "stygianChestplate");
+		GameRegistry.registerItem(stygianLeggings, "stygianLeggings");
+		GameRegistry.registerItem(stygianBoots, "stygianBoots");
 		
-		GameRegistry.registerItem(hourglass, "hourglass", "stygiance");
-		GameRegistry.registerItem(hourglassCracked, "hourglassCracked", "stygiance");
+		GameRegistry.registerItem(sceptreCoreCradle, "sceptreCoreCradle");
 		
-		GameRegistry.registerItem(stygianCore, "stygianCore", "stygiance");
-		GameRegistry.registerItem(lightningRod, "lightningRod", "stygiance");
+		GameRegistry.registerItem(hourglass, "hourglass");
+		GameRegistry.registerItem(hourglassCracked, "hourglassCracked");
 		
 		GameRegistry.registerBlock(stygianOre, "stygianOre");
 		
@@ -107,11 +112,12 @@ public class Stygian
 		stygianLeggings.setTextureName("stygian:stygianLeggings");
 		stygianBoots.setTextureName("stygian:stygianBoots");
 		
+		sceptreCoreCradle.setTextureName("stygian:sceptreCoreCradle");
+		
 		hourglass.setTextureName("stygian:hourglass");
 		hourglassCracked.setTextureName("stygian:hourglassCracked");
 		
-		stygianCore.setTextureName("stygian:stygianCrystal_old");
-		lightningRod.setTextureName("stygian:lightningRod");
+		stygianCore.setTextureName("stygian:focusCore");
 		
 		stygianOre.setBlockTextureName("stygian:stygianOre");
 
@@ -128,13 +134,12 @@ public class Stygian
 		stygianChestplate.setCreativeTab(tabStygian);
 		stygianLeggings.setCreativeTab(tabStygian);
 		stygianBoots.setCreativeTab(tabStygian);
-
+		
 		hourglass.setCreativeTab(tabStygian);
 		hourglassCracked.setCreativeTab(tabStygian);
 		
 		stygianCore.setCreativeTab(tabStygian);
-		lightningRod.setCreativeTab(tabStygian);
-
+		
 		stygianArmourMaterial.customCraftingMaterial = stygianCrystal;
 		stygianToolMaterial.customCraftingMaterial = stygianCrystal;
 		
@@ -154,7 +159,6 @@ public class Stygian
 		GameRegistry.addRecipe(new ItemStack(stygianBoots, 1), "@ @", "@ @", '@', stygianCrystal);
 		
 		GameRegistry.addRecipe(new ItemStack(stygianCore, 1), "-#-", "#@#", "-#-", '@', stygianCrystal, '#', Items.ender_pearl, '-', Items.diamond);
-		GameRegistry.addRecipe(new ItemStack(lightningRod, 1), "  @", " # ", "#  ", '@', stygianCore, '#', Items.blaze_rod);
 		
 		GameRegistry.addSmelting(inactiveStygianCrystal, new ItemStack(stygianCrystal, 1), 48.0F);
 	}

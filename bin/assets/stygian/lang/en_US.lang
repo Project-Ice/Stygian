@@ -17,10 +17,14 @@ item.stygianBoots.name=Stygian Boots
 item.hourglassIntact.name=Hourglass
 item.hourglassCracked.name=Cracked Hourglass
 
-item.stygianCore.name=Stygian Core
-item.lightningRod.name=Lightning Rod
+item.stygianCore.name=Focus Core
+item.sceptreCoreCradle.name=Sceptre Core Cradle
+
+item.focusSceptre.name=Focus Sceptre
 
 death.attack.stygianDrain=%1$s's life was drained
 death.attack.stygianDrain.player=%1$s's life was drained by %2$s
 
 itemGroup.stygian=Stygian
+
+focus.lightning.name=Lightning

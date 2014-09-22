@@ -17,7 +17,7 @@ public class Reflection
 			
 			block = (Block)constructor.newInstance(material);
 		}
-		catch (Exception e)
+		catch(Exception e)
 		{
 			e.printStackTrace(); // damn
 		}
