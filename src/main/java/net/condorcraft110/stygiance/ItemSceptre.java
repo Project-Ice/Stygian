@@ -18,6 +18,7 @@ public class ItemSceptre extends Item
 	{
 		setUnlocalizedName("focusSceptre");
 		setTextureName("stygian:sceptre");
+		setMaxStackSize(1);
 		this.focus = focus;
 	}
 	
@@ -38,12 +39,7 @@ public class ItemSceptre extends Item
 	
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean b)
 	{
-		list.add(FocusRegistry.getLocalFocusName(getDamage(stack)));
-	}
-	
-	public int getMaxDamage(ItemStack stack)
-	{
-		return focus.maxDamage(stack);
+		list.add(FocusRegistry.getLocalFocusName(stack.getTagCompound().getInteger("FocusID")));
 	}
 	
 	public void registerRecipe()

@@ -65,7 +65,6 @@ public class FocusRegistry
 	
 	static void registerFoci()
 	{
-		focusRegistry.add(null);
 		registerFocus(new FocusLightning(), Stygian.tabStygian);
 	}
 }

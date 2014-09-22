@@ -19,7 +19,14 @@ public class ItemStygianCore extends Item
 	
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean b)
 	{
-		list.add(FocusRegistry.getLocalFocusName(getDamage(stack)));
+		if(stack.getItemDamage() > 0)
+		{
+			list.add(FocusRegistry.getLocalFocusName(stack.getTagCompound().getInteger("FocusID")));
+		}
+		else
+		{
+			list.add("Empty");
+		}
 	}
 	
 	public boolean hasEffect(ItemStack stack)

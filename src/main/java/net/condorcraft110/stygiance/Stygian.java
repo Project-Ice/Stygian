@@ -62,8 +62,6 @@ public class Stygian
 		
 		StygianConfig.readAndSet(event.getModConfigurationDirectory());
 		
-		FocusRegistry.registerFoci();
-		
 		stygianArmourRenderIndex = proxy.getStygianRenderIndex();
 		
 		stygianHelmet = (ItemStygianArmour)new ItemStygianArmour(stygianArmourMaterial, stygianArmourRenderIndex, 0).setUnlocalizedName("stygianHelmet");
@@ -86,6 +84,8 @@ public class Stygian
 		GameRegistry.registerItem(stygianBoots, "stygianBoots");
 		
 		GameRegistry.registerItem(sceptreCoreCradle, "sceptreCoreCradle");
+		
+		GameRegistry.registerItem(stygianCore, "focusCore");
 		
 		GameRegistry.registerItem(hourglass, "hourglass");
 		GameRegistry.registerItem(hourglassCracked, "hourglassCracked");
@@ -161,6 +161,8 @@ public class Stygian
 		GameRegistry.addRecipe(new ItemStack(stygianCore, 1), "-#-", "#@#", "-#-", '@', stygianCrystal, '#', Items.ender_pearl, '-', Items.diamond);
 		
 		GameRegistry.addSmelting(inactiveStygianCrystal, new ItemStack(stygianCrystal, 1), 48.0F);
+		
+		FocusRegistry.registerFoci();
 	}
 	
 	private void checkStandardNotInstalled()
