@@ -1,33 +1,28 @@
 package net.condorcraft110.stygiance.focus;
 
+import net.minecraft.init.*;
 import net.minecraft.item.*;
 import net.minecraft.world.*;
 import net.minecraft.entity.*;
-import net.minecraft.entity.effect.*;
 import net.minecraft.entity.player.*;
-import net.condorcraft110.stygiance.*;
 
-public class FocusLightning implements ICoreFocus
+public class FocusFire implements ICoreFocus
 {
 	public String focusName()
 	{
-		return "lightning";
+		return "fire";
 	}
 	
 	public boolean hitEntity(ItemStack stack, EntityLivingBase victim, EntityLivingBase attacker)
 	{
-		EntityLightningBolt lightning = new EntityLightningBolt(victim.worldObj, victim.posX, victim.posY, victim.posZ);
-		
-		victim.worldObj.spawnEntityInWorld(lightning);
+		victim.setFire(60);
 		
 		return true;
 	}
 	
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int i, float f, float g, float h)
 	{
-		EntityLightningBolt lightning = new EntityLightningBolt(world, x, y, z);
-		
-		world.spawnEntityInWorld(lightning);
+		world.setBlock(x, y + 1, z, Blocks.fire);
 		
 		return true;
 	}
@@ -39,17 +34,6 @@ public class FocusLightning implements ICoreFocus
 	
 	public boolean crackedTick(ItemStack stack, World world, Entity entity, int i, boolean b)
 	{
-		int j = Stygian.stygianRandom.nextInt(400);
-		
-		if(j == 0)
-		{
-			EntityLightningBolt lightning = new EntityLightningBolt(world, entity.posX, entity.posY, entity.posZ);
-			
-			world.spawnEntityInWorld(lightning);
-			
-			return true;
-		}
-		
 		return false; // NYI
 	}
 }

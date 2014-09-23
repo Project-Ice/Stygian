@@ -1,46 +1,46 @@
 package net.condorcraft110.stygiance;
 
 import java.util.*;
+
 import net.minecraft.item.*;
 import net.minecraft.util.*;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.*;
 import net.condorcraft110.stygiance.focus.*;
 
 public class ItemStygianCore extends Item
 {
-	private int focusID;
-	
-	public ItemStygianCore(int focusID)
+	public ItemStygianCore()
 	{
-		setUnlocalizedName("stygianCore");
-		setTextureName("stygian:focusCore");
-		this.focusID = focusID;
+		setHasSubtypes(true);
+		setMaxStackSize(1);
 	}
 	
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean b)
 	{
-		if(stack.getItemDamage() > 0)
-		{
-			list.add(FocusRegistry.getLocalFocusName(stack.getTagCompound().getInteger("FocusID")));
-		}
-		else
-		{
-			list.add("Empty");
-		}
+		list.add(FocusRegistry.getLocalFocusName(stack.getItemDamage()));
 	}
 	
 	public boolean hasEffect(ItemStack stack)
 	{
-		return stack.getItemDamage() != 0;
+		return true;
 	}
 	
-	public ICoreFocus getFocus()
+	public void getSubItems(Item item, CreativeTabs tab, List list)
 	{
-		return FocusRegistry.getFocus(focusID);
+		for(int i = 0; i < FocusRegistry.registeredFoci(); i++)
+		{
+			list.add(new ItemStack(item, 0, i));
+		}
 	}
 	
-	public String getLocalFocusName()
+	public ICoreFocus getFocus(ItemStack stack)
 	{
-		return FocusRegistry.getLocalFocusName(focusID);
+		return FocusRegistry.getFocus(stack.getItemDamage());
+	}
+	
+	public String getLocalFocusName(ItemStack stack)
+	{
+		return FocusRegistry.getLocalFocusName(stack.getItemDamage());
 	}
 }

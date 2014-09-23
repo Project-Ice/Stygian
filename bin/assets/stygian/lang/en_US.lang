@@ -28,3 +28,5 @@ death.attack.stygianDrain.player=%1$s's life was drained by %2$s
 itemGroup.stygian=Stygian
 
 focus.lightning.name=Lightning
+focus.fire.name=Fire
+focus.wind.name=Wind

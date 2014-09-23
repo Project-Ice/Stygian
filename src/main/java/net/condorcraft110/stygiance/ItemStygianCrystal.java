@@ -15,8 +15,6 @@ public class ItemStygianCrystal extends Item
 	
 	public ItemStygianCrystal(boolean active)
 	{
-		super();
-		setCreativeTab(CreativeTabs.tabMaterials);
 		this.active = active;
 	}
 	
