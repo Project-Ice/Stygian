@@ -15,7 +15,7 @@ public class FocusWind implements ICoreFocus
 	
 	public boolean hitEntity(ItemStack stack, EntityLivingBase victim, EntityLivingBase attacker)
 	{
-		victim.knockBack(attacker, 200, -attacker.getLookVec().xCoord, -attacker.getLookVec().zCoord);
+		victim.knockBack(attacker, 200000, -attacker.getLookVec().xCoord, -attacker.getLookVec().zCoord);
 		return true;
 	}
 	
@@ -33,5 +33,4 @@ public class FocusWind implements ICoreFocus
 	{
 		return false; // NYI
 	}
-	
 }

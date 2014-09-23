@@ -2,7 +2,6 @@ package net.condorcraft110.stygiance;
 
 import java.util.*;
 import net.minecraft.util.*;
-import net.minecraft.creativetab.*;
 import cpw.mods.fml.common.registry.*;
 import net.condorcraft110.stygiance.focus.*;
 

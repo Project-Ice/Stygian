@@ -16,4 +16,6 @@ public interface ICoreFocus
 	public int maxDamage(ItemStack stack); // NYI
 	
 	public boolean crackedTick(ItemStack stack, World world, Entity entity, int i, boolean b); // NYI
+	
+	//public boolean isUnstable();
 }
