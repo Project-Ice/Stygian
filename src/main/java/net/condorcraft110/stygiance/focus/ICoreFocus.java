@@ -17,5 +17,7 @@ public interface ICoreFocus
 	
 	public boolean crackedTick(ItemStack stack, World world, Entity entity, int i, boolean b); // NYI
 	
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player);
+	
 	//public boolean isUnstable();
 }

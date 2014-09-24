@@ -24,6 +24,9 @@ public class Stygian
 	@SidedProxy(clientSide = "net.condorcraft110.stygiance.ClientProxy", serverSide = "net.condorcraft110.stygiance.CommonProxy")
 	public static CommonProxy proxy;
 	
+	@Instance
+	public static Stygian INSTANCE;
+	
 	public static final ArmorMaterial stygianArmourMaterial = EnumHelper.addArmorMaterial("stygian", 99, new int[]{9, 24, 18, 9}, 30);
 	public static int stygianArmourRenderIndex;
 	public static final CreativeTabs tabStygian = new CreativeTabStygian(); 
@@ -31,9 +34,6 @@ public class Stygian
 	
 	public static BlockStygianOre stygianOre = (BlockStygianOre)new BlockStygianOre().setBlockName("oreStygian").setHardness(10.0F).setResistance(6000000.0F);
 	public static Block stygianBlock = Reflection.getRawBlockInstance(Material.rock).setBlockName("blockStygian").setBlockTextureName("stygianBlock");
-	
-	public static BlockSoulForge soulForgeInactive = (BlockSoulForge)new BlockSoulForge(false).setBlockName("soulForge");
-	public static BlockSoulForge soulForgeActive = (BlockSoulForge)new BlockSoulForge(true).setBlockName("soulForge");
 	
 	public static Item stygianCrystal = new ItemStygianCrystal();
 	
@@ -54,8 +54,8 @@ public class Stygian
 	public static ItemHourglass hourglassCracked = (ItemHourglass)new ItemHourglass(true).setUnlocalizedName("hourglassCracked");
 
 	public static Item stygianCore = new Item().setUnlocalizedName("stygianCore");
-	public static Item sceptre = new ItemSceptre().setUnlocalizedName("focusSceptre");
-	public static Item focusCore = new ItemStygianCore().setUnlocalizedName("stygianCore");
+	public static ItemSceptre sceptre = (ItemSceptre)new ItemSceptre().setUnlocalizedName("focusSceptre");
+	public static ItemStygianCore focusCore = (ItemStygianCore)new ItemStygianCore().setUnlocalizedName("stygianCore");
 	
 	public static DamageSource damageSourceDrain = new DamageSource("stygianDrain").setDamageBypassesArmor().setDamageIsAbsolute().setMagicDamage();
 	
@@ -96,9 +96,6 @@ public class Stygian
 		GameRegistry.registerItem(hourglassCracked, "hourglassCracked");
 		
 		GameRegistry.registerBlock(stygianOre, "stygianOre");
-
-		GameRegistry.registerBlock(soulForgeInactive, "soulForgeInactive");
-		GameRegistry.registerBlock(soulForgeActive, "soulForgeActive");
 		
 		GameRegistry.registerWorldGenerator(new WorldGenNetherOreHandler(), 0);
 	}

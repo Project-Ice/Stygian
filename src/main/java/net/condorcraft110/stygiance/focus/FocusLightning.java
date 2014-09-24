@@ -37,6 +37,11 @@ public class FocusLightning implements ICoreFocus
 		return 1234567890; // NYI
 	}
 	
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
+	{
+		return stack;
+	}
+	
 	public boolean crackedTick(ItemStack stack, World world, Entity entity, int i, boolean b)
 	{
 		int j = Stygian.stygianRandom.nextInt(400);

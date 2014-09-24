@@ -15,7 +15,7 @@ public class FocusCreativeDeath implements ICoreFocus
 	
 	public boolean hitEntity(ItemStack stack, EntityLivingBase victim, EntityLivingBase attacker)
 	{
-		victim.attackEntityFrom(DamageSource.generic, Float.MAX_VALUE);
+		victim.attackEntityFrom(DamageSource.generic, Float.POSITIVE_INFINITY);
 		
 		return true;
 	}
@@ -27,7 +27,7 @@ public class FocusCreativeDeath implements ICoreFocus
 	
 	public int maxDamage(ItemStack stack)
 	{
-		return 0;
+		return 0; // NYI
 	}
 	
 	public boolean crackedTick(ItemStack stack, World world, Entity entity, int i, boolean b)
@@ -35,4 +35,10 @@ public class FocusCreativeDeath implements ICoreFocus
 		return false;
 	}
 	
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
+	{
+		world.spawnEntityInWorld(new ProjectileDeath(world, player));
+		
+		return stack;
+	}
 }

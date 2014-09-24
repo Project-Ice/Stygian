@@ -4,6 +4,7 @@ import java.util.*;
 
 import net.minecraft.item.*;
 import net.minecraft.util.*;
+import net.minecraft.world.World;
 import net.minecraft.creativetab.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.client.renderer.texture.*;
@@ -25,7 +26,7 @@ public class ItemStygianCrystal extends Item
 	
 	public String getUnlocalizedName(ItemStack stack)
 	{
-		return (stack.getItemDamage() == 0 ? "iS" : "s") + "tygianCrystal";
+		return "item." + (stack.getItemDamage() == 0 ? "iS" : "s") + "tygianCrystal";
 	}
 	
 	public void registerIcons(IIconRegister register)

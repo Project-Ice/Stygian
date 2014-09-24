@@ -30,7 +30,7 @@ public class ItemStygianCore extends Item
 	{
 		for(int i = 0; i < FocusRegistry.registeredFoci(); i++)
 		{
-			list.add(new ItemStack(item, 0, i));
+			list.add(new ItemStack(item, 1, i));
 		}
 	}
 	
@@ -42,5 +42,10 @@ public class ItemStygianCore extends Item
 	public String getLocalFocusName(ItemStack stack)
 	{
 		return FocusRegistry.getLocalFocusName(stack.getItemDamage());
+	}
+	
+	public EnumRarity getRarity(ItemStack stack)
+	{
+		return EnumRarity.epic;
 	}
 }

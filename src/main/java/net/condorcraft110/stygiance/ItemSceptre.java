@@ -1,6 +1,7 @@
 package net.condorcraft110.stygiance;
 
 import java.util.*;
+
 import net.minecraft.item.*;
 import net.minecraft.world.*;
 import net.minecraft.entity.*;
@@ -44,5 +45,15 @@ public class ItemSceptre extends Item
 		{
 			list.add(new ItemStack(item, 1, i));
 		}
+	}
+	
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
+	{
+		return FocusRegistry.getFocus(stack.getItemDamage()).onItemRightClick(stack, world, player);
+	}
+	
+	public EnumRarity getRarity(ItemStack stack)
+	{
+		return EnumRarity.epic;
 	}
 }
