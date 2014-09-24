@@ -1,7 +1,6 @@
 package net.condorcraft110.stygiance;
 
-import java.util.List;
-
+import java.util.*;
 import net.minecraft.item.*;
 import net.minecraft.world.*;
 import net.minecraft.entity.*;
