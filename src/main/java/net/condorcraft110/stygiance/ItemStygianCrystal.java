@@ -1,35 +1,41 @@
 package net.condorcraft110.stygiance;
 
+import java.util.*;
+
 import net.minecraft.item.*;
 import net.minecraft.util.*;
-import cpw.mods.fml.relauncher.*;
-import cpw.mods.fml.relauncher.*;
 import net.minecraft.creativetab.*;
+import net.minecraft.entity.player.*;
 import net.minecraft.client.renderer.texture.*;
-import net.minecraft.entity.player.EntityPlayer;
 
 public class ItemStygianCrystal extends Item
 {
-	private boolean active;
 	private IIcon[] icons = new IIcon[2];
 	
-	public ItemStygianCrystal(boolean active)
+	public ItemStygianCrystal()
 	{
-		this.active = active;
+		setHasSubtypes(true);
 	}
 	
-	@SideOnly(Side.CLIENT)
+	public void getSubItems(Item item, CreativeTabs tab, List list)
+	{
+		list.add(new ItemStack(item, 1, 0));
+		list.add(new ItemStack(item, 1, 1));
+	}
+	
+	public String getUnlocalizedName(ItemStack stack)
+	{
+		return (stack.getItemDamage() == 0 ? "iS" : "s") + "tygianCrystal";
+	}
+	
 	public void registerIcons(IIconRegister register)
 	{
 		icons[0] = register.registerIcon("stygian:stygianCrystalInactive");
 		icons[1] = register.registerIcon("stygian:stygianCrystalActive");
-		
-		itemIcon = active ? icons[1] : icons[0];
 	}
-	 
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(ItemStack stack, int renderPass, EntityPlayer player, ItemStack usingItem, int useRemaining)
+	
+	public IIcon getIconFromDamage(int damage)
 	{
-		return active ? icons[1] : icons[0];
+		return icons[MathHelper.clamp_int(damage, 0, 1)];
 	}
 }

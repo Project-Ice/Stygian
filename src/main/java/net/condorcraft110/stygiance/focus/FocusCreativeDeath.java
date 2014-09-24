@@ -1,21 +1,22 @@
 package net.condorcraft110.stygiance.focus;
 
 import net.minecraft.item.*;
+import net.minecraft.util.*;
 import net.minecraft.world.*;
-import net.minecraft.entity.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 
-public class FocusWind implements ICoreFocus
+public class FocusCreativeDeath implements ICoreFocus
 {
 	public String focusName()
 	{
-		return "wind";
+		return "death";
 	}
 	
 	public boolean hitEntity(ItemStack stack, EntityLivingBase victim, EntityLivingBase attacker)
 	{
-		victim.knockBack(attacker, Integer.MAX_VALUE, -attacker.getLookVec().xCoord, -attacker.getLookVec().zCoord);
+		victim.attackEntityFrom(DamageSource.generic, Float.MAX_VALUE);
+		
 		return true;
 	}
 	
@@ -26,11 +27,12 @@ public class FocusWind implements ICoreFocus
 	
 	public int maxDamage(ItemStack stack)
 	{
-		return 1234567890; // NYI
+		return 0;
 	}
 	
 	public boolean crackedTick(ItemStack stack, World world, Entity entity, int i, boolean b)
 	{
-		return false; // NYI
+		return false;
 	}
+	
 }

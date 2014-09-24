@@ -44,5 +44,6 @@ public class FocusRegistry
 		registerFocus(new FocusLightning());
 		registerFocus(new FocusFire());
 		registerFocus(new FocusWind());
+		registerFocus(new FocusCreativeDeath());
 	}
 }

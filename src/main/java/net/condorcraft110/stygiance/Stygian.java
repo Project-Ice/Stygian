@@ -32,8 +32,10 @@ public class Stygian
 	public static BlockStygianOre stygianOre = (BlockStygianOre)new BlockStygianOre().setBlockName("oreStygian").setHardness(10.0F).setResistance(6000000.0F);
 	public static Block stygianBlock = Reflection.getRawBlockInstance(Material.rock).setBlockName("blockStygian").setBlockTextureName("stygianBlock");
 	
-	public static Item inactiveStygianCrystal = new ItemStygianCrystal(false).setUnlocalizedName("iStygianCrystal");
-	public static Item stygianCrystal = new ItemStygianCrystal(true).setUnlocalizedName("stygianCrystal");
+	public static BlockSoulForge soulForgeInactive = (BlockSoulForge)new BlockSoulForge(false).setBlockName("soulForge");
+	public static BlockSoulForge soulForgeActive = (BlockSoulForge)new BlockSoulForge(true).setBlockName("soulForge");
+	
+	public static Item stygianCrystal = new ItemStygianCrystal();
 	
 	public static ItemStygianSword stygianSword = (ItemStygianSword)new ItemStygianSword(stygianToolMaterial).setUnlocalizedName("stygianSword");
 	public static ItemStygianPickaxe stygianPickaxe = (ItemStygianPickaxe)new ItemStygianPickaxe(stygianToolMaterial).setUnlocalizedName("stygianPickaxe");
@@ -71,7 +73,6 @@ public class Stygian
 		stygianLeggings = (ItemStygianArmour)new ItemStygianArmour(stygianArmourMaterial, stygianArmourRenderIndex, 2).setUnlocalizedName("stygianLeggings");
 		stygianBoots = (ItemStygianArmour)new ItemStygianArmour(stygianArmourMaterial, stygianArmourRenderIndex, 3).setUnlocalizedName("stygianBoots");
 		
-		GameRegistry.registerItem(inactiveStygianCrystal, "stygianCrystalInactive");
 		GameRegistry.registerItem(stygianCrystal, "stygianCrystal");
 		
 		GameRegistry.registerItem(stygianSword, "stygianSword");
@@ -95,6 +96,9 @@ public class Stygian
 		GameRegistry.registerItem(hourglassCracked, "hourglassCracked");
 		
 		GameRegistry.registerBlock(stygianOre, "stygianOre");
+
+		GameRegistry.registerBlock(soulForgeInactive, "soulForgeInactive");
+		GameRegistry.registerBlock(soulForgeActive, "soulForgeActive");
 		
 		GameRegistry.registerWorldGenerator(new WorldGenNetherOreHandler(), 0);
 	}
@@ -102,9 +106,6 @@ public class Stygian
 	@EventHandler
 	public void init(FMLInitializationEvent event)
 	{
-		inactiveStygianCrystal.setTextureName("stygian:stygianCrystalInactive");
-		stygianCrystal.setTextureName("stygian:stygianCrystalActive");
-		
 		stygianSword.setTextureName("stygian:stygianSword");
 		stygianPickaxe.setTextureName("stygian:stygianPickaxe");
 		stygianShovel.setTextureName("stygian:stygianShovel");
@@ -126,8 +127,7 @@ public class Stygian
 		focusCore.setTextureName("stygian:focusCore");
 		
 		stygianOre.setBlockTextureName("stygian:stygianOre");
-
-		inactiveStygianCrystal.setCreativeTab(tabStygian);
+		
 		stygianCrystal.setCreativeTab(tabStygian);
 		
 		stygianSword.setCreativeTab(tabStygian);
@@ -154,22 +154,22 @@ public class Stygian
 		
 		stygianOre.setHarvestLevel("pickaxe", 3);
 		
-		GameRegistry.addRecipe(new ItemStack(stygianSword, 1), "@", "@", "#", '@', stygianCrystal, '#', Items.blaze_rod);
-		GameRegistry.addRecipe(new ItemStack(stygianPickaxe, 1), "@@@", " # ", " # ", '@', stygianCrystal, '#', Items.blaze_rod);
-		GameRegistry.addRecipe(new ItemStack(stygianShovel, 1), "@", "#", "#", '@', stygianCrystal, '#', Items.blaze_rod);
-		GameRegistry.addRecipe(new ItemStack(stygianAxe, 1), "@@", "@#", " #", '@', stygianCrystal, '#', Items.blaze_rod);
-		GameRegistry.addRecipe(new ItemStack(stygianAxe, 1), "@@", "#@", "# ", '@', stygianCrystal, '#', Items.blaze_rod);
-		GameRegistry.addRecipe(new ItemStack(stygianHoe, 1), "@@ ", " # ", " # ", '@', stygianCrystal, '#', Items.blaze_rod);
-		GameRegistry.addRecipe(new ItemStack(stygianHoe, 1), " @@", " # ", " # ", '@', stygianCrystal, '#', Items.blaze_rod);
+		GameRegistry.addRecipe(new ItemStack(stygianSword, 1), "@", "@", "#", '@', new ItemStack(stygianCrystal, 1, 1), '#', Items.blaze_rod);
+		GameRegistry.addRecipe(new ItemStack(stygianPickaxe, 1), "@@@", " # ", " # ", '@', new ItemStack(stygianCrystal, 1, 1), '#', Items.blaze_rod);
+		GameRegistry.addRecipe(new ItemStack(stygianShovel, 1), "@", "#", "#", '@', new ItemStack(stygianCrystal, 1, 1), '#', Items.blaze_rod);
+		GameRegistry.addRecipe(new ItemStack(stygianAxe, 1), "@@", "@#", " #", '@', new ItemStack(stygianCrystal, 1, 1), '#', Items.blaze_rod);
+		GameRegistry.addRecipe(new ItemStack(stygianAxe, 1), "@@", "#@", "# ", '@', new ItemStack(stygianCrystal, 1, 1), '#', Items.blaze_rod);
+		GameRegistry.addRecipe(new ItemStack(stygianHoe, 1), "@@ ", " # ", " # ", '@', new ItemStack(stygianCrystal, 1, 1), '#', Items.blaze_rod);
+		GameRegistry.addRecipe(new ItemStack(stygianHoe, 1), " @@", " # ", " # ", '@', new ItemStack(stygianCrystal, 1, 1), '#', Items.blaze_rod);
 		
-		GameRegistry.addRecipe(new ItemStack(stygianHelmet, 1), "@@@", "@ @", '@', stygianCrystal);
-		GameRegistry.addRecipe(new ItemStack(stygianChestplate, 1), "@ @", "@@@", "@@@", '@', stygianCrystal);
-		GameRegistry.addRecipe(new ItemStack(stygianLeggings, 1), "@@@", "@ @", "@ @", '@', stygianCrystal);
-		GameRegistry.addRecipe(new ItemStack(stygianBoots, 1), "@ @", "@ @", '@', stygianCrystal);
+		GameRegistry.addRecipe(new ItemStack(stygianHelmet, 1), "@@@", "@ @", '@', new ItemStack(stygianCrystal, 1, 1));
+		GameRegistry.addRecipe(new ItemStack(stygianChestplate, 1), "@ @", "@@@", "@@@", '@', new ItemStack(stygianCrystal, 1, 1));
+		GameRegistry.addRecipe(new ItemStack(stygianLeggings, 1), "@@@", "@ @", "@ @", '@', new ItemStack(stygianCrystal, 1, 1));
+		GameRegistry.addRecipe(new ItemStack(stygianBoots, 1), "@ @", "@ @", '@', new ItemStack(stygianCrystal, 1, 1));
 		
-		GameRegistry.addRecipe(new ItemStack(stygianCore, 1), "-#-", "#@#", "-#-", '@', stygianCrystal, '#', Items.ender_pearl, '-', Items.diamond);
+		GameRegistry.addRecipe(new ItemStack(stygianCore, 1), "-#-", "#@#", "-#-", '@', new ItemStack(stygianCrystal, 1, 1), '#', Items.ender_pearl, '-', Items.diamond);
 		
-		GameRegistry.addSmelting(inactiveStygianCrystal, new ItemStack(stygianCrystal, 1), 48.0F);
+		GameRegistry.addSmelting(new ItemStack(stygianCrystal, 1, 0), new ItemStack(stygianCrystal, 1, 1), 48.0F);
 		
 		FocusRegistry.registerFoci();
 	}

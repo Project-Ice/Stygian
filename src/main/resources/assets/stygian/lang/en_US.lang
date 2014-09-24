@@ -1,5 +1,7 @@
 tile.oreStygian.name=Stygian Ore
 
+tile.soulForge.name=Soul Forge
+
 item.iStygianCrystal.name=Inactive Stygian Crystal
 item.stygianCrystal.name=Active Stygian Crystal
 
@@ -30,3 +32,4 @@ itemGroup.stygian=Stygian
 focus.lightning.name=Lightning
 focus.fire.name=Fire
 focus.wind.name=Wind
+focus.death.name=Death
