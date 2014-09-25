@@ -17,7 +17,9 @@ public class BlockFocusNode extends Block
 	{
 		for(int i = 0; i < FocusRegistry.registeredFoci(); i++)
 		{
-			list.add(new ItemStack(item, 1, i));
+			ItemStack stack = new ItemStack(item, 1);
+			stack.getTagCompound().setInteger("FocusID", i);
+			list.add(stack);
 		}
 	}
 }
