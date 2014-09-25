@@ -1,6 +1,7 @@
 package net.condorcraft110.stygiance.focus;
 
 import net.minecraft.item.*;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.*;
@@ -15,7 +16,22 @@ public class FocusWind implements ICoreFocus
 	
 	public boolean hitEntity(ItemStack stack, EntityLivingBase victim, EntityLivingBase attacker)
 	{
-		victim.knockBack(attacker, Integer.MAX_VALUE, -attacker.getLookVec().xCoord, -attacker.getLookVec().zCoord);
+		double d1 = attacker.posX - victim.posX;
+        double d0;
+
+        for(d0 = attacker.posZ - victim.posZ; d1 * d1 + d0 * d0 < 1.0E-3D; d0 = (Math.random() - Math.random()) * 0.1D)
+        {
+            d1 = (Math.random() - Math.random()) * 0.1D;
+        }
+        
+        victim.isAirBorne = true;
+        victim.motionX /= 2.0D;
+        victim.motionY /= 2.0D;
+        victim.motionZ /= 2.0D;
+        victim.motionX -= d1 * 2;
+        victim.motionY += 2.0;
+        victim.motionZ -= d0 * 2;
+        
 		return true;
 	}
 	
