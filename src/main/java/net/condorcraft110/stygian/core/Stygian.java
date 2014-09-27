@@ -63,6 +63,8 @@ public class Stygian
 	public static ItemSceptre sceptre = (ItemSceptre)new ItemSceptre().setUnlocalizedName("focusSceptre");
 	public static ItemStygianCore focusCore = (ItemStygianCore)new ItemStygianCore().setUnlocalizedName("stygianCore");
 	
+	public static ItemResonanceStar resonanceStar = (ItemResonanceStar)new ItemResonanceStar().setUnlocalizedName("resonanceStar");
+	
 	public static DamageSource damageSourceDrain = new DamageSource("stygianDrain").setDamageBypassesArmor().setDamageIsAbsolute().setMagicDamage();
 	
 	@EventHandler
@@ -96,6 +98,8 @@ public class Stygian
 		GameRegistry.registerItem(sceptre, "sceptre");
 		GameRegistry.registerItem(focusCore, "focusCore");
 		
+		GameRegistry.registerItem(resonanceStar, "resonanceStar");
+		
 		GameRegistry.registerItem(hourglass, "hourglass");
 		GameRegistry.registerItem(hourglassCracked, "hourglassCracked");
 		
@@ -127,6 +131,8 @@ public class Stygian
 		stygianCore.setTextureName("stygian:focusCore");
 		sceptre.setTextureName("stygian:sceptre");
 		focusCore.setTextureName("stygian:focusCore");
+		
+		resonanceStar.setTextureName("stygian:resonanceStar");
 
 		stygianOre.setBlockTextureName("stygian:stygianOre");
 		stygianBlock.setBlockTextureName("stygian:stygianBlock");
@@ -151,6 +157,8 @@ public class Stygian
 		sceptreCoreCradle.setCreativeTab(tabStygian);
 		sceptre.setCreativeTab(tabStygian);
 		focusCore.setCreativeTab(tabStygian);
+		
+		resonanceStar.setCreativeTab(tabStygian);
 		
 		stygianOre.setCreativeTab(tabStygian);
 		stygianBlock.setCreativeTab(tabStygian);

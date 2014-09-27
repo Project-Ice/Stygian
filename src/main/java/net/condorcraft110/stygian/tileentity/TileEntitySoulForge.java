@@ -1,5 +1,6 @@
 package net.condorcraft110.stygian.tileentity;
 
+import net.minecraft.nbt.*;
 import net.minecraft.item.*;
 import net.minecraft.inventory.*;
 import net.minecraft.tileentity.*;
@@ -167,6 +168,44 @@ public class TileEntitySoulForge extends TileEntity implements IInventory
 	
 	public boolean isItemValidForSlot(int slot, ItemStack stack)
 	{
-		return slot == 0 ? stack != null && stack.getItem() == Stygian.stygianCrystal && stack.getItemDamage() == 1 : true;
+		return stack != null && slot == 0 ? stack.getItem() == Stygian.stygianCrystal && stack.getItemDamage() == 1 : slot != 1;
+	}
+	
+	public void readFromNBT(NBTTagCompound tag)
+	{
+		burnTime = (int)tag.getShort("BurnTime");
+		progress = (int)tag.getShort("Progress");
+		
+		NBTTagList list = tag.getTagList("Contents", 10);
+		
+		for(int i = 0; i < list.tagCount(); i++)
+		{
+			NBTTagCompound tag1 = list.getCompoundTagAt(i);
+			
+			contents[(int)tag1.getByte("Slot")] = ItemStack.loadItemStackFromNBT(tag1);
+		}
+	}
+	
+	public void writeToNBT(NBTTagCompound tag)
+	{
+		tag.setShort("BurnTime", (short)burnTime);
+		tag.setShort("Progress", (short)progress);
+		
+		NBTTagList list = new NBTTagList();
+		
+		for(int i = 0; i < 11; i++)
+		{
+			ItemStack currentContents = contents[i];
+			
+			if(currentContents != null)
+			{
+				NBTTagCompound tag1 = new NBTTagCompound();
+				tag1.setByte("Slot", (byte)i);
+				currentContents.writeToNBT(tag1);
+				list.appendTag(tag1);
+			}
+		}
+		
+		tag.setTag("Contents", list);
 	}
 }
