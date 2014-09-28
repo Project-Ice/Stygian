@@ -13,7 +13,7 @@ public class TileEntitySoulForge extends TileEntity implements IInventory
 	private ItemStack[] contents = new ItemStack[11];
 	private ItemStack[][] compiled = null;
 	
-	private static final int FUEL_TIME = 1600;
+	private static final int FUEL_TIME = 400;
 	private static final int FORGE_TIME = 200;
 	
 	private int burnTime;
@@ -21,15 +21,21 @@ public class TileEntitySoulForge extends TileEntity implements IInventory
 	
 	public void updateEntity()
 	{
-		if(burnTime > 0)
+		if(!worldObj.isRemote)
 		{
-			burnTime--;
-			if(containsRecipeItem()) forge();
-		}
-		else if(contents[0] != null && contents[0].getItem() == Stygian.stygianCrystal && contents[0].getItemDamage() == 1)
-		{
-			contents[0].stackSize--;
-			burnTime = FUEL_TIME;
+			if(burnTime > 0)
+			{
+				System.out.println("Burn time: " + burnTime--);
+				if(containsRecipeItem()) forge();
+				markDirty();
+			}
+			else if(contents[0] != null && contents[0].getItem() == Stygian.stygianCrystal && contents[0].getItemDamage() == 1)
+			{
+				System.out.println("Consuming crystal from fuel slot...");
+				contents[0].stackSize--;
+				burnTime = FUEL_TIME;
+				markDirty();
+			}
 		}
 	}
 	
@@ -61,8 +67,6 @@ public class TileEntitySoulForge extends TileEntity implements IInventory
 			
 	private ItemStack[][] compile()
 	{
-		if(compiled != null) return compiled;
-		
 		return compiled = new ItemStack[][]
 		{
 			new ItemStack[]
@@ -172,6 +176,8 @@ public class TileEntitySoulForge extends TileEntity implements IInventory
 	
 	public void readFromNBT(NBTTagCompound tag)
 	{
+		super.readFromNBT(tag);
+		
 		burnTime = (int)tag.getShort("BurnTime");
 		progress = (int)tag.getShort("Progress");
 		
@@ -187,6 +193,8 @@ public class TileEntitySoulForge extends TileEntity implements IInventory
 	
 	public void writeToNBT(NBTTagCompound tag)
 	{
+		super.writeToNBT(tag);
+		
 		tag.setShort("BurnTime", (short)burnTime);
 		tag.setShort("Progress", (short)progress);
 		

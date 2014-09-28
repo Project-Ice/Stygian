@@ -199,5 +199,7 @@ public class Stygian
 		proxy.registerGuiHandler();
 		
 		FocusRegistry.registerFoci();
+		
+		RecipeManager.registerForgeRecipe(new ForgeRecipe(new ItemStack(stygianCrystal, 37, 1), new ItemStack[][]{new ItemStack[]{null, null, null}, new ItemStack[]{null, new ItemStack(stygianCrystal, 1, 0), null}, new ItemStack[]{null, null, null}}));
 	}
 }
