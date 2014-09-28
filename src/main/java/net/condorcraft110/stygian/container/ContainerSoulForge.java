@@ -1,7 +1,9 @@
 package net.condorcraft110.stygian.container;
 
+import net.minecraft.item.*;
 import net.minecraft.inventory.*;
 import net.minecraft.entity.player.*;
+import net.condorcraft110.stygian.slot.*;
 import net.condorcraft110.stygian.tileentity.*;
 
 public class ContainerSoulForge extends Container
@@ -41,11 +43,16 @@ public class ContainerSoulForge extends Container
 		addSlotToContainer(new Slot(tesf, 0, 48, 92));
 		
 		// result slot
-		addSlotToContainer(new Slot(tesf, 1, 124, 35));
+		addSlotToContainer(new SlotSoulForge(tesf, 1, 124, 35, true));
 	}
 	
 	public boolean canInteractWith(EntityPlayer player)
 	{
 		return tesf.isUseableByPlayer(player);
+	}
+	
+	public ItemStack transferStackInSlot(EntityPlayer player, int slot)
+	{
+		return null;
 	}
 }
