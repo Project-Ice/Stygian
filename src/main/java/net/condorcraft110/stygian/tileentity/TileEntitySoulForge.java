@@ -10,7 +10,7 @@ import net.condorcraft110.stygian.util.*;
 
 public class TileEntitySoulForge extends TileEntity implements IInventory
 {
-	private ItemStack[] contents;
+	private ItemStack[] contents = new ItemStack[11];
 	private ItemStack[][] compiled = null;
 	
 	private static final int FUEL_TIME = 1600;
@@ -21,15 +21,14 @@ public class TileEntitySoulForge extends TileEntity implements IInventory
 	
 	public void updateEntity()
 	{
-		if(burnTime > 0) burnTime--;
-		
 		if(burnTime > 0)
 		{
+			burnTime--;
 			if(containsRecipeItem()) forge();
 		}
 		else if(contents[0] != null && contents[0].getItem() == Stygian.stygianCrystal && contents[0].getItemDamage() == 1)
 		{
-			contents[0] = decrStackSize(0, 1);
+			contents[0].stackSize--;
 			burnTime = FUEL_TIME;
 		}
 	}
@@ -91,7 +90,7 @@ public class TileEntitySoulForge extends TileEntity implements IInventory
 	
 	public int getSizeInventory()
 	{
-		return contents.length;
+		return 11;
 	}
 	
 	public ItemStack getStackInSlot(int slot)

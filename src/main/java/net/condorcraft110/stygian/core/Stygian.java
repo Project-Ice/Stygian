@@ -67,6 +67,8 @@ public class Stygian
 	
 	public static DamageSource damageSourceDrain = new DamageSource("stygianDrain").setDamageBypassesArmor().setDamageIsAbsolute().setMagicDamage();
 	
+	public static BlockSoulForge soulForge = (BlockSoulForge)new BlockSoulForge().setBlockName("soulForge");
+	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
@@ -105,6 +107,8 @@ public class Stygian
 		
 		GameRegistry.registerBlock(stygianOre, "stygianOre");
 		GameRegistry.registerBlock(stygianBlock, "stygianBlock00");
+		
+		GameRegistry.registerBlock(soulForge, "soulForge");
 		
 		GameRegistry.registerWorldGenerator(new WorldGenNetherOreHandler(), 0);
 	}
@@ -163,6 +167,8 @@ public class Stygian
 		stygianOre.setCreativeTab(tabStygian);
 		stygianBlock.setCreativeTab(tabStygian);
 		
+		soulForge.setCreativeTab(tabStygian);
+		
 		stygianArmourMaterial.customCraftingMaterial = stygianCrystal;
 		stygianToolMaterial.customCraftingMaterial = stygianCrystal;
 
@@ -188,6 +194,9 @@ public class Stygian
 		GameRegistry.addShapelessRecipe(new ItemStack(stygianCrystal, 1, 1), new ItemStack(stygianBlock, 1));
 		
 		GameRegistry.addSmelting(new ItemStack(stygianCrystal, 1, 0), new ItemStack(stygianCrystal, 1, 1), 48.0F);
+		
+		proxy.registerTileEntities();
+		proxy.registerGuiHandler();
 		
 		FocusRegistry.registerFoci();
 	}

@@ -8,15 +8,44 @@ public class ContainerSoulForge extends Container
 {
 	private final TileEntitySoulForge tesf;
 	
-	public ContainerSoulForge(TileEntitySoulForge tesf)
+	public ContainerSoulForge(TileEntitySoulForge tesf, InventoryPlayer inv)
 	{
 		this.tesf = tesf;
 		
-		this.addSlotToContainer(new Slot(tesf, 0, 1, 1));
+		// player inv
+		for(int j = 0; j < 3; j++)
+		{
+			for(int i = 0; i < 9; i++)
+			{
+				addSlotToContainer(new Slot(inv, 9 + i + j * 9, 8 + i * 18, 128 + j * 18));
+			}
+		}
+		
+		/// player hotbar
+		for(int i = 0; i < 9; i++)
+		{
+			addSlotToContainer(new Slot(inv, i, 8 + i * 18, 186));
+		}
+		
+		
+		// forge crafting slots
+		for(int j = 0; j < 3; j++)
+		{
+			for(int i = 0; i < 3; i++)
+			{
+				addSlotToContainer(new Slot(tesf, 2 + i + j * 3, 30 + i * 18, 17 + j * 18));
+			}
+		}
+		
+		// fuel slot
+		addSlotToContainer(new Slot(tesf, 0, 48, 92));
+		
+		// result slot
+		addSlotToContainer(new Slot(tesf, 1, 124, 35));
 	}
 	
-	public boolean canInteractWith(EntityPlayer p_75145_1_)
+	public boolean canInteractWith(EntityPlayer player)
 	{
-		return false;
+		return tesf.isUseableByPlayer(player);
 	}
 }
