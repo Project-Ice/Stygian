@@ -12,7 +12,9 @@ import net.condorcraft110.stygian.tileentity.*;
 
 public class GuiSoulForge extends GuiContainer
 {
-	private static final ResourceLocation bgImage = new ResourceLocation("stygian", "textures/gui/soulForge.png"); 
+	private static final ResourceLocation bgImage = new ResourceLocation("stygian", "textures/gui/soulForge.png");
+	
+	private final TileEntitySoulForge tesf;
 	
 	public GuiSoulForge(TileEntitySoulForge entity, InventoryPlayer inv)
 	{
@@ -20,6 +22,8 @@ public class GuiSoulForge extends GuiContainer
 		
 		xSize = 175;
 		ySize = 209;
+		
+		this.tesf = entity;
 	}
 	
 	protected void drawGuiContainerBackgroundLayer(float f, int i, int j)
@@ -29,5 +33,14 @@ public class GuiSoulForge extends GuiContainer
 		Minecraft.getMinecraft().renderEngine.bindTexture(bgImage);
 		
 		drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
+		
+		if(tesf.isBurning())
+		{
+			System.out.println("Rendering progress");
+			int i1 = tesf.getBurnTimeRemainingScaled(13);
+            this.drawTexturedModalRect(guiLeft + 49, guiTop + 76 + 12 - i1, 176, 12 - i1, 14, i1 + 1);
+            i1 = tesf.getForgeTimeScaled(24);
+            this.drawTexturedModalRect(guiLeft + 89, guiTop + 35, 176, 14, i1 + 1, 16);
+		}
 	}
 }

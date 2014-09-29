@@ -21,22 +21,30 @@ public class TileEntitySoulForge extends TileEntity implements IInventory
 	
 	public void updateEntity()
 	{
+		boolean flag0 = burnTime > 0;
+		boolean flag1 = false;
+		
+		if(flag0) burnTime--;
+		
+		boolean consumedFuelCrystal = false;
+		
 		if(!worldObj.isRemote)
 		{
-			if(burnTime > 0)
+			if(flag0)
 			{
-				System.out.println("Burn time: " + burnTime--);
 				if(containsRecipeItem()) forge();
 				markDirty();
 			}
 			else if(contents[0] != null && contents[0].getItem() == Stygian.stygianCrystal && contents[0].getItemDamage() == 1)
 			{
 				System.out.println("Consuming crystal from fuel slot...");
-				contents[0].stackSize--;
-				burnTime = FUEL_TIME;
+				decrStackSize(0, 1);
+				consumedFuelCrystal = true;
 				markDirty();
 			}
 		}
+		
+		if(consumedFuelCrystal) burnTime = FUEL_TIME;
 	}
 	
 	private void forge()
@@ -48,8 +56,11 @@ public class TileEntitySoulForge extends TileEntity implements IInventory
 			if(progress >= FORGE_TIME)
 			{
 				progress = 0;
-				contents[1] = stack;
-				clearInventory();
+				if(!worldObj.isRemote)
+				{
+					contents[1] = stack;
+					decrAllInvStacks(1);
+				}
 			}
 			else progress++;
 		}
@@ -84,6 +95,42 @@ public class TileEntitySoulForge extends TileEntity implements IInventory
 		};
 	}
 	
+	private ItemStack[] decrAllInvStacks(int amount)
+	{
+		ItemStack[] result = new ItemStack[9];
+		
+		for(int i = 2; i < 11; i++)
+		{
+			if(contents[i] != null)
+			{
+				ItemStack stack;
+				
+				if(contents[i].stackSize <= amount)
+				{
+					stack = contents[i];
+					contents[i] = null;
+				}
+				else
+				{
+					stack = contents[i].splitStack(amount);
+					
+					if(contents[i].stackSize == 0)
+					{
+						contents[i] = null;
+					}
+				}
+				
+				result[i - 2] = stack;
+			}
+			else
+			{
+				result[i - 2] = null;
+			}
+		}
+		
+		return result;
+	}
+	
 	private void clearInventory()
 	{
 		for(int i = 2; i < 11; i++)
@@ -104,11 +151,11 @@ public class TileEntitySoulForge extends TileEntity implements IInventory
 	
 	public ItemStack decrStackSize(int slot, int amount)
 	{
-		if (contents[slot] != null)
+		if(contents[slot] != null)
 		{
 			ItemStack stack;
 			
-			if (contents[slot].stackSize <= amount)
+			if(contents[slot].stackSize <= amount)
 			{
 				stack = contents[slot];
 				contents[slot] = null;
@@ -117,7 +164,7 @@ public class TileEntitySoulForge extends TileEntity implements IInventory
 			{
 				stack = contents[slot].splitStack(amount);
 				
-				if (contents[slot].stackSize == 0)
+				if(contents[slot].stackSize == 0)
 				{
 					contents[slot] = null;
 				}
@@ -214,5 +261,43 @@ public class TileEntitySoulForge extends TileEntity implements IInventory
 		}
 		
 		tag.setTag("Contents", list);
+	}
+	
+	public boolean isBurning()
+	{
+		return burnTime > 0;
+	}
+	
+	public int getForgeTimeScaled(int scale)
+	{
+		return progress * scale / FORGE_TIME;
+	}
+	
+	public int getBurnTimeRemainingScaled(int scale)
+	{
+		return burnTime * scale / FUEL_TIME;
+	}
+	
+	public boolean canAddStackToSlot(int slot, ItemStack stack)
+	{
+		return stack != null && (contents[slot] == null || (contents[slot].stackSize + stack.stackSize <= getInventoryStackLimit() && (contents[slot].getItem() == stack.getItem() && contents[slot].getItemDamage() == stack.getItemDamage())));
+	}
+	
+	public void addStackToSlot(int slot, ItemStack stack)
+	{
+		if(contents[slot] == null) contents[slot] = stack;
+		else
+		{
+			// stuff
+		}
+	}
+	
+	public boolean canForge()
+	{
+		if(!containsRecipeItem()) return false;
+		
+		ItemStack result = RecipeManager.getForgeOutput(compile());
+		
+		return canAddStackToSlot(1, result);
 	}
 }

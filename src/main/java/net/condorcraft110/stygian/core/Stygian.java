@@ -22,7 +22,7 @@ import net.condorcraft110.stygian.util.*;
 import net.condorcraft110.stygian.block.*;
 import net.condorcraft110.stygian.worldgen.*;
 
-@Mod(name = "Stygian", modid = "stygian", version = "2.0")
+@Mod(name = "Stygian", modid = "stygian", version = "2.1")
 public class Stygian
 {
 	public static final Random stygianRandom = new Random();
@@ -200,6 +200,6 @@ public class Stygian
 		
 		FocusRegistry.registerFoci();
 		
-		RecipeManager.registerForgeRecipe(new ForgeRecipe(new ItemStack(stygianCrystal, 37, 1), new ItemStack[][]{new ItemStack[]{null, null, null}, new ItemStack[]{null, new ItemStack(stygianCrystal, 1, 0), null}, new ItemStack[]{null, null, null}}));
+		RecipeManager.registerForgeRecipe(new ForgeRecipe(new ItemStack(stygianCrystal, 128, 1), new ItemStack[][]{new ItemStack[]{null, null, null}, new ItemStack[]{null, new ItemStack(stygianCrystal, 1, 0), null}, new ItemStack[]{null, null, null}}));
 	}
 }

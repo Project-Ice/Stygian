@@ -48,6 +48,6 @@ public class ForgeRecipe // Unrelated to Minecraft Forge
 			if(!matchFound) break;
 		}
 		
-		return matchFound ? output : null;
+		return matchFound ? output.copy() : null;
 	}
 }
