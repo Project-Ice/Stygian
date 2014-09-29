@@ -1,15 +1,11 @@
 package net.condorcraft110.stygian.container;
 
-import net.condorcraft110.stygian.slot.SlotSoulForge;
-import net.condorcraft110.stygian.tileentity.TileEntitySoulForge;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.ICrafting;
-import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemStack;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.item.*;
+import cpw.mods.fml.relauncher.*;
+import net.minecraft.inventory.*;
+import net.minecraft.entity.player.*;
+import net.condorcraft110.stygian.slot.*;
+import net.condorcraft110.stygian.tileentity.*;
 
 public class ContainerSoulForge extends Container
 {

@@ -1,6 +1,7 @@
 tile.oreStygian.name=Stygian Ore
 tile.blockStygian.name=Stygian Block
 tile.soulForge.name=Soul Forge
+tile.voidChest.name=Void Chest
 
 item.iStygianCrystal.name=Inactive Stygian Crystal
 item.stygianCrystal.name=Active Stygian Crystal
@@ -31,6 +32,7 @@ death.attack.stygianDrain.player=%1$s's life was drained by %2$s
 itemGroup.stygian=Stygian
 
 container.soulForge=Soul Forge
+container.voidChest=Void Chest
 
 focus.lightning.name=Lightning
 focus.fire.name=Fire

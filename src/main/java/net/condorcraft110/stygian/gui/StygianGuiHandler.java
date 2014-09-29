@@ -20,6 +20,11 @@ public class StygianGuiHandler implements IGuiHandler
 				{
 					return new ContainerSoulForge((TileEntitySoulForge)entity, player.inventory);
 				}
+			case 1:
+				if(entity != null && entity instanceof TileEntityVoidChest)
+				{
+					return new ContainerVoidChest((TileEntityVoidChest)entity, player.inventory);
+				}
 		}
 		
 		return null;
@@ -35,6 +40,11 @@ public class StygianGuiHandler implements IGuiHandler
 				if(entity != null && entity instanceof TileEntitySoulForge)
 				{
 					return new GuiSoulForge((TileEntitySoulForge)entity, player.inventory);
+				}
+			case 1:
+				if(entity != null && entity instanceof TileEntityVoidChest)
+				{
+					return new GuiVoidChest((TileEntityVoidChest)entity, player.inventory);
 				}
 		}
 		

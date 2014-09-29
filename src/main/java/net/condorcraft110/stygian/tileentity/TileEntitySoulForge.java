@@ -8,7 +8,7 @@ import net.minecraft.entity.player.*;
 import net.condorcraft110.stygian.core.*;
 import net.condorcraft110.stygian.util.*;
 
-public class TileEntitySoulForge extends TileEntity implements IInventory
+public class TileEntitySoulForge extends TileEntityBase
 {
 	private ItemStack[] contents = new ItemStack[11];
 	private ItemStack[][] compiled = null;
@@ -18,6 +18,11 @@ public class TileEntitySoulForge extends TileEntity implements IInventory
 	
 	public int burnTime;
 	public int progress;
+	
+	public TileEntitySoulForge()
+	{
+		super("container.soulForge");
+	}
 	
 	public void updateEntity()
 	{
@@ -37,7 +42,6 @@ public class TileEntitySoulForge extends TileEntity implements IInventory
 			}
 			else if(contents[0] != null && contents[0].getItem() == Stygian.stygianCrystal && contents[0].getItemDamage() == 1)
 			{
-				System.out.println("Consuming crystal from fuel slot...");
 				decrStackSize(0, 1);
 				consumedFuelCrystal = true;
 				markDirty();
@@ -184,36 +188,6 @@ public class TileEntitySoulForge extends TileEntity implements IInventory
 	public void setInventorySlotContents(int slot, ItemStack stack)
 	{
 		contents[slot] = stack;
-	}
-	
-	public String getInventoryName()
-	{
-		return "container.soulForge";
-	}
-	
-	public boolean hasCustomInventoryName()
-	{
-		return false;
-	}
-	
-	public int getInventoryStackLimit()
-	{
-		return 64;
-	}
-	
-	public boolean isUseableByPlayer(EntityPlayer player)
-	{
-		return true;
-	}
-	
-	public void openInventory()
-	{
-		
-	}
-	
-	public void closeInventory()
-	{
-		
 	}
 	
 	public boolean isItemValidForSlot(int slot, ItemStack stack)

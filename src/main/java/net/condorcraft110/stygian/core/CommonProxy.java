@@ -10,12 +10,23 @@ public class CommonProxy
 		return -1;
 	}
 	
+	public int getVoidChestRenderingIndex()
+	{
+		return -1;
+	}
+	
 	public void registerTileEntities()
 	{
-		GameRegistry.registerTileEntity(TileEntitySoulForge.class, "tileEntitySoulForge");
+		GameRegistry.registerTileEntity(TileEntitySoulForge.class, "soulForge");
+		GameRegistry.registerTileEntity(TileEntityVoidChest.class, "voidChest");
 	}
 	
 	public void registerGuiHandler()
+	{
+		
+	}
+	
+	public void registerRenderers()
 	{
 		
 	}

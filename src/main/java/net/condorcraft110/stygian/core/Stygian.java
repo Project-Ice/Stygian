@@ -35,6 +35,7 @@ public class Stygian
 	
 	public static final ArmorMaterial stygianArmourMaterial = EnumHelper.addArmorMaterial("stygian", 99, new int[]{9, 24, 18, 9}, 30);
 	public static int stygianArmourRenderIndex;
+	public static int voidChestRenderIndex;
 	public static final CreativeTabs tabStygian = new CreativeTabStygian(); 
 	public static final ToolMaterial stygianToolMaterial = EnumHelper.addToolMaterial("stygian", 5, 4683, 24.0F, 9.0F, 30);
 	
@@ -68,6 +69,7 @@ public class Stygian
 	public static DamageSource damageSourceDrain = new DamageSource("stygianDrain").setDamageBypassesArmor().setDamageIsAbsolute().setMagicDamage();
 	
 	public static BlockSoulForge soulForge = (BlockSoulForge)new BlockSoulForge().setBlockName("soulForge");
+	public static BlockVoidChest voidChest = (BlockVoidChest)new BlockVoidChest().setBlockName("voidChest");
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
@@ -75,6 +77,7 @@ public class Stygian
 		StygianConfig.readAndSet(event.getModConfigurationDirectory());
 		
 		stygianArmourRenderIndex = proxy.getStygianRenderIndex();
+		voidChestRenderIndex = proxy.getVoidChestRenderingIndex();
 		
 		stygianHelmet = (ItemStygianArmour)new ItemStygianArmour(stygianArmourMaterial, stygianArmourRenderIndex, 0).setUnlocalizedName("stygianHelmet");
 		stygianChestplate = (ItemStygianArmour)new ItemStygianArmour(stygianArmourMaterial, stygianArmourRenderIndex, 1).setUnlocalizedName("stygianChestplate");
@@ -109,6 +112,7 @@ public class Stygian
 		GameRegistry.registerBlock(stygianBlock, "stygianBlock00");
 		
 		GameRegistry.registerBlock(soulForge, "soulForge");
+		GameRegistry.registerBlock(voidChest, "voidChest");
 		
 		GameRegistry.registerWorldGenerator(new WorldGenNetherOreHandler(), 0);
 	}
@@ -168,6 +172,7 @@ public class Stygian
 		stygianBlock.setCreativeTab(tabStygian);
 		
 		soulForge.setCreativeTab(tabStygian);
+		voidChest.setCreativeTab(tabStygian);
 		
 		stygianArmourMaterial.customCraftingMaterial = stygianCrystal;
 		stygianToolMaterial.customCraftingMaterial = stygianCrystal;
