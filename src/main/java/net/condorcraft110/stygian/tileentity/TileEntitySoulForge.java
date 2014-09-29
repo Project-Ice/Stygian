@@ -16,8 +16,8 @@ public class TileEntitySoulForge extends TileEntity implements IInventory
 	private static final int FUEL_TIME = 400;
 	private static final int FORGE_TIME = 200;
 	
-	private int burnTime;
-	private int progress;
+	public int burnTime;
+	public int progress;
 	
 	public void updateEntity()
 	{

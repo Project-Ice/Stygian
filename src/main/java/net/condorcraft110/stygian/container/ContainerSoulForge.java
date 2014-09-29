@@ -1,14 +1,21 @@
 package net.condorcraft110.stygian.container;
 
-import net.minecraft.item.*;
-import net.minecraft.inventory.*;
-import net.minecraft.entity.player.*;
-import net.condorcraft110.stygian.slot.*;
-import net.condorcraft110.stygian.tileentity.*;
+import net.condorcraft110.stygian.slot.SlotSoulForge;
+import net.condorcraft110.stygian.tileentity.TileEntitySoulForge;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.ICrafting;
+import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ContainerSoulForge extends Container
 {
 	private final TileEntitySoulForge tesf;
+	private int burnTime;
+	private int progress;
 	
 	public ContainerSoulForge(TileEntitySoulForge tesf, InventoryPlayer inv)
 	{
@@ -54,5 +61,51 @@ public class ContainerSoulForge extends Container
 	public ItemStack transferStackInSlot(EntityPlayer player, int slot)
 	{
 		return null;
+	}
+	
+	@Override
+	public void addCraftingToCrafters(ICrafting crafting)
+	{
+		super.addCraftingToCrafters(crafting);
+		crafting.sendProgressBarUpdate(this, 0, tesf.burnTime);
+		crafting.sendProgressBarUpdate(this, 1, tesf.progress);
+	}
+	
+	@Override
+	public void detectAndSendChanges()
+	{
+		super.detectAndSendChanges();
+
+		for(int i = 0; i < this.crafters.size(); ++i)
+		{
+			ICrafting icrafting = (ICrafting) this.crafters.get(i);
+
+			if(burnTime != tesf.burnTime)
+			{
+				icrafting.sendProgressBarUpdate(this, 0, tesf.burnTime);
+			}
+
+			if(progress != tesf.progress)
+			{
+				icrafting.sendProgressBarUpdate(this, 1, tesf.progress);
+			}
+		}
+		
+		burnTime = tesf.burnTime;
+		progress = tesf.progress;
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public void updateProgressBar(int id, int value)
+	{
+		if(id == 0)
+		{
+			tesf.burnTime = value;
+		}
+		
+		if(id == 1)
+		{
+			tesf.progress = value;
+		}
 	}
 }
