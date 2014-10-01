@@ -27,6 +27,8 @@ item.focusSceptre.name=Focus Sceptre
 
 item.resonanceStar.name=Resonance Star
 
+item.stygianBucket.name=Stygian Bucket
+
 death.attack.stygianDrain=%1$s's life was drained
 death.attack.stygianDrain.player=%1$s's life was drained by %2$s
 
@@ -34,6 +36,7 @@ itemGroup.stygian=Stygian
 
 container.soulForge=Soul Forge
 container.voidChest=Void Chest
+container.netherForge=Nether Forge
 
 focus.lightning.name=Lightning
 focus.fire.name=Fire

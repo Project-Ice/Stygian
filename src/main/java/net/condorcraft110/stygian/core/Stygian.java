@@ -1,7 +1,6 @@
 package net.condorcraft110.stygian.core;
 
 import java.util.*;
-
 import net.minecraft.init.*;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
@@ -11,18 +10,18 @@ import net.minecraft.item.Item.*;
 import cpw.mods.fml.common.Mod.*;
 import net.minecraft.creativetab.*;
 import cpw.mods.fml.common.event.*;
+import net.minecraftforge.fluids.*;
 import net.condorcraft110.stygian.*;
 import net.minecraft.block.material.*;
 import cpw.mods.fml.client.registry.*;
 import cpw.mods.fml.common.registry.*;
 import net.minecraft.item.ItemArmor.*;
 import net.minecraftforge.common.util.*;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.condorcraft110.stygian.fluid.FluidLiquidDarkness;
 import net.condorcraft110.stygian.item.*;
 import net.condorcraft110.stygian.misc.*;
 import net.condorcraft110.stygian.util.*;
 import net.condorcraft110.stygian.block.*;
+import net.condorcraft110.stygian.fluid.*;
 import net.condorcraft110.stygian.worldgen.*;
 
 @Mod(name = "Stygian", modid = "stygian", version = "2.1")
@@ -216,8 +215,14 @@ public class Stygian
 		
 		FocusRegistry.registerFoci();
 		
-		RecipeManager.registerForgeRecipe(new ForgeRecipe(new ItemStack(stygianCrystal, 128, 1), new ItemStack[][]{new ItemStack[]{null, null, null}, new ItemStack[]{null, new ItemStack(stygianCrystal, 1, 0), null}, new ItemStack[]{null, null, null}}));
+		//RecipeManager.registerForgeRecipe(new ForgeRecipe(new ItemStack(stygianCrystal, 128, 1), new ItemStack[][]{new ItemStack[]{null, null, null}, new ItemStack[]{null, new ItemStack(stygianCrystal, 1, 0), null}, new ItemStack[]{null, null, null}}));
 		
 		RecipeManager.registerForgeRecipe(new ForgeRecipe(new ItemStack(stygianChestplate, 1), new ItemStack[][]{new ItemStack[]{new ItemStack(stygianCrystal, 1, 1), null, new ItemStack(stygianCrystal, 1, 1)}, new ItemStack[]{new ItemStack(stygianCrystal, 1, 1), new ItemStack(stygianCrystal, 1, 1), new ItemStack(stygianCrystal, 1, 1)}, new ItemStack[]{new ItemStack(stygianCrystal, 1, 1), new ItemStack(stygianCrystal, 1, 1), new ItemStack(stygianCrystal, 1, 1)}}));
+	}
+	
+	@InstanceFactory
+	public static Stygian instance()
+	{
+		return new Stygian();
 	}
 }
