@@ -1,6 +1,7 @@
 package net.condorcraft110.stygian.core;
 
 import java.util.*;
+
 import net.minecraft.init.*;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
@@ -16,6 +17,8 @@ import cpw.mods.fml.client.registry.*;
 import cpw.mods.fml.common.registry.*;
 import net.minecraft.item.ItemArmor.*;
 import net.minecraftforge.common.util.*;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.condorcraft110.stygian.fluid.FluidLiquidDarkness;
 import net.condorcraft110.stygian.item.*;
 import net.condorcraft110.stygian.misc.*;
 import net.condorcraft110.stygian.util.*;
@@ -70,6 +73,9 @@ public class Stygian
 	
 	public static BlockSoulForge soulForge = (BlockSoulForge)new BlockSoulForge().setBlockName("soulForge");
 	public static BlockVoidChest voidChest = (BlockVoidChest)new BlockVoidChest().setBlockName("voidChest");
+	public static BlockNetherForge netherForge = (BlockNetherForge)new BlockNetherForge().setBlockName("netherForge");
+	
+	public static FluidLiquidDarkness liquidDarkness = new FluidLiquidDarkness();
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
@@ -109,12 +115,15 @@ public class Stygian
 		GameRegistry.registerItem(hourglassCracked, "hourglassCracked");
 		
 		GameRegistry.registerBlock(stygianOre, "stygianOre");
-		GameRegistry.registerBlock(stygianBlock, "stygianBlock00");
+		GameRegistry.registerBlock(stygianBlock, "stygianBlock");
 		
 		GameRegistry.registerBlock(soulForge, "soulForge");
 		GameRegistry.registerBlock(voidChest, "voidChest");
+		GameRegistry.registerBlock(netherForge, "netherForge");
 		
 		GameRegistry.registerWorldGenerator(new WorldGenNetherOreHandler(), 0);
+		
+		FluidRegistry.registerFluid(liquidDarkness);
 	}
 	
 	@EventHandler
@@ -173,6 +182,7 @@ public class Stygian
 		
 		soulForge.setCreativeTab(tabStygian);
 		voidChest.setCreativeTab(tabStygian);
+		netherForge.setCreativeTab(tabStygian);
 		
 		stygianArmourMaterial.customCraftingMaterial = stygianCrystal;
 		stygianToolMaterial.customCraftingMaterial = stygianCrystal;
@@ -202,9 +212,12 @@ public class Stygian
 		
 		proxy.registerTileEntities();
 		proxy.registerGuiHandler();
+		proxy.registerRenderers();
 		
 		FocusRegistry.registerFoci();
 		
 		RecipeManager.registerForgeRecipe(new ForgeRecipe(new ItemStack(stygianCrystal, 128, 1), new ItemStack[][]{new ItemStack[]{null, null, null}, new ItemStack[]{null, new ItemStack(stygianCrystal, 1, 0), null}, new ItemStack[]{null, null, null}}));
+		
+		RecipeManager.registerForgeRecipe(new ForgeRecipe(new ItemStack(stygianChestplate, 1), new ItemStack[][]{new ItemStack[]{new ItemStack(stygianCrystal, 1, 1), null, new ItemStack(stygianCrystal, 1, 1)}, new ItemStack[]{new ItemStack(stygianCrystal, 1, 1), new ItemStack(stygianCrystal, 1, 1), new ItemStack(stygianCrystal, 1, 1)}, new ItemStack[]{new ItemStack(stygianCrystal, 1, 1), new ItemStack(stygianCrystal, 1, 1), new ItemStack(stygianCrystal, 1, 1)}}));
 	}
 }

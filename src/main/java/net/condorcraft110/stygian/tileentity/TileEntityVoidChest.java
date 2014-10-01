@@ -1,18 +1,16 @@
 package net.condorcraft110.stygian.tileentity;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
 import net.minecraft.tileentity.*;
 
 public class TileEntityVoidChest extends TileEntityBase
 {
 	private ItemStack[] contents = new ItemStack[91];
 	
-	public float lidAngle;
-	public float previousLidAngle;
+	public float lidAngle, previousLidAngle;
 	public int playersUsing;
 	
 	public TileEntityVoidChest()
@@ -33,7 +31,7 @@ public class TileEntityVoidChest extends TileEntityBase
 			worldObj.playSoundEffect(adjustedXCoord, yCoord + 0.5D, adjustedZCoord, "random.chestopen", 0.5F, worldObj.rand.nextFloat() * 0.1F + 0.9F);
 		}
 
-		if (playersUsing == 0 && lidAngle > 0.0F || playersUsing > 0 && lidAngle < 1.0F)
+		if((playersUsing == 0 && lidAngle > 0.0F) || (playersUsing > 0 && lidAngle < 1.0F))
 		{
 			float var8 = lidAngle;
 

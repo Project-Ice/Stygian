@@ -50,4 +50,9 @@ public class BlockVoidChest extends Block implements ITileEntityProvider
 	{
 		return Stygian.voidChestRenderIndex;
 	}
+	
+	public boolean shouldSideBeRendered(IBlockAccess access, int i, int j, int k, int l)
+	{
+		return false;
+	}
 }

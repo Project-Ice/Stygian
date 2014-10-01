@@ -19,6 +19,7 @@ public class CommonProxy
 	{
 		GameRegistry.registerTileEntity(TileEntitySoulForge.class, "soulForge");
 		GameRegistry.registerTileEntity(TileEntityVoidChest.class, "voidChest");
+		GameRegistry.registerTileEntity(TileEntityNetherForge.class, "netherForge");
 	}
 	
 	public void registerGuiHandler()

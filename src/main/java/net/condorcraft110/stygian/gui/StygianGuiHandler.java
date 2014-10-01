@@ -25,6 +25,11 @@ public class StygianGuiHandler implements IGuiHandler
 				{
 					return new ContainerVoidChest((TileEntityVoidChest)entity, player.inventory);
 				}
+			case 2:
+				if(entity != null && entity instanceof TileEntityNetherForge)
+				{
+					return new ContainerNetherForge((TileEntityNetherForge)entity, player.inventory);
+				}
 		}
 		
 		return null;
@@ -45,6 +50,11 @@ public class StygianGuiHandler implements IGuiHandler
 				if(entity != null && entity instanceof TileEntityVoidChest)
 				{
 					return new GuiVoidChest((TileEntityVoidChest)entity, player.inventory);
+				}
+			case 2:
+				if(entity != null && entity instanceof TileEntityNetherForge)
+				{
+					return new GuiNetherForge((TileEntityNetherForge)entity, player.inventory);
 				}
 		}
 		

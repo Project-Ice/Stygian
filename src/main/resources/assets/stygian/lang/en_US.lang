@@ -2,6 +2,7 @@ tile.oreStygian.name=Stygian Ore
 tile.blockStygian.name=Stygian Block
 tile.soulForge.name=Soul Forge
 tile.voidChest.name=Void Chest
+tile.netherForge.name=Nether Forge
 
 item.iStygianCrystal.name=Inactive Stygian Crystal
 item.stygianCrystal.name=Active Stygian Crystal
