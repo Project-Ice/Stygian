@@ -12,3 +12,5 @@ Textures:
 Translations:
 	- Merciless (German)
 
+Name:
+	- Lord_Vile1st
