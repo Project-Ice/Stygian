@@ -1,0 +1,14 @@
+Programming:
+	- condorcraft110
+
+Additional Programming:
+	- barackOshizzle
+	- Moze_Intel
+
+Textures:
+	- condorcraft110
+	- barackOshizzle
+
+Translations:
+	- Merciless (German)
+
