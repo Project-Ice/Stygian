@@ -31,8 +31,8 @@ death.attack.stygianDrain.player=%1$s's life was drained by %2$s
 
 itemGroup.stygian=Stygian
 
-container.soulForge=Soul Forge
-container.voidChest=Void Chest
+container.soulForge=Själ Smedja
+container.voidChest=Tomrums Kista
 
 focus.lightning.name=Blixt
 focus.fire.name=Eld
