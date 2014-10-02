@@ -1,0 +1,40 @@
+tile.oreStygian.name=Stygian Malm
+tile.blockStygian.name=Stygian Block
+tile.soulForge.name=Själ Smedja
+tile.voidChest.name=Tomrums Kista
+tile.netherForge.name=Nether Smedja
+
+item.iStygianCrystal.name=Oaktiv Stygian Kristall
+item.stygianCrystal.name=Aktiv Stygian Kristall
+
+item.stygianSword.name=Stygian Sword
+item.stygianPickaxe.name=Stygian Pickaxe
+item.stygianShovel.name=Stygian Shovel
+item.stygianAxe.name=Stygian Axe
+item.stygianHoe.name=Stygian Hoe
+
+item.stygianHelmet.name=Stygian Hjälm
+item.stygianChestplate.name=Stygian Bröstplata
+item.stygianLeggings.name=Stygian Byxor
+item.stygianBoots.name=Stygian Skor
+
+item.hourglassIntact.name=Tidsglas
+item.hourglassCracked.name=Sprucket Tidsglas
+item.stygianCore.name=Fokus Kärna
+item.sceptreCoreCradle.name=Spir Kärns Vagga
+item.focusSceptre.name=Fokus Spira
+
+item.resonanceStar.name=Resonans Stjärna
+
+death.attack.stygianDrain=%1$s's life was drained
+death.attack.stygianDrain.player=%1$s's life was drained by %2$s
+
+itemGroup.stygian=Stygian
+
+container.soulForge=Soul Forge
+container.voidChest=Void Chest
+
+focus.lightning.name=Blixt
+focus.fire.name=Eld
+focus.wind.name=Vind
+focus.death.name=Död
