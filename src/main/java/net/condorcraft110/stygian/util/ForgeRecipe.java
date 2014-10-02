@@ -30,15 +30,7 @@ public class ForgeRecipe // Unrelated to Minecraft Forge
 		{
 			for(int j = 0; i < 3; i++)
 			{
-				if(input[i][j] == null)
-				{
-					if(recipe[i][j] != null)
-					{
-						matchFound = false;
-						break;
-					}
-				}
-				else if(!input[i][j].equals(recipe[i][j]))
+				if(!ItemStack.areItemStacksEqual(recipe[i][j], input[i][j]))
 				{
 					matchFound = false;
 					break;
