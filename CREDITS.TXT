@@ -2,12 +2,12 @@ Programming:
 	- condorcraft110
 
 Additional Programming:
-	- barackOshizzle
+	- BarackOshizzle
 	- Moze_Intel
 
 Textures:
 	- condorcraft110
-	- barackOshizzle
+	- BarackOshizzlearackOshizzle
 
 Translations:
 	- BarackOshizzle (Swedish)
