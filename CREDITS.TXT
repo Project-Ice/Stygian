@@ -7,7 +7,7 @@ Additional Programming:
 
 Textures:
 	- condorcraft110
-	- BarackOshizzlearackOshizzle
+	- BarackOshizzle
 
 Translations:
 	- BarackOshizzle (Swedish)
