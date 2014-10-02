@@ -10,6 +10,7 @@ Textures:
 	- barackOshizzle
 
 Translations:
+	- BarackOshizzle (Swedish)
 	- Merciless (German)
 
 Name and original idea:
