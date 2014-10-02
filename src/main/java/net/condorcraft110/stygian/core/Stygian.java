@@ -22,6 +22,8 @@ import net.condorcraft110.stygian.misc.*;
 import net.condorcraft110.stygian.util.*;
 import net.condorcraft110.stygian.block.*;
 import net.condorcraft110.stygian.fluid.*;
+import net.condorcraft110.stygian.entity.*;
+import net.condorcraft110.stygian.registry.*;
 import net.condorcraft110.stygian.worldgen.*;
 
 @Mod(name = "Stygian", modid = "stygian", version = "2.1")
@@ -74,7 +76,9 @@ public class Stygian
 	public static BlockVoidChest voidChest = (BlockVoidChest)new BlockVoidChest().setBlockName("voidChest");
 	public static BlockNetherForge netherForge = (BlockNetherForge)new BlockNetherForge().setBlockName("netherForge");
 	
+	public static Material liquidDarknessMaterial = new Material(MapColor.blackColor);
 	public static FluidLiquidDarkness liquidDarkness = new FluidLiquidDarkness();
+	public static BlockFluidLiquidDarkness liquidDarknessBlock;
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
@@ -120,9 +124,15 @@ public class Stygian
 		GameRegistry.registerBlock(voidChest, "voidChest");
 		GameRegistry.registerBlock(netherForge, "netherForge");
 		
+		FluidRegistry.registerFluid(liquidDarkness);
+		
+		liquidDarknessBlock = (BlockFluidLiquidDarkness)new BlockFluidLiquidDarkness(liquidDarkness, liquidDarknessMaterial).setBlockName("liquidDarkness");
+		
+		GameRegistry.registerBlock(liquidDarknessBlock, "liquidDarkness");
+		
 		GameRegistry.registerWorldGenerator(new WorldGenNetherOreHandler(), 0);
 		
-		FluidRegistry.registerFluid(liquidDarkness);
+		EntityRegistry.registerModEntity(EntityDarkLightning.class, "darkLightningBolt", 0, this, 80, 3, false);
 	}
 	
 	@EventHandler
@@ -153,6 +163,8 @@ public class Stygian
 		stygianOre.setBlockTextureName("stygian:stygianOre");
 		stygianBlock.setBlockTextureName("stygian:stygianBlock");
 		
+		liquidDarkness.setIcons(liquidDarknessBlock.fluidIcon);
+		
 		stygianCrystal.setCreativeTab(tabStygian);
 		
 		stygianSword.setCreativeTab(tabStygian);
@@ -182,6 +194,8 @@ public class Stygian
 		soulForge.setCreativeTab(tabStygian);
 		voidChest.setCreativeTab(tabStygian);
 		netherForge.setCreativeTab(tabStygian);
+		
+		liquidDarknessBlock.setCreativeTab(tabStygian);
 		
 		stygianArmourMaterial.customCraftingMaterial = stygianCrystal;
 		stygianToolMaterial.customCraftingMaterial = stygianCrystal;
@@ -214,6 +228,7 @@ public class Stygian
 		proxy.registerRenderers();
 		
 		FocusRegistry.registerFoci();
+		ResonanceRegistry.registerResonances();
 		
 		//RecipeManager.registerForgeRecipe(new ForgeRecipe(new ItemStack(stygianCrystal, 128, 1), new ItemStack[][]{new ItemStack[]{null, null, null}, new ItemStack[]{null, new ItemStack(stygianCrystal, 1, 0), null}, new ItemStack[]{null, null, null}}));
 		

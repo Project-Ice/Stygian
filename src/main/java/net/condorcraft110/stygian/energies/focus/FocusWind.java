@@ -1,4 +1,4 @@
-package net.condorcraft110.stygian.focus;
+package net.condorcraft110.stygian.energies.focus;
 
 import net.minecraft.item.*;
 import net.minecraft.util.MathHelper;

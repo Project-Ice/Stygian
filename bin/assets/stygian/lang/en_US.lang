@@ -13,10 +13,21 @@ item.stygianShovel.name=Stygian Shovel
 item.stygianAxe.name=Stygian Axe
 item.stygianHoe.name=Stygian Hoe
 
+item.resonanceSword.name=Resonance Sword
+item.resonancePickaxe.name=Resonance Pickaxe
+item.resonanceShovel.name=Resonance Shovel
+item.resonanceAxe.name=Resonance Axe
+item.resonanceHoe.name=Resonance Hoe
+
 item.stygianHelmet.name=Stygian Helmet
 item.stygianChestplate.name=Stygian Chestplate
 item.stygianLeggings.name=Stygian Leggings
 item.stygianBoots.name=Stygian Boots
+
+item.resonanceHelmet.name=Resonance Helmet
+item.resonanceChestplate.name=Resonance Chestplate
+item.resonanceLeggings.name=Resonance Leggings
+item.resonanceBoots.name=Resonance Boots
 
 item.hourglassIntact.name=Hourglass
 item.hourglassCracked.name=Cracked Hourglass
@@ -26,6 +37,8 @@ item.sceptreCoreCradle.name=Sceptre Core Cradle
 item.focusSceptre.name=Focus Sceptre
 
 item.resonanceStar.name=Resonance Star
+
+item.resonanceSceptre.name=Resonance Sceptre
 
 item.stygianBucket.name=Stygian Bucket
 
@@ -42,3 +55,8 @@ focus.lightning.name=Lightning
 focus.fire.name=Fire
 focus.wind.name=Wind
 focus.death.name=Death
+
+resonance.lightning.name=Lightning
+resonance.fire.name=Fire
+resonance.wind.name=Wind
+resonance.death.name=Death

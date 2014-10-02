@@ -13,10 +13,21 @@ item.stygianShovel.name=Styxschaufel
 item.stygianAxe.name=Styxaxt
 item.stygianHoe.name=Styxhacke
 
+item.resonanceSword.name=Resonanzschwert
+item.resonancePickaxe.name=Resonanzpitzhacke
+item.resonanceShovel.name=Resonanzschaufel
+item.resonanceAxe.name=Resonanzaxt
+item.stygianHoe.name=Resonanzhacke
+
 item.stygianHelmet.name=Styxhelm
 item.stygianChestplate.name=Styxischer Brustpanzer
 item.stygianLeggings.name=Styxbeinschutz
 item.stygianBoots.name=Styxstiefel
+
+item.resonanceHelmet.name=Resonanzhelm
+item.resonanceChestplate.name=Resonanz Brustpanzer
+item.resonanceLeggings.name=Resonanzbeinschutz
+item.resonanceBoots.name=Resonanzstiefel
 
 item.hourglassIntact.name=Stundenglas
 item.hourglassCracked.name=Gesprungenes Stundenglas
@@ -26,6 +37,8 @@ item.sceptreCoreCradle.name=Zepterhalterung
 item.focusSceptre.name=Fokuszepter
 
 item.resonanceStar.name=Resonanzstern
+
+item.resonanceSceptre.name=Resonanzzepter
 
 item.stygianBucket.name=Styxeimer
 
@@ -42,3 +55,8 @@ focus.lightning.name=Blitz
 focus.fire.name=Feuer
 focus.wind.name=Wind
 focus.death.name=Tod
+
+resonance.lightning.name=Blitz
+resonance.fire.name=Feuer
+resonance.wind.name=Wind
+resonance.death.name=Tod

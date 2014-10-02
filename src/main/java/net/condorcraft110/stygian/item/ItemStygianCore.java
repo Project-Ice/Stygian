@@ -6,8 +6,8 @@ import net.minecraft.item.*;
 import net.minecraft.util.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.*;
-import net.condorcraft110.stygian.focus.*;
-import net.condorcraft110.stygian.util.FocusRegistry;
+import net.condorcraft110.stygian.energies.focus.*;
+import net.condorcraft110.stygian.registry.FocusRegistry;
 
 public class ItemStygianCore extends Item
 {

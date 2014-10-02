@@ -2,7 +2,7 @@ package net.condorcraft110.stygian.block;
 
 import java.util.*;
 
-import net.condorcraft110.stygian.util.FocusRegistry;
+import net.condorcraft110.stygian.registry.FocusRegistry;
 import net.minecraft.item.*;
 import net.minecraft.block.*;
 import net.minecraft.creativetab.*;

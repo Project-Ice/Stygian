@@ -4,7 +4,7 @@ import cpw.mods.fml.common.Mod.*;
 
 public class ProjectECompat
 {
-	@Instance("ProjectE")
+	//@Instance("ProjectE")
 	public static Object INSTANCE;
 	
 	static void registerEMC()

@@ -1,4 +1,4 @@
-package net.condorcraft110.stygian.focus;
+package net.condorcraft110.stygian.energies.focus;
 
 import net.condorcraft110.stygian.projectile.ProjectileDeath;
 import net.minecraft.item.*;
