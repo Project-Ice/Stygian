@@ -20,6 +20,11 @@ public class ClientProxy extends CommonProxy
 		return RenderingRegistry.getNextAvailableRenderId();
 	}
 	
+	public int getResonanceRenderIndex()
+	{
+		return RenderingRegistry.addNewArmourRendererPrefix("resonance");
+	}
+	
 	public void registerGuiHandler()
 	{
 		NetworkRegistry.INSTANCE.registerGuiHandler(Stygian.INSTANCE, new StygianGuiHandler());

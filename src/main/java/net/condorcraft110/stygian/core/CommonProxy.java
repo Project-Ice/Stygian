@@ -15,6 +15,11 @@ public class CommonProxy
 		return -1;
 	}
 	
+	public int getResonanceRenderIndex()
+	{
+		return -1;
+	}
+	
 	public void registerTileEntities()
 	{
 		GameRegistry.registerTileEntity(TileEntitySoulForge.class, "soulForge");

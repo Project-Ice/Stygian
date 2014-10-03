@@ -1,8 +1,8 @@
 package net.condorcraft110.stygian.misc;
 
-import net.condorcraft110.stygian.core.Stygian;
+import net.minecraft.item.*;
 import net.minecraft.creativetab.*;
-import net.minecraft.item.Item;
+import net.condorcraft110.stygian.core.*;
 
 public class CreativeTabStygian extends CreativeTabs
 {
@@ -14,5 +14,10 @@ public class CreativeTabStygian extends CreativeTabs
 	public Item getTabIconItem()
 	{
 		return Stygian.stygianCrystal;
+	}
+	
+	public int func_151243_f()
+	{
+		return 1;
 	}
 }

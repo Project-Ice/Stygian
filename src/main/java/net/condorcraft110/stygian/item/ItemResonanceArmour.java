@@ -1,20 +1,20 @@
 package net.condorcraft110.stygian.item;
 
-import net.condorcraft110.stygian.core.Stygian;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
 import net.minecraft.entity.*;
 import cpw.mods.fml.relauncher.*;
 import net.minecraftforge.common.*;
 import net.minecraft.entity.player.*;
+import net.condorcraft110.stygian.core.*;
 import net.minecraft.client.renderer.texture.*;
 import net.minecraftforge.common.ISpecialArmor.*;
 
-public class ItemStygianArmour extends ItemArmor// implements ISpecialArmor
+public class ItemResonanceArmour extends ItemArmor implements ISpecialArmor
 {
 	private IIcon[] icons = new IIcon[4];
 	
-	public ItemStygianArmour(ArmorMaterial material, int renderIndex, int type)
+	public ItemResonanceArmour(ArmorMaterial material, int renderIndex, int type)
 	{
 		super(material, renderIndex, type);
 	}
@@ -46,35 +46,35 @@ public class ItemStygianArmour extends ItemArmor// implements ISpecialArmor
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister register)
 	{
-		icons[0] = register.registerIcon("stygian:stygianHelmet");
-		icons[1] = register.registerIcon("stygian:stygianChestplate");
-		icons[2] = register.registerIcon("stygian:stygianLeggings");
-		icons[3] = register.registerIcon("stygian:stygianBoots");
+		icons[0] = register.registerIcon("stygian:resonanceHelmet");
+		icons[1] = register.registerIcon("stygian:resonanceChestplate");
+		icons[2] = register.registerIcon("stygian:resonanceLeggings");
+		icons[3] = register.registerIcon("stygian:resonanceBoots");
 		
-		if(this == Stygian.stygianHelmet) itemIcon = icons[0];
-		else if(this == Stygian.stygianChestplate) itemIcon = icons[1];
-		else if(this == Stygian.stygianLeggings) itemIcon = icons[2];
-		else if(this == Stygian.stygianBoots) itemIcon = icons[3];
+		if(this == Stygian.resonanceHelmet) itemIcon = icons[0];
+		else if(this == Stygian.resonanceChestplate) itemIcon = icons[1];
+		else if(this == Stygian.resonanceLeggings) itemIcon = icons[2];
+		else if(this == Stygian.resonanceBoots) itemIcon = icons[3];
 	}
 	 
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(ItemStack stack, int renderPass, EntityPlayer player, ItemStack usingItem, int useRemaining)
 	{
 		Item item = stack.getItem();
-		if(item == Stygian.stygianHelmet) return icons[0];
-		else if(item == Stygian.stygianChestplate) return icons[1];
-		else if(item == Stygian.stygianLeggings) return icons[2];
-		else if(item == Stygian.stygianBoots) return icons[3];
+		if(item == Stygian.resonanceHelmet) return icons[0];
+		else if(item == Stygian.resonanceChestplate) return icons[1];
+		else if(item == Stygian.resonanceLeggings) return icons[2];
+		else if(item == Stygian.resonanceBoots) return icons[3];
 		return null;
 	}
 	
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
 		Item item = stack.getItem();
-		if(item == Stygian.stygianHelmet || item == Stygian.stygianChestplate || item == Stygian.stygianBoots)
+		if(item == Stygian.resonanceHelmet || item == Stygian.resonanceChestplate || item == Stygian.resonanceBoots)
 		{
-			return "stygian:textures/models/armor/stygian_layer_1.png";
+			return "stygian:textures/models/armor/resonance_layer_1.png";
 		}
-		return "stygian:textures/models/armor/stygian_layer_2.png";
+		return "stygian:textures/models/armor/resonance_layer_2.png";
 	}
 }
