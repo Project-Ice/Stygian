@@ -93,8 +93,10 @@ public class Stygian
 	public static BlockStygianOre stygianOre = (BlockStygianOre)new BlockStygianOre(stygianCrystal, 0, "stygianOre").setBlockName("oreStygian").setBlockTextureName("stygian:oreStygian").setHardness(10.0F).setResistance(6000000.0F);
 	public static BlockStygianOre pyroniumOre = (BlockStygianOre)new BlockStygianOre(resource, 0, "pyroniumOre").setBlockName("pyroniumOre").setBlockTextureName("stygian:pyroniumOre");
 	public static BlockStygianOre cryoniteOre = (BlockStygianOre)new BlockStygianOre(resource, 1, "cryoniteOre").setBlockName("cryoniteOre").setBlockTextureName("stygian:cryoniteOre");
+
+	public static BlockSoulForge soulForgeInactive = (BlockSoulForge)new BlockSoulForge(false).setBlockName("soulForge").setBlockTextureName("stygian:soulForge");
+	public static BlockSoulForge soulForgeActive = (BlockSoulForge)new BlockSoulForge(true).setBlockName("soulForge").setBlockTextureName("stygian:soulForge");
 	
-	public static BlockSoulForge soulForge = (BlockSoulForge)new BlockSoulForge().setBlockName("soulForge").setBlockTextureName("stygian:soulForge");
 	public static BlockVoidChest voidChest = (BlockVoidChest)new BlockVoidChest().setBlockName("voidChest").setBlockTextureName("stygian:black");
 	public static BlockNetherForge netherForge = (BlockNetherForge)new BlockNetherForge().setBlockName("netherForge").setBlockTextureName("netherForge");
 	
@@ -160,8 +162,10 @@ public class Stygian
 		GameRegistry.registerBlock(pyroniumOre, "pyroniumOre");
 		GameRegistry.registerBlock(cryoniteOre, "cryoniteOre");
 		GameRegistry.registerBlock(stygianBlock, "stygianBlock");
+
+		GameRegistry.registerBlock(soulForgeInactive, "soulForgeInactive");
+		GameRegistry.registerBlock(soulForgeActive, "soulForgeActive");
 		
-		GameRegistry.registerBlock(soulForge, "soulForge");
 		GameRegistry.registerBlock(voidChest, "voidChest");
 		GameRegistry.registerBlock(netherForge, "netherForge");
 		
@@ -214,7 +218,8 @@ public class Stygian
 		cryoniteOre.setCreativeTab(tabStygian);
 		stygianBlock.setCreativeTab(tabStygian);
 		
-		soulForge.setCreativeTab(tabStygian);
+		soulForgeInactive.setCreativeTab(tabStygian);
+		
 		voidChest.setCreativeTab(tabStygian);
 		netherForge.setCreativeTab(tabStygian);
 		
@@ -226,7 +231,7 @@ public class Stygian
 		stygianOre.setHarvestLevel("pickaxe", 3);
 		stygianBlock.setHarvestLevel("pickaxe", 4);
 		
-		GameRegistry.addRecipe(new ItemStack(soulForge, 1), "@#@", "#-#", "@_@", '@', Blocks.diamond_block, '#', new ItemStack(stygianCrystal, 1, 1), '-', Blocks.furnace, '_', Items.lava_bucket);
+		GameRegistry.addRecipe(new ItemStack(soulForgeInactive, 1), "@#@", "#-#", "@_@", '@', Blocks.diamond_block, '#', new ItemStack(stygianCrystal, 1, 1), '-', Blocks.furnace, '_', Items.lava_bucket);
 		
 		GameRegistry.addSmelting(new ItemStack(stygianCrystal, 1, 0), new ItemStack(stygianCrystal, 1, 1), 48.0F);
 		

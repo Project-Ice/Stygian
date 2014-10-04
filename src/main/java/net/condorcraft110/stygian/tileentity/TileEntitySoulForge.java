@@ -5,6 +5,7 @@ import net.minecraft.item.*;
 import net.minecraft.inventory.*;
 import net.minecraft.tileentity.*;
 import net.minecraft.entity.player.*;
+import net.condorcraft110.stygian.block.BlockSoulForge;
 import net.condorcraft110.stygian.core.*;
 import net.condorcraft110.stygian.util.*;
 
@@ -45,18 +46,19 @@ public class TileEntitySoulForge extends TileEntityBase
 				consumedFuelCrystal = true;
 				markDirty();
 			}
+			else
+			{
+				progress = 0;
+			}
+			
+			BlockSoulForge.updateBlockState(flag0, worldObj, xCoord, yCoord, zCoord);
 		}
 		
-		if(consumedFuelCrystal)
-		{
-			burnTime = FUEL_TIME;
-			progress = 0;
-		}
+		if(consumedFuelCrystal) burnTime = FUEL_TIME;
 	}
 	
 	private void forge()
 	{
-		System.out.println("forge");
 		ItemStack stack = RecipeManager.getForgeOutput(compile());
 		
 		if(stack != null)
