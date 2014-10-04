@@ -13,5 +13,9 @@ Translations:
 	- BarackOshizzle (Swedish)
 	- Merciless (German)
 
+Testing:
+	- BarackOshizzle
+	- YesWeCant
+
 Name and original idea:
 	- Lord_Vile1st
