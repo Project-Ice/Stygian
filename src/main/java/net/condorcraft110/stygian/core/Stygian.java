@@ -193,6 +193,12 @@ public class Stygian
 		stygianAxe.setCreativeTab(tabStygian);
 		stygianHoe.setCreativeTab(tabStygian);
 		
+		resonanceSword.setCreativeTab(tabStygian);
+		resonancePickaxe.setCreativeTab(tabStygian);
+		resonanceShovel.setCreativeTab(tabStygian);
+		resonanceAxe.setCreativeTab(tabStygian);
+		resonanceHoe.setCreativeTab(tabStygian);
+		
 		stygianHelmet.setCreativeTab(tabStygian);
 		stygianChestplate.setCreativeTab(tabStygian);
 		stygianLeggings.setCreativeTab(tabStygian);

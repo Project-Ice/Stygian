@@ -51,7 +51,7 @@ public class TileEntitySoulForge extends TileEntityBase
 				progress = 0;
 			}
 			
-			BlockSoulForge.updateBlockState(flag0, worldObj, xCoord, yCoord, zCoord);
+			BlockSoulForge.updateBlockState(flag0, worldObj, xCoord, yCoord, zCoord, this);
 		}
 		
 		if(consumedFuelCrystal) burnTime = FUEL_TIME;

@@ -71,7 +71,7 @@ public class BlockSoulForge extends Block implements ITileEntityProvider
 		return null;
 	}
 	
-	public static void updateBlockState(boolean active, World world, int x, int y, int z)
+	public static void updateBlockState(boolean active, World world, int x, int y, int z, TileEntitySoulForge tesf)
 	{
 		Block block = world.getBlock(x, y, z);
 		
@@ -80,10 +80,12 @@ public class BlockSoulForge extends Block implements ITileEntityProvider
 			if(active && block == Stygian.soulForgeInactive)
 			{
 				world.setBlock(x, y, z, Stygian.soulForgeActive, 0, 3);
+				world.setTileEntity(x, y, z, tesf);
 			}
 			else if(!active && block == Stygian.soulForgeActive)
 			{
 				world.setBlock(x, y, z, Stygian.soulForgeInactive, 0, 3);
+				world.setTileEntity(x, y, z, tesf);
 			}
 		}
 	}
