@@ -28,16 +28,10 @@ public class ForgeRecipe // Unrelated to Minecraft Forge
 		
 		for(int i = 0; i < 3; i++)
 		{
-			for(int j = 0; i < 3; i++)
+			for(int j = 0; j < 3; j++)
 			{
-				if(!ItemStack.areItemStacksEqual(recipe[i][j], input[i][j]))
-				{
-					matchFound = false;
-					break;
-				}
+				matchFound = matchFound && ItemStack.areItemStacksEqual(recipe[i][j], input[i][j]);
 			}
-			
-			if(!matchFound) break;
 		}
 		
 		return matchFound ? output.copy() : null;

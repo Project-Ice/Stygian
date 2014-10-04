@@ -1,16 +1,16 @@
 package net.condorcraft110.stygian.item;
 
-import net.condorcraft110.stygian.core.Stygian;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
 import net.minecraft.entity.*;
 import cpw.mods.fml.relauncher.*;
 import net.minecraftforge.common.*;
 import net.minecraft.entity.player.*;
+import net.condorcraft110.stygian.core.*;
 import net.minecraft.client.renderer.texture.*;
 import net.minecraftforge.common.ISpecialArmor.*;
 
-public class ItemStygianArmour extends ItemArmor// implements ISpecialArmor
+public class ItemStygianArmour extends ItemArmor implements ISpecialArmor
 {
 	private IIcon[] icons = new IIcon[4];
 	

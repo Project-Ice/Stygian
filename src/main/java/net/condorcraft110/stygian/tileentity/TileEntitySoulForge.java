@@ -11,7 +11,6 @@ import net.condorcraft110.stygian.util.*;
 public class TileEntitySoulForge extends TileEntityBase
 {
 	private ItemStack[] contents = new ItemStack[11];
-	private ItemStack[][] compiled = null;
 	
 	private static final int FUEL_TIME = 400;
 	private static final int FORGE_TIME = 200;
@@ -40,7 +39,7 @@ public class TileEntitySoulForge extends TileEntityBase
 				if(containsRecipeItem()) forge();
 				markDirty();
 			}
-			else if(contents[0] != null && contents[0].getItem() == Stygian.stygianCrystal && contents[0].getItemDamage() == 1)
+			else if(contents[0] != null && contents[0].getItem() == Stygian.stygianCrystal && contents[0].getItemDamage() == 1 && canForge())
 			{
 				decrStackSize(0, 1);
 				consumedFuelCrystal = true;
@@ -48,11 +47,16 @@ public class TileEntitySoulForge extends TileEntityBase
 			}
 		}
 		
-		if(consumedFuelCrystal) burnTime = FUEL_TIME;
+		if(consumedFuelCrystal)
+		{
+			burnTime = FUEL_TIME;
+			progress = 0;
+		}
 	}
 	
 	private void forge()
 	{
+		System.out.println("forge");
 		ItemStack stack = RecipeManager.getForgeOutput(compile());
 		
 		if(stack != null)
@@ -82,7 +86,7 @@ public class TileEntitySoulForge extends TileEntityBase
 			
 	private ItemStack[][] compile()
 	{
-		return compiled = new ItemStack[][]
+		return new ItemStack[][]
 		{
 			new ItemStack[]
 			{
