@@ -1,5 +1,6 @@
 package net.condorcraft110.stygian.core;
 
+import net.minecraftforge.client.*;
 import cpw.mods.fml.common.network.*;
 import cpw.mods.fml.client.registry.*;
 import net.condorcraft110.stygian.gui.*;
@@ -40,6 +41,7 @@ public class ClientProxy extends CommonProxy
 	{
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityVoidChest.class, new VoidChestRenderer());
 		RenderingRegistry.registerEntityRenderingHandler(EntityDarkLightning.class, new RenderDarkLightning());
+		MinecraftForgeClient.registerItemRenderer(Stygian.elderSword, new RenderElderTools());
 	}
 	
 	public void registerCapes()

@@ -51,6 +51,7 @@ public class Stygian
 	public static final ToolMaterial stygianToolMaterial = EnumHelper.addToolMaterial("stygian", 5, 4683, 24.0F, 9.0F, 30);
 	public static final ToolMaterial resonanceToolMaterial = EnumHelper.addToolMaterial("resonance", 6, 9366, 48.0F, 18.0F, 60);
 	public static final ToolMaterial darkResonanceToolMaterial = EnumHelper.addToolMaterial("darkResonance", 7, 18732, 96.0F, 36, 120);
+	public static final ToolMaterial elderToolMaterial = EnumHelper.addToolMaterial("stygianElder", 8, 75928, 384, 144, 480);
 	
 	public static Block stygianBlock = Reflection.getRawBlockInstance(Material.rock).setBlockName("blockStygian").setHardness(12.0F).setResistance(6000000.0F);
 	
@@ -75,6 +76,8 @@ public class Stygian
 	public static ItemSpade darkResonanceShovel = (ItemSpade)new ItemSpade(darkResonanceToolMaterial).setUnlocalizedName("darkResonanceShovel").setTextureName("stygian:darkResonanceShovel");
 	public static ItemStygianAxe darkResonanceAxe = (ItemStygianAxe)new ItemStygianAxe(darkResonanceToolMaterial).setUnlocalizedName("darkResonanceAxe").setTextureName("stygian:darkResonanceAxe");
 	public static ItemHoe darkResonanceHoe = (ItemHoe)new ItemHoe(darkResonanceToolMaterial).setUnlocalizedName("darkResonanceHoe").setTextureName("stygian:darkResonanceHoe");
+	
+	public static ItemStygianSword elderSword = (ItemStygianSword)new ItemStygianSword(elderToolMaterial).setUnlocalizedName("elderSword").setTextureName("stygian:elderSword");
 	
 	public static ItemStygianArmour stygianHelmet;
 	public static ItemStygianArmour stygianChestplate;
@@ -164,6 +167,8 @@ public class Stygian
 		GameRegistry.registerItem(darkResonanceAxe, "darkResonanceAxe");
 		GameRegistry.registerItem(darkResonanceHoe, "darkResonanceHoe");
 		
+		GameRegistry.registerItem(elderSword, "elderSword");
+		
 		GameRegistry.registerItem(stygianHelmet, "stygianHelmet");
 		GameRegistry.registerItem(stygianChestplate, "stygianChestplate");
 		GameRegistry.registerItem(stygianLeggings, "stygianLeggings");
@@ -238,6 +243,8 @@ public class Stygian
 		darkResonanceShovel.setCreativeTab(tabStygian);
 		darkResonanceAxe.setCreativeTab(tabStygian);
 		darkResonanceHoe.setCreativeTab(tabStygian);
+		
+		elderSword.setCreativeTab(tabStygian);
 		
 		stygianHelmet.setCreativeTab(tabStygian);
 		stygianChestplate.setCreativeTab(tabStygian);
