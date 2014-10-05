@@ -26,7 +26,6 @@ import net.condorcraft110.stygian.fluid.*;
 import net.condorcraft110.stygian.entity.*;
 import net.condorcraft110.stygian.registry.*;
 import net.condorcraft110.stygian.worldgen.*;
-import com.jadarstudios.developercapes.*;
 
 @Mod(name = "Stygian", modid = "stygian", version = "2.4")
 public class Stygian
@@ -43,12 +42,15 @@ public class Stygian
 	
 	public static final ArmorMaterial stygianArmourMaterial = EnumHelper.addArmorMaterial("stygian", 99, new int[]{9, 24, 18, 9}, 30);
 	public static final ArmorMaterial resonanceArmourMaterial = EnumHelper.addArmorMaterial("resonance", 198, new int[]{18, 48, 36, 18}, 60);
+	public static final ArmorMaterial darkResonanceArmourMaterial = EnumHelper.addArmorMaterial("darkResonance", 396, new int[]{36, 96, 72, 36}, 120);
 	public static int stygianArmourRenderIndex;
 	public static int voidChestRenderIndex;
 	public static int resonanceArmourRenderIndex;
+	public static int darkResonanceArmourRenderIndex;
 	public static final CreativeTabs tabStygian = new CreativeTabStygian(); 
 	public static final ToolMaterial stygianToolMaterial = EnumHelper.addToolMaterial("stygian", 5, 4683, 24.0F, 9.0F, 30);
 	public static final ToolMaterial resonanceToolMaterial = EnumHelper.addToolMaterial("resonance", 6, 9366, 48.0F, 18.0F, 60);
+	public static final ToolMaterial darkResonanceToolMaterial = EnumHelper.addToolMaterial("darkResonance", 7, 18732, 96.0F, 36, 120);
 	
 	public static Block stygianBlock = Reflection.getRawBlockInstance(Material.rock).setBlockName("blockStygian").setHardness(12.0F).setResistance(6000000.0F);
 	
@@ -67,7 +69,13 @@ public class Stygian
 	public static ItemSpade resonanceShovel = (ItemSpade)new ItemSpade(resonanceToolMaterial).setUnlocalizedName("resonanceShovel").setTextureName("stygian:resonanceShovel");
 	public static ItemStygianAxe resonanceAxe = (ItemStygianAxe)new ItemStygianAxe(resonanceToolMaterial).setUnlocalizedName("resonanceAxe").setTextureName("stygian:resonanceAxe");
 	public static ItemHoe resonanceHoe = (ItemHoe)new ItemHoe(resonanceToolMaterial).setUnlocalizedName("resonanceHoe").setTextureName("stygian:resonanceHoe");
-
+	
+	public static ItemStygianSword darkResonanceSword = (ItemStygianSword)new ItemStygianSword(darkResonanceToolMaterial).setUnlocalizedName("darkResonanceSword").setTextureName("stygian:darkResonanceSword");
+	public static ItemStygianPickaxe darkResonancePickaxe = (ItemStygianPickaxe)new ItemStygianPickaxe(darkResonanceToolMaterial).setUnlocalizedName("darkResonancePickaxe").setTextureName("stygian:darkResonancePickaxe");
+	public static ItemSpade darkResonanceShovel = (ItemSpade)new ItemSpade(darkResonanceToolMaterial).setUnlocalizedName("darkResonanceShovel").setTextureName("stygian:darkResonanceShovel");
+	public static ItemStygianAxe darkResonanceAxe = (ItemStygianAxe)new ItemStygianAxe(darkResonanceToolMaterial).setUnlocalizedName("darkResonanceAxe").setTextureName("stygian:darkResonanceAxe");
+	public static ItemHoe darkResonanceHoe = (ItemHoe)new ItemHoe(darkResonanceToolMaterial).setUnlocalizedName("darkResonanceHoe").setTextureName("stygian:darkResonanceHoe");
+	
 	public static ItemStygianArmour stygianHelmet;
 	public static ItemStygianArmour stygianChestplate;
 	public static ItemStygianArmour stygianLeggings;
@@ -77,6 +85,11 @@ public class Stygian
 	public static ItemResonanceArmour resonanceChestplate;
 	public static ItemResonanceArmour resonanceLeggings;
 	public static ItemResonanceArmour resonanceBoots;
+	
+	public static ItemDarkResonanceArmour darkResonanceHelmet;
+	public static ItemDarkResonanceArmour darkResonanceChestplate;
+	public static ItemDarkResonanceArmour darkResonanceLeggings;
+	public static ItemDarkResonanceArmour darkResonanceBoots;
 	
 	public static Item sceptreCoreCradle = new Item().setUnlocalizedName("sceptreCoreCradle").setTextureName("stygian:sceptreCoreCradle");
 	
@@ -110,7 +123,7 @@ public class Stygian
 	{
 		StygianConfig.readAndSet(event.getModConfigurationDirectory());
 		
-		DevCapes.getInstance().registerConfig("http://files.condorcraft110.net/mods/stygian/capes/config.json");
+		proxy.registerCapes();
 		
 		stygianArmourRenderIndex = proxy.getStygianRenderIndex();
 		voidChestRenderIndex = proxy.getVoidChestRenderingIndex();
@@ -126,6 +139,11 @@ public class Stygian
 		resonanceLeggings = (ItemResonanceArmour)new ItemResonanceArmour(resonanceArmourMaterial, resonanceArmourRenderIndex, 2).setUnlocalizedName("resonanceLeggings").setTextureName("stygian:resonanceLeggings");
 		resonanceBoots = (ItemResonanceArmour)new ItemResonanceArmour(resonanceArmourMaterial, resonanceArmourRenderIndex, 3).setUnlocalizedName("resonanceBoots").setTextureName("stygian:resonanceBoots");
 		
+		darkResonanceHelmet = (ItemDarkResonanceArmour)new ItemDarkResonanceArmour(darkResonanceArmourMaterial, darkResonanceArmourRenderIndex, 0).setUnlocalizedName("darkResonanceHelmet").setTextureName("stygian:darkResonanceHelmet");
+		darkResonanceChestplate = (ItemDarkResonanceArmour)new ItemDarkResonanceArmour(darkResonanceArmourMaterial, darkResonanceArmourRenderIndex, 1).setUnlocalizedName("darkResonanceChestplate").setTextureName("stygian:darkResonanceChestplate");
+		darkResonanceLeggings = (ItemDarkResonanceArmour)new ItemDarkResonanceArmour(darkResonanceArmourMaterial, darkResonanceArmourRenderIndex, 2).setUnlocalizedName("darkResonanceLeggings").setTextureName("stygian:darkResonanceLeggings");
+		darkResonanceBoots = (ItemDarkResonanceArmour)new ItemDarkResonanceArmour(darkResonanceArmourMaterial, darkResonanceArmourRenderIndex, 3).setUnlocalizedName("darkResonanceBoots").setTextureName("stygian:darkResonanceBoots");
+		
 		GameRegistry.registerItem(stygianCrystal, "stygianCrystal");
 		
 		GameRegistry.registerItem(stygianSword, "stygianSword");
@@ -140,6 +158,12 @@ public class Stygian
 		GameRegistry.registerItem(resonanceAxe, "resonanceAxe");
 		GameRegistry.registerItem(resonanceHoe, "resonanceHoe");
 		
+		GameRegistry.registerItem(darkResonanceSword, "darkResonanceSword");
+		GameRegistry.registerItem(darkResonancePickaxe, "darkResonancePickaxe");
+		GameRegistry.registerItem(darkResonanceShovel, "darkResonanceShovel");
+		GameRegistry.registerItem(darkResonanceAxe, "darkResonanceAxe");
+		GameRegistry.registerItem(darkResonanceHoe, "darkResonanceHoe");
+		
 		GameRegistry.registerItem(stygianHelmet, "stygianHelmet");
 		GameRegistry.registerItem(stygianChestplate, "stygianChestplate");
 		GameRegistry.registerItem(stygianLeggings, "stygianLeggings");
@@ -149,6 +173,11 @@ public class Stygian
 		GameRegistry.registerItem(resonanceChestplate, "resonanceChestplate");
 		GameRegistry.registerItem(resonanceLeggings, "resonanceLeggings");
 		GameRegistry.registerItem(resonanceBoots, "resonanceBoots");
+		
+		GameRegistry.registerItem(darkResonanceHelmet, "darkResonanceHelmet");
+		GameRegistry.registerItem(darkResonanceChestplate, "darkResonanceChestplate");
+		GameRegistry.registerItem(darkResonanceLeggings, "darkResonanceLeggings");
+		GameRegistry.registerItem(darkResonanceBoots, "darkResonanceBoots");
 		
 		GameRegistry.registerItem(sceptreCoreCradle, "sceptreCoreCradle");
 		
@@ -180,7 +209,7 @@ public class Stygian
 		
 		GameRegistry.registerWorldGenerator(new WorldGenNetherOreHandler(), 0);
 		
-		EntityRegistry.registerGlobalEntityID(EntityDarkLightning.class, "darkLightningBolt", 0);
+		EntityRegistry.registerGlobalEntityID(EntityDarkLightning.class, "darkLightningBolt", 300);
 		
 		//EntityRegistry.registerModEntity(EntityDarkLightning.class, "darkLightningBolt", 0, this, 80, 3, false);
 	}
@@ -204,6 +233,12 @@ public class Stygian
 		resonanceAxe.setCreativeTab(tabStygian);
 		resonanceHoe.setCreativeTab(tabStygian);
 		
+		darkResonanceSword.setCreativeTab(tabStygian);
+		darkResonancePickaxe.setCreativeTab(tabStygian);
+		darkResonanceShovel.setCreativeTab(tabStygian);
+		darkResonanceAxe.setCreativeTab(tabStygian);
+		darkResonanceHoe.setCreativeTab(tabStygian);
+		
 		stygianHelmet.setCreativeTab(tabStygian);
 		stygianChestplate.setCreativeTab(tabStygian);
 		stygianLeggings.setCreativeTab(tabStygian);
@@ -213,6 +248,11 @@ public class Stygian
 		resonanceChestplate.setCreativeTab(tabStygian);
 		resonanceLeggings.setCreativeTab(tabStygian);
 		resonanceBoots.setCreativeTab(tabStygian);
+		
+		darkResonanceHelmet.setCreativeTab(tabStygian);
+		darkResonanceChestplate.setCreativeTab(tabStygian);
+		darkResonanceLeggings.setCreativeTab(tabStygian);
+		darkResonanceBoots.setCreativeTab(tabStygian);
 		
 		hourglass.setCreativeTab(tabStygian);
 		hourglassCracked.setCreativeTab(tabStygian);

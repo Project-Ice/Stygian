@@ -20,6 +20,11 @@ public class CommonProxy
 		return -1;
 	}
 	
+	public int getDarkResonanceRenderIndex()
+	{
+		return -1;
+	}
+	
 	public void registerTileEntities()
 	{
 		GameRegistry.registerTileEntity(TileEntitySoulForge.class, "soulForge");
@@ -33,6 +38,11 @@ public class CommonProxy
 	}
 	
 	public void registerRenderers()
+	{
+		
+	}
+	
+	public void registerCapes()
 	{
 		
 	}

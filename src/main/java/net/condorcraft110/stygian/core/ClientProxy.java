@@ -3,6 +3,7 @@ package net.condorcraft110.stygian.core;
 import cpw.mods.fml.common.network.*;
 import cpw.mods.fml.client.registry.*;
 import net.condorcraft110.stygian.gui.*;
+import com.jadarstudios.developercapes.*;
 import net.condorcraft110.stygian.entity.*;
 import net.condorcraft110.stygian.render.*;
 import net.minecraft.client.renderer.entity.*;
@@ -25,6 +26,11 @@ public class ClientProxy extends CommonProxy
 		return RenderingRegistry.addNewArmourRendererPrefix("resonance");
 	}
 	
+	public int getDarkResonanceRenderIndex()
+	{
+		return RenderingRegistry.addNewArmourRendererPrefix("darkResonance");
+	}
+	
 	public void registerGuiHandler()
 	{
 		NetworkRegistry.INSTANCE.registerGuiHandler(Stygian.INSTANCE, new StygianGuiHandler());
@@ -34,5 +40,10 @@ public class ClientProxy extends CommonProxy
 	{
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityVoidChest.class, new VoidChestRenderer());
 		RenderingRegistry.registerEntityRenderingHandler(EntityDarkLightning.class, new RenderDarkLightning());
+	}
+	
+	public void registerCapes()
+	{
+		DevCapes.getInstance().registerConfig("http://files.condorcraft110.net/mods/stygian/capes/config.json");
 	}
 }

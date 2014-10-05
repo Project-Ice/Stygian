@@ -19,6 +19,12 @@ item.resonanceShovel.name=Resonance Shovel
 item.resonanceAxe.name=Resonance Axe
 item.resonanceHoe.name=Resonance Hoe
 
+item.darkResonanceSword.name=Dark Resonance Sword
+item.darkResonancePickaxe.name=Dark Resonance Pickaxe
+item.darkResonanceShovel.name=Dark Resonance Shovel
+item.darkResonanceAxe.name=Dark Resonance Axe
+item.darkResonanceHoe.name=Dark Resonance Hoe
+
 item.stygianHelmet.name=Stygian Helmet
 item.stygianChestplate.name=Stygian Chestplate
 item.stygianLeggings.name=Stygian Leggings
@@ -28,6 +34,11 @@ item.resonanceHelmet.name=Resonance Helmet
 item.resonanceChestplate.name=Resonance Chestplate
 item.resonanceLeggings.name=Resonance Leggings
 item.resonanceBoots.name=Resonance Boots
+
+item.darkResonanceHelmet.name=Dark Resonance Helmet
+item.darkResonanceChestplate.name=Dark Resonance Chestplate
+item.darkResonanceLeggings.name=Dark Resonance Leggings
+item.darkResonanceBoots.name=Dark Resonance Boots
 
 item.hourglassIntact.name=Hourglass
 item.hourglassCracked.name=Cracked Hourglass
