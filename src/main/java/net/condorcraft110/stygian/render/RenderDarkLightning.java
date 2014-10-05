@@ -16,7 +16,7 @@ public class RenderDarkLightning extends Render
         GL11.glDisable(GL11.GL_TEXTURE_2D);
         GL11.glDisable(GL11.GL_LIGHTING);
         GL11.glEnable(GL11.GL_BLEND);
-        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
+        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         double[] adouble = new double[8];
         double[] adouble1 = new double[8];
         double d3 = 0.0D;
@@ -70,8 +70,7 @@ public class RenderDarkLightning extends Render
                     }
                     
                     tessellator.startDrawing(5);
-                    float f2 = 0.5F;
-                    tessellator.setColorRGBA_F(0.1F * f2, 0.1F * f2, 0.2F * f2, 0.3F);
+                    tessellator.setColorRGBA_F(0F, 0F, 0F, 0.5F);
                     double d9 = 0.1D + (double)k1 * 0.2D;
                     
                     if(j == 0)

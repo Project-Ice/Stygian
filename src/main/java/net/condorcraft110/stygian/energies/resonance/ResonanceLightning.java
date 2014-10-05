@@ -18,18 +18,18 @@ public class ResonanceLightning implements IResonance
 	
 	public boolean hitEntity(ItemStack stack, EntityLivingBase victim, EntityLivingBase attacker)
 	{
-		//EntityDarkLightning lightning = new EntityDarkLightning(victim.worldObj, victim.posX, victim.posY, victim.posZ);
-		EntityLightningBolt lightning = new EntityLightningBolt(victim.worldObj, victim.posX, victim.posY, victim.posZ);
+		EntityDarkLightning lightning = new EntityDarkLightning(victim.worldObj, victim.posX, victim.posY, victim.posZ);
+		//EntityLightningBolt lightning = new EntityLightningBolt(victim.worldObj, victim.posX, victim.posY, victim.posZ);
 		
-		victim.worldObj.spawnEntityInWorld(lightning);
+		victim.worldObj.addWeatherEffect(lightning);
 		
 		return true;
 	}
 	
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int i, float f, float g, float h)
 	{
-		//EntityDarkLightning lightning = new EntityDarkLightning(world, x, y, z);
-		EntityLightningBolt lightning = new EntityLightningBolt(world, x, y, z);
+		EntityDarkLightning lightning = new EntityDarkLightning(world, x, y, z);
+		//EntityLightningBolt lightning = new EntityLightningBolt(world, x, y, z);
 		
 		world.spawnEntityInWorld(lightning);
 		

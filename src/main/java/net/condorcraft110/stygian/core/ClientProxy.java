@@ -33,6 +33,6 @@ public class ClientProxy extends CommonProxy
 	public void registerRenderers()
 	{
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityVoidChest.class, new VoidChestRenderer());
-		RenderingRegistry.registerEntityRenderingHandler(EntityDarkLightning.class, new RenderLightningBolt());
+		RenderingRegistry.registerEntityRenderingHandler(EntityDarkLightning.class, new RenderDarkLightning());
 	}
 }

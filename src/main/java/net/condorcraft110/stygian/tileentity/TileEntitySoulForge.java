@@ -38,20 +38,20 @@ public class TileEntitySoulForge extends TileEntityBase
 			if(flag0)
 			{
 				if(containsRecipeItem()) forge();
-				markDirty();
 			}
 			else if(contents[0] != null && contents[0].getItem() == Stygian.stygianCrystal && contents[0].getItemDamage() == 1 && canForge())
 			{
 				decrStackSize(0, 1);
 				consumedFuelCrystal = true;
-				markDirty();
 			}
 			else
 			{
 				progress = 0;
 			}
 			
-			BlockSoulForge.updateBlockState(flag0, worldObj, xCoord, yCoord, zCoord, this);
+			BlockSoulForge.updateBlockState(flag0, worldObj, xCoord, yCoord, zCoord);
+			
+			markDirty();
 		}
 		
 		if(consumedFuelCrystal) burnTime = FUEL_TIME;

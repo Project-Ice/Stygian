@@ -26,6 +26,7 @@ import net.condorcraft110.stygian.fluid.*;
 import net.condorcraft110.stygian.entity.*;
 import net.condorcraft110.stygian.registry.*;
 import net.condorcraft110.stygian.worldgen.*;
+import com.jadarstudios.developercapes.*;
 
 @Mod(name = "Stygian", modid = "stygian", version = "2.4")
 public class Stygian
@@ -109,6 +110,8 @@ public class Stygian
 	{
 		StygianConfig.readAndSet(event.getModConfigurationDirectory());
 		
+		DevCapes.getInstance().registerConfig("http://files.condorcraft110.net/mods/stygian/capes/config.json");
+		
 		stygianArmourRenderIndex = proxy.getStygianRenderIndex();
 		voidChestRenderIndex = proxy.getVoidChestRenderingIndex();
 		resonanceArmourRenderIndex = proxy.getResonanceRenderIndex();
@@ -177,7 +180,9 @@ public class Stygian
 		
 		GameRegistry.registerWorldGenerator(new WorldGenNetherOreHandler(), 0);
 		
-		EntityRegistry.registerModEntity(EntityDarkLightning.class, "darkLightningBolt", 0, this, 80, 3, false);
+		EntityRegistry.registerGlobalEntityID(EntityDarkLightning.class, "darkLightningBolt", 0);
+		
+		//EntityRegistry.registerModEntity(EntityDarkLightning.class, "darkLightningBolt", 0, this, 80, 3, false);
 	}
 	
 	@EventHandler
