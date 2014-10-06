@@ -11,7 +11,7 @@ import net.minecraft.client.renderer.entity.*;
 public class RenderElderTools implements IItemRenderer
 {
 	//private static ArrayList<ItemStack> elderItems = new ArrayList<ItemStack>();
-	private static RenderItem ri = new RenderItem();
+	//private static RenderItem ri = new RenderItem();
 	
 	private float hue = 0.0F;
 	
@@ -29,7 +29,18 @@ public class RenderElderTools implements IItemRenderer
 	{
 		Color color = Color.getHSBColor(hue += 0.01F, 1.0F, 1.0F);
 		
-		ri.renderIcon(0, 0, stack.getIconIndex(), 16, 16);
+		if(type == ItemRenderType.EQUIPPED || type == ItemRenderType.EQUIPPED_FIRST_PERSON || type == ItemRenderType.ENTITY)
+		{
+			if(type != ItemRenderType.ENTITY)
+			{
+				GL11.glRotatef(180.0F, 0.0F, 0.0F, 1.0F);
+				GL11.glTranslatef(-1.5F, -1.5F, 0.0F);
+			}
+			
+			GL11.glScalef(1.0F / 8.0F, 1.0F / 8.0F, 0.0F);
+		}
+		
+		RenderItem.getInstance().renderIcon(0, 0, stack.getIconIndex(), 16, 16);
 		
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		GL11.glEnable(GL11.GL_BLEND);
@@ -37,7 +48,7 @@ public class RenderElderTools implements IItemRenderer
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		
 		GL11.glBegin(GL11.GL_QUADS);
-			GL11.glColor4f((float)color.getRed() / 256, (float)color.getGreen() / 256, (float)color.getBlue() / 256, 0.5F);
+			GL11.glColor4f((float)color.getRed() / 255, (float)color.getGreen() / 255, (float)color.getBlue() / 255, 0.5F);
 			
 			GL11.glVertex2i(15, 0);
 			GL11.glVertex2i(15, 3);
