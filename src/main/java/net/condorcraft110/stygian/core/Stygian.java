@@ -1,6 +1,7 @@
 package net.condorcraft110.stygian.core;
 
 import java.util.*;
+
 import net.minecraft.init.*;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
@@ -77,7 +78,7 @@ public class Stygian
 	public static ItemStygianAxe darkResonanceAxe = (ItemStygianAxe)new ItemStygianAxe(darkResonanceToolMaterial).setUnlocalizedName("darkResonanceAxe").setTextureName("stygian:darkResonanceAxe");
 	public static ItemHoe darkResonanceHoe = (ItemHoe)new ItemHoe(darkResonanceToolMaterial).setUnlocalizedName("darkResonanceHoe").setTextureName("stygian:darkResonanceHoe");
 	
-	public static ItemStygianSword elderSword = (ItemStygianSword)new ItemStygianSword(elderToolMaterial).setUnlocalizedName("elderSword").setTextureName("stygian:elderSword");
+	public static ItemElderSword elderSword = (ItemElderSword)new ItemElderSword(elderToolMaterial).setUnlocalizedName("elderSword");
 	
 	public static ItemStygianArmour stygianHelmet;
 	public static ItemStygianArmour stygianChestplate;
@@ -107,9 +108,9 @@ public class Stygian
 	
 	public static DamageSource damageSourceDrain = new DamageSource("stygianDrain").setDamageBypassesArmor().setDamageIsAbsolute().setMagicDamage();
 
-	public static BlockStygianOre stygianOre = (BlockStygianOre)new BlockStygianOre(stygianCrystal, 0, "stygianOre").setBlockName("oreStygian").setBlockTextureName("stygian:oreStygian").setHardness(10.0F).setResistance(6000000.0F);
-	public static BlockStygianOre pyroniumOre = (BlockStygianOre)new BlockStygianOre(resource, 0, "pyroniumOre").setBlockName("pyroniumOre").setBlockTextureName("stygian:pyroniumOre");
-	public static BlockStygianOre cryoniteOre = (BlockStygianOre)new BlockStygianOre(resource, 1, "cryoniteOre").setBlockName("cryoniteOre").setBlockTextureName("stygian:cryoniteOre");
+	public static BlockStygianOre stygianOre = (BlockStygianOre)new BlockStygianOre(stygianCrystal, 0, "stygianOre", 10, 50).setBlockName("oreStygian").setBlockTextureName("stygian:oreStygian").setHardness(10.0F).setResistance(6000000.0F);
+	public static BlockStygianOre pyroniumOre = (BlockStygianOre)new BlockStygianOre(resource, 0, "pyroniumOre", 4, 8).setBlockName("pyroniumOre").setBlockTextureName("stygian:pyroniumOre");
+	public static BlockStygianOre cryoniteOre = (BlockStygianOre)new BlockStygianOre(resource, 1, "cryoniteOre", 4, 8).setBlockName("cryoniteOre").setBlockTextureName("stygian:cryoniteOre");
 
 	public static BlockSoulForge soulForgeInactive = (BlockSoulForge)new BlockSoulForge(false).setBlockName("soulForge").setBlockTextureName("stygian:soulForge");
 	public static BlockSoulForge soulForgeActive = (BlockSoulForge)new BlockSoulForge(true).setBlockName("soulForge").setBlockTextureName("stygian:soulForge");
@@ -125,8 +126,6 @@ public class Stygian
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		StygianConfig.readAndSet(event.getModConfigurationDirectory());
-		
-		proxy.registerCapes();
 		
 		stygianArmourRenderIndex = proxy.getStygianRenderIndex();
 		voidChestRenderIndex = proxy.getVoidChestRenderingIndex();
@@ -212,7 +211,7 @@ public class Stygian
 		
 		GameRegistry.registerBlock(liquidDarknessBlock, "liquidDarkness");
 		
-		GameRegistry.registerWorldGenerator(new WorldGenNetherOreHandler(), 0);
+		GameRegistry.registerWorldGenerator(new WorldGenHandler(), 0);
 		
 		EntityRegistry.registerGlobalEntityID(EntityDarkLightning.class, "darkLightningBolt", 300);
 		
@@ -296,12 +295,13 @@ public class Stygian
 		proxy.registerTileEntities();
 		proxy.registerGuiHandler();
 		proxy.registerRenderers();
+		proxy.registerCapes();
+		proxy.registerTickHandlers();
+		proxy.registerElderItems();
 		
 		FocusRegistry.registerFoci();
 		ResonanceRegistry.registerResonances();
 		
 		RecipeManager.registerRecipes();
-		
-		//RecipeManager.registerForgeRecipe(new ForgeRecipe(new ItemStack(stygianCrystal, 128, 1), new ItemStack[][]{new ItemStack[]{null, null, null}, new ItemStack[]{null, new ItemStack(stygianCrystal, 1, 0), null}, new ItemStack[]{null, null, null}}));
 	}
 }

@@ -15,14 +15,18 @@ public class BlockStygianOre extends Block
 	private final Item dropItem;
 	private final int dropMetadata;
 	private final String textureName;
+	private final int minExpDrop;
+	private final int maxExpDrop;
 	
-	public BlockStygianOre(Item dropItem, int dropMetadata, String textureName)
+	public BlockStygianOre(Item dropItem, int dropMetadata, String textureName, int minExpDrop, int maxExpDrop)
 	{
 		super(Material.rock);
 		
 		this.dropItem = dropItem;
 		this.dropMetadata = dropMetadata;
 		this.textureName = textureName;
+		this.minExpDrop = minExpDrop;
+		this.maxExpDrop = maxExpDrop;
 	}
 	
 	@Override
@@ -44,7 +48,7 @@ public class BlockStygianOre extends Block
 	
 	public int getExpDrop(IBlockAccess access, int i, int j)
 	{
-		return MathHelper.getRandomIntegerInRange(Stygian.stygianRandom, 10, 50);
+		return MathHelper.getRandomIntegerInRange(Stygian.stygianRandom, minExpDrop, maxExpDrop);
 	}
 	
 	public int damageDropped(int i)

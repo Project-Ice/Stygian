@@ -19,12 +19,9 @@ public class RecipeManager
 	
 	public static ItemStack getForgeOutput(ItemStack[][] input)
 	{
-		System.out.println(forgeRecipes.size());
-		
-		for(int i = 0; i < forgeRecipes.size(); i++)
+		for(ForgeRecipe recipe : forgeRecipes)
 		{
-			System.out.println(i);
-			ItemStack stack = forgeRecipes.get(i).getOutput(input);
+			ItemStack stack = recipe.getOutput(input);
 			
 			if(stack != null) return stack;
 		}

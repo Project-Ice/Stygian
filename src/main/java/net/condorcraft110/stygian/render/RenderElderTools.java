@@ -4,16 +4,19 @@ import java.awt.*;
 import java.util.*;
 import org.lwjgl.opengl.*;
 import net.minecraft.item.*;
+import net.minecraft.util.*;
+import net.minecraft.client.*;
 import net.minecraftforge.client.*;
+import net.minecraft.client.renderer.*;
 import net.condorcraft110.stygian.core.*;
+import net.condorcraft110.stygian.item.*;
 import net.minecraft.client.renderer.entity.*;
+import net.minecraft.client.renderer.texture.*;
 
 public class RenderElderTools implements IItemRenderer
 {
-	//private static ArrayList<ItemStack> elderItems = new ArrayList<ItemStack>();
-	//private static RenderItem ri = new RenderItem();
-	
-	private float hue = 0.0F;
+	private static ArrayList<ItemStack> elderItems = new ArrayList<ItemStack>();
+	public static float hue = 0.0F;
 	
 	public boolean handleRenderType(ItemStack stack, ItemRenderType type)
 	{
@@ -27,140 +30,56 @@ public class RenderElderTools implements IItemRenderer
 	
 	public void renderItem(ItemRenderType type, ItemStack stack, Object... data) // only sword for now
 	{
-		Color color = Color.getHSBColor(hue += 0.01F, 1.0F, 1.0F);
+		Color colour = Color.getHSBColor(hue, 1.0F, 1.0F);
 		
-		if(type == ItemRenderType.EQUIPPED || type == ItemRenderType.EQUIPPED_FIRST_PERSON || type == ItemRenderType.ENTITY)
+		switch(type)
 		{
-			if(type != ItemRenderType.ENTITY)
-			{
-				GL11.glRotatef(180.0F, 0.0F, 0.0F, 1.0F);
-				GL11.glTranslatef(-1.5F, -1.5F, 0.0F);
-			}
-			
-			GL11.glScalef(1.0F / 8.0F, 1.0F / 8.0F, 0.0F);
+			case INVENTORY:
+				GL11.glPushMatrix();
+					GL11.glEnable(GL11.GL_BLEND);
+					GL11.glDepthMask(false);
+					GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+					RenderItem.getInstance().renderIcon(0, 0, (((ItemElderSword)stack.getItem()).handleIcon), 16, 16);
+					GL11.glColor4f((float)colour.getRed() / 255, (float)colour.getGreen() / 255, (float)colour.getBlue() / 255, 1.0F);
+					RenderItem.getInstance().renderIcon(0, 0, (((ItemElderSword)stack.getItem()).bladeIcon), 16, 16);
+					GL11.glDepthMask(true);
+					GL11.glDisable(GL11.GL_BLEND);
+				GL11.glPopMatrix();
+				break;
+			case ENTITY:
+			default:
+				GL11.glPushMatrix();
+					renderIcon(((ItemElderSword)stack.getItem()).handleIcon);
+					GL11.glColor4f((float)colour.getRed() / 255, (float)colour.getGreen() / 255, (float)colour.getBlue() / 255, 1.0F);
+					renderIcon(((ItemElderSword)stack.getItem()).bladeIcon);
+				GL11.glPopMatrix();
+				break;
 		}
-		
-		RenderItem.getInstance().renderIcon(0, 0, stack.getIconIndex(), 16, 16);
-		
-		GL11.glDisable(GL11.GL_TEXTURE_2D);
-		GL11.glEnable(GL11.GL_BLEND);
-		GL11.glDepthMask(false);
-		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-		
-		GL11.glBegin(GL11.GL_QUADS);
-			GL11.glColor4f((float)color.getRed() / 255, (float)color.getGreen() / 255, (float)color.getBlue() / 255, 0.5F);
-			
-			GL11.glVertex2i(15, 0);
-			GL11.glVertex2i(15, 3);
-			GL11.glVertex2i(16, 3);
-			GL11.glVertex2i(16, 0);
-			
-			GL11.glVertex2i(14, 0);
-			GL11.glVertex2i(14, 4);
-			GL11.glVertex2i(15, 4);
-			GL11.glVertex2i(15, 0);
-			
-			GL11.glVertex2i(13, 0);
-			GL11.glVertex2i(13, 5);
-			GL11.glVertex2i(14, 5);
-			GL11.glVertex2i(14, 0);
-			
-			GL11.glVertex2i(12, 1);
-			GL11.glVertex2i(12, 6);
-			GL11.glVertex2i(13, 6);
-			GL11.glVertex2i(13, 1);
-			
-			GL11.glVertex2i(11, 2);
-			GL11.glVertex2i(11, 7);
-			GL11.glVertex2i(12, 7);
-			GL11.glVertex2i(12, 2);
-			
-			GL11.glVertex2i(10, 3);
-			GL11.glVertex2i(10, 8);
-			GL11.glVertex2i(11, 8);
-			GL11.glVertex2i(11, 3);
-			
-			GL11.glVertex2i(9, 4);
-			GL11.glVertex2i(9, 9);
-			GL11.glVertex2i(10, 9);
-			GL11.glVertex2i(10, 4);
-			
-			GL11.glVertex2i(8, 5);
-			GL11.glVertex2i(8, 10);
-			GL11.glVertex2i(9, 10);
-			GL11.glVertex2i(9, 5);
-			
-			GL11.glVertex2i(7, 6);
-			GL11.glVertex2i(7, 13);
-			GL11.glVertex2i(8, 13);
-			GL11.glVertex2i(8, 6);
-			
-			GL11.glVertex2i(6, 7);
-			GL11.glVertex2i(6, 13);
-			GL11.glVertex2i(7, 13);
-			GL11.glVertex2i(7, 7);
-			
-			GL11.glVertex2i(2, 6);
-			GL11.glVertex2i(2, 8);
-			GL11.glVertex2i(3, 8);
-			GL11.glVertex2i(3, 6);
-			
-			GL11.glVertex2i(3, 6);
-			GL11.glVertex2i(3, 10);
-			GL11.glVertex2i(4, 10);
-			GL11.glVertex2i(4, 6);
-			
-			GL11.glVertex2i(4, 7);
-			GL11.glVertex2i(4, 11);
-			GL11.glVertex2i(5, 11);
-			GL11.glVertex2i(5, 7);
-			
-			GL11.glVertex2i(5, 8);
-			GL11.glVertex2i(5, 12);
-			GL11.glVertex2i(6, 12);
-			GL11.glVertex2i(6, 8);
-			
-			GL11.glVertex2i(8, 11);
-			GL11.glVertex2i(8, 14);
-			GL11.glVertex2i(9, 14);
-			GL11.glVertex2i(9, 11);
-			
-			GL11.glVertex2i(9, 12);
-			GL11.glVertex2i(9, 14);
-			GL11.glVertex2i(10, 14);
-			GL11.glVertex2i(10, 12);
-			
-			GL11.glVertex2i(0, 13);
-			GL11.glVertex2i(0, 16);
-			GL11.glVertex2i(2, 16);
-			GL11.glVertex2i(2, 13);
-			
-			GL11.glVertex2i(2, 14);
-			GL11.glVertex2i(2, 16);
-			GL11.glVertex2i(3, 16);
-			GL11.glVertex2i(3, 14);
-		GL11.glEnd();
-		
-		GL11.glDepthMask(true);
-		GL11.glDisable(GL11.GL_BLEND);
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
-		
 	}
 	
-	/*public static void addElderItem(ItemStack stack)
+	public static void registerElderItem(ItemStack stack)
 	{
 		if(!isElderItem(stack)) elderItems.add(stack);
-	}*/
+	}
 	
 	private static boolean isElderItem(ItemStack stack)
 	{
-		/*for(ItemStack stack1 : elderItems)
+		for(ItemStack stack1 : elderItems)
 		{
 			if(ItemStack.areItemStacksEqual(stack, stack1)) return true;
 		}
 		
-		return false;*/
-		
-		return stack.getItem() == Stygian.elderSword;
+		return false;
+	}
+	
+	public static void registerElderItems()
+	{
+		registerElderItem(new ItemStack(Stygian.elderSword));
+	}
+	
+	private static void renderIcon(IIcon icon)
+	{
+		Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.locationItemsTexture);
+		ItemRenderer.renderItemIn2D(Tessellator.instance, icon.getMaxU(), icon.getMinV(), icon.getMinU(), icon.getMaxV(), icon.getIconWidth(), icon.getIconHeight(), 1.0F / 16.0F);
 	}
 }

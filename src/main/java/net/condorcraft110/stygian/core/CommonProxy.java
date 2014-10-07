@@ -46,4 +46,14 @@ public class CommonProxy
 	{
 		
 	}
+	
+	public void registerTickHandlers()
+	{
+		
+	}
+	
+	public void registerElderItems()
+	{
+		
+	}
 }
