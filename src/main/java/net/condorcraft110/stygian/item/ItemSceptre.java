@@ -70,13 +70,7 @@ public class ItemSceptre extends Item
 		{
 			ItemStack stack = new ItemStack(item, 1, 0);
 			
-			if(stack.hasTagCompound()) stack.getTagCompound().setInteger("FocusID", i);
-			else
-			{
-				NBTTagCompound compound = new NBTTagCompound();
-				compound.setInteger("FocusID", i);
-				stack.setTagCompound(compound);
-			}
+			NBTHelper.setStackInt(stack, "FocusID", i);
 			
 			list.add(stack);
 		}
@@ -85,13 +79,7 @@ public class ItemSceptre extends Item
 		{
 			ItemStack stack = new ItemStack(item, 1, 1);
 			
-			if(stack.hasTagCompound()) stack.getTagCompound().setInteger("ResonanceID", i);
-			else
-			{
-				NBTTagCompound compound = new NBTTagCompound();
-				compound.setInteger("ResonanceID", i);
-				stack.setTagCompound(compound);
-			}
+			NBTHelper.setStackInt(stack, "ResonanceID", i);
 			
 			list.add(stack);
 		}

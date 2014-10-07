@@ -60,6 +60,8 @@ public class RecipeManager
 		registerForgeRecipe(new ForgeRecipe(new ItemStack(Stygian.stygianHoe), new ItemStack[][]{new ItemStack[]{crystal, crystal, null}, new ItemStack[]{null, blazeRod, null}, new ItemStack[]{null, blazeRod, null}}));
 		registerForgeRecipe(new ForgeRecipe(new ItemStack(Stygian.stygianHoe), new ItemStack[][]{new ItemStack[]{null, crystal, crystal}, new ItemStack[]{null, blazeRod, null}, new ItemStack[]{null, blazeRod, null}}));
 		
+		registerForgeRecipe(new ForgeRecipe(new ItemStack(Stygian.stygianBlock), new ItemStack[][]{new ItemStack[]{crystal, crystal, crystal}, new ItemStack[]{crystal, crystal, crystal}, new ItemStack[]{crystal, crystal, crystal}}));
+		
 		Stygian.logger.log(Level.INFO, "Registered " + forgeRecipes.size() + " forge recipes.");
 	}
 }

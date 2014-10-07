@@ -8,8 +8,21 @@ import net.minecraft.client.renderer.*;
 import net.condorcraft110.stygian.entity.*;
 import net.minecraft.client.renderer.entity.*;
 
-public class RenderDarkLightning extends Render
+public class RenderColouredLightning extends Render
 {
+	private final int red;
+	private final int green;
+	private final int blue;
+	private final int alpha;
+	
+	public RenderColouredLightning(int red, int green, int blue, int alpha)
+	{
+		this.red = red;
+		this.green = green;
+		this.blue = blue;
+		this.alpha = alpha;
+	}
+	
 	public void doRender(EntityDarkLightning entity, double x, double y, double z, float f, float g)
 	{
 		Tessellator tessellator = Tessellator.instance;
@@ -70,7 +83,7 @@ public class RenderDarkLightning extends Render
                     }
                     
                     tessellator.startDrawing(5);
-                    tessellator.setColorRGBA_F(0F, 0F, 0F, 0.5F);
+                    tessellator.setColorRGBA(red, green, blue, alpha);
                     double d9 = 0.1D + (double)k1 * 0.2D;
                     
                     if(j == 0)

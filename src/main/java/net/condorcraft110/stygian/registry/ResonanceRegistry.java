@@ -7,6 +7,7 @@ import net.minecraft.item.*;
 import net.minecraft.util.*;
 import cpw.mods.fml.common.registry.*;
 import net.condorcraft110.stygian.core.*;
+import net.condorcraft110.stygian.util.*;
 import net.condorcraft110.stygian.energies.resonance.*;
 
 public class ResonanceRegistry
@@ -25,16 +26,9 @@ public class ResonanceRegistry
 		resonanceRegistry.add(id, resonance);
 		
 		ItemStack stack = new ItemStack(Stygian.sceptre, 1, 0);
+		NBTHelper.setStackInt(stack, "ResonanceID", id);
 		
-		if(stack.hasTagCompound()) stack.getTagCompound().setInteger("FocusID", id);
-		else
-		{
-			NBTTagCompound tag = new NBTTagCompound();
-			tag.setInteger("ResonanceID", id);
-			stack.setTagCompound(tag);
-		}
-		
-		GameRegistry.addRecipe(stack, "  @", " # ", "~  ", '@', new ItemStack(Stygian.resonanceStar, 1, id), '#', Stygian.sceptreCoreCradle, '~', Items.blaze_rod);
+		//TODO recipe
 	}
 	
 	public static IResonance getResonance(int id)

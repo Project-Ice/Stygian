@@ -25,6 +25,8 @@ item.darkResonanceShovel.name=Dark Resonance Shovel
 item.darkResonanceAxe.name=Dark Resonance Axe
 item.darkResonanceHoe.name=Dark Resonance Hoe
 
+item.elderSword.name=Elder Sword
+
 item.stygianHelmet.name=Stygian Helmet
 item.stygianChestplate.name=Stygian Chestplate
 item.stygianLeggings.name=Stygian Leggings
@@ -72,4 +74,4 @@ resonance.fire.name=Fire
 resonance.wind.name=Wind
 resonance.death.name=Death
 
-info.resonanceStar=Causes the subtle energies pervading the universe to resonate in a specific frequency, causing effects far more powerful than those obtained with Focus.
+info.resonanceStar=Causes the subtle energies pervading the universe to resonate to a specific frequency, causing effects far more powerful than those obtained with Focus.

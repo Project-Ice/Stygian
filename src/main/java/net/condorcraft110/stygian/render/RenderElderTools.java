@@ -25,7 +25,7 @@ public class RenderElderTools implements IItemRenderer
 	
 	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack stack, ItemRendererHelper helper)
 	{
-		return type != ItemRenderType.FIRST_PERSON_MAP && helper == ItemRendererHelper.ENTITY_BOBBING && isElderItem(stack);
+		return type != ItemRenderType.FIRST_PERSON_MAP && (helper == ItemRendererHelper.ENTITY_BOBBING || helper == ItemRendererHelper.ENTITY_ROTATION) && isElderItem(stack);
 	}
 	
 	public void renderItem(ItemRenderType type, ItemStack stack, Object... data) // only sword for now
@@ -47,6 +47,7 @@ public class RenderElderTools implements IItemRenderer
 				GL11.glPopMatrix();
 				break;
 			case ENTITY:
+				GL11.glTranslatef(-0.5F, 0.0F, 0.0F);
 			default:
 				GL11.glPushMatrix();
 					renderIcon(((ItemElderSword)stack.getItem()).handleIcon);

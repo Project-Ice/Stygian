@@ -9,6 +9,6 @@ public class ClientTickHandler
 	@SubscribeEvent
 	public void onRenderTick(RenderTickEvent event)
 	{
-		RenderElderTools.hue += 0.015F;
+		RenderElderTools.hue += 0.011F;
 	}
 }

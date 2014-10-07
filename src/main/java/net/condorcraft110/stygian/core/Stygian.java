@@ -101,7 +101,7 @@ public class Stygian
 	public static ItemHourglass hourglassCracked = (ItemHourglass)new ItemHourglass(true).setUnlocalizedName("hourglassCracked").setTextureName("stygian:hourglassCracked");
 
 	public static Item stygianCore = new Item().setUnlocalizedName("stygianCore").setTextureName("stygian:focusCore");
-	public static ItemSceptre sceptre = (ItemSceptre)new ItemSceptre().setUnlocalizedName("focusSceptre").setTextureName("stygian:sceptre");
+	public static ItemSceptre sceptre = (ItemSceptre)new ItemSceptre().setUnlocalizedName("focusSceptre").setTextureName("stygian:sceptre").setFull3D();
 	public static ItemStygianCore focusCore = (ItemStygianCore)new ItemStygianCore().setUnlocalizedName("stygianCore").setTextureName("stygian:focusCore");
 	
 	public static ItemResonanceStar resonanceStar = (ItemResonanceStar)new ItemResonanceStar().setUnlocalizedName("resonanceStar").setTextureName("stygian:resonanceStar");

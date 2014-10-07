@@ -9,7 +9,6 @@ import com.jadarstudios.developercapes.*;
 import net.condorcraft110.stygian.util.*;
 import net.condorcraft110.stygian.entity.*;
 import net.condorcraft110.stygian.render.*;
-import net.minecraft.client.renderer.entity.*;
 import net.condorcraft110.stygian.tileentity.*;
 
 public class ClientProxy extends CommonProxy
@@ -42,7 +41,7 @@ public class ClientProxy extends CommonProxy
 	public void registerRenderers()
 	{
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityVoidChest.class, new VoidChestRenderer());
-		RenderingRegistry.registerEntityRenderingHandler(EntityDarkLightning.class, new RenderDarkLightning());
+		RenderingRegistry.registerEntityRenderingHandler(EntityDarkLightning.class, new RenderColouredLightning(0, 0, 0, 127));
 		MinecraftForgeClient.registerItemRenderer(Stygian.elderSword, new RenderElderTools());
 	}
 	
