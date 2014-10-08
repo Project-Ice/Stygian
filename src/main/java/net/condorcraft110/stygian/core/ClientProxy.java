@@ -46,6 +46,9 @@ public class ClientProxy extends CommonProxy
 		RenderElderTools elderRenderer = new RenderElderTools();
 		MinecraftForgeClient.registerItemRenderer(Stygian.elderSword, elderRenderer);
 		MinecraftForgeClient.registerItemRenderer(Stygian.elderPickaxe, elderRenderer);
+		MinecraftForgeClient.registerItemRenderer(Stygian.elderShovel, elderRenderer);
+		MinecraftForgeClient.registerItemRenderer(Stygian.elderAxe, elderRenderer);
+		MinecraftForgeClient.registerItemRenderer(Stygian.elderHoe, elderRenderer);
 	}
 	
 	public void registerCapes()

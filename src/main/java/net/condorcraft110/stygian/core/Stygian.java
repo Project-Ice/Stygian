@@ -28,7 +28,7 @@ import net.condorcraft110.stygian.entity.*;
 import net.condorcraft110.stygian.registry.*;
 import net.condorcraft110.stygian.worldgen.*;
 
-@Mod(name = "Stygian", modid = "stygian", version = "2.4")
+@Mod(name = "Stygian", modid = "stygian", version = "2.6")
 public class Stygian
 {
 	public static final Random stygianRandom = new Random();
@@ -80,6 +80,9 @@ public class Stygian
 
 	public static ItemElderSword elderSword = (ItemElderSword)new ItemElderSword(elderToolMaterial).setUnlocalizedName("elderSword");
 	public static ItemElderPickaxe elderPickaxe = (ItemElderPickaxe)new ItemElderPickaxe(elderToolMaterial).setUnlocalizedName("elderPickaxe");
+	public static ItemElderShovel elderShovel = (ItemElderShovel)new ItemElderShovel(elderToolMaterial).setUnlocalizedName("elderShovel");
+	public static ItemElderAxe elderAxe = (ItemElderAxe)new ItemElderAxe(elderToolMaterial).setUnlocalizedName("elderAxe");
+	public static ItemElderHoe elderHoe = (ItemElderHoe)new ItemElderHoe(elderToolMaterial).setUnlocalizedName("elderHoe");
 	
 	public static ItemStygianArmour stygianHelmet;
 	public static ItemStygianArmour stygianChestplate;
@@ -169,6 +172,9 @@ public class Stygian
 
 		GameRegistry.registerItem(elderSword, "elderSword");
 		GameRegistry.registerItem(elderPickaxe, "elderPickaxe");
+		GameRegistry.registerItem(elderShovel, "elderShovel");
+		GameRegistry.registerItem(elderAxe, "elderAxe");
+		GameRegistry.registerItem(elderHoe, "elderHoe");
 		
 		GameRegistry.registerItem(stygianHelmet, "stygianHelmet");
 		GameRegistry.registerItem(stygianChestplate, "stygianChestplate");
@@ -247,6 +253,9 @@ public class Stygian
 
 		elderSword.setCreativeTab(tabStygian);
 		elderPickaxe.setCreativeTab(tabStygian);
+		elderShovel.setCreativeTab(tabStygian);
+		elderAxe.setCreativeTab(tabStygian);
+		elderHoe.setCreativeTab(tabStygian);
 		
 		stygianHelmet.setCreativeTab(tabStygian);
 		stygianChestplate.setCreativeTab(tabStygian);

@@ -2,13 +2,13 @@
 {
   "modid": "stygian",
   "name": "Stygian",
-  "description": "Adds a powerful new endgame tool and armour material with special properties and a new extra-hard dimension with tons of loot.",
-  "version": "2.4",
+  "description": "Adds several powerful new endgame tool and armour materials with special properties and a new extra-hard dimension with tons of loot.",
+  "version": "2.6",
   "mcversion": "1.7.10",
   "url": "https://github.com/Project-Ice/Stygian",
   "updateUrl": "",
   "authors": ["condorcraft110", "barackOshizzle"],
-  "credits": "",
+  "credits": "Ore generation code by powercrystals",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []

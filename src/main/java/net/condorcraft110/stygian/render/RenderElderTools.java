@@ -77,6 +77,9 @@ public class RenderElderTools implements IItemRenderer
 	{
 		registerElderItem(new ItemStack(Stygian.elderSword));
 		registerElderItem(new ItemStack(Stygian.elderPickaxe));
+		registerElderItem(new ItemStack(Stygian.elderShovel));
+		registerElderItem(new ItemStack(Stygian.elderAxe));
+		registerElderItem(new ItemStack(Stygian.elderHoe));
 	}
 	
 	private static void renderIcon(IIcon icon)
