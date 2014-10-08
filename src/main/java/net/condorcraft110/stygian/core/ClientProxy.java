@@ -42,7 +42,10 @@ public class ClientProxy extends CommonProxy
 	{
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityVoidChest.class, new VoidChestRenderer());
 		RenderingRegistry.registerEntityRenderingHandler(EntityDarkLightning.class, new RenderColouredLightning(0, 0, 0, 127));
-		MinecraftForgeClient.registerItemRenderer(Stygian.elderSword, new RenderElderTools());
+		
+		RenderElderTools elderRenderer = new RenderElderTools();
+		MinecraftForgeClient.registerItemRenderer(Stygian.elderSword, elderRenderer);
+		MinecraftForgeClient.registerItemRenderer(Stygian.elderPickaxe, elderRenderer);
 	}
 	
 	public void registerCapes()

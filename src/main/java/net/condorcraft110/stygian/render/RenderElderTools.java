@@ -28,7 +28,7 @@ public class RenderElderTools implements IItemRenderer
 		return type != ItemRenderType.FIRST_PERSON_MAP && (helper == ItemRendererHelper.ENTITY_BOBBING || helper == ItemRendererHelper.ENTITY_ROTATION) && isElderItem(stack);
 	}
 	
-	public void renderItem(ItemRenderType type, ItemStack stack, Object... data) // only sword for now
+	public void renderItem(ItemRenderType type, ItemStack stack, Object... data)
 	{
 		Color colour = Color.getHSBColor(hue, 1.0F, 1.0F);
 		
@@ -39,9 +39,9 @@ public class RenderElderTools implements IItemRenderer
 					GL11.glEnable(GL11.GL_BLEND);
 					GL11.glDepthMask(false);
 					GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-					RenderItem.getInstance().renderIcon(0, 0, (((ItemElderSword)stack.getItem()).handleIcon), 16, 16);
+					RenderItem.getInstance().renderIcon(0, 0, stack.getItem().getIcon(stack, 0), 16, 16);
 					GL11.glColor4f((float)colour.getRed() / 255, (float)colour.getGreen() / 255, (float)colour.getBlue() / 255, 1.0F);
-					RenderItem.getInstance().renderIcon(0, 0, (((ItemElderSword)stack.getItem()).bladeIcon), 16, 16);
+					RenderItem.getInstance().renderIcon(0, 0, stack.getItem().getIcon(stack, 1), 16, 16);
 					GL11.glDepthMask(true);
 					GL11.glDisable(GL11.GL_BLEND);
 				GL11.glPopMatrix();
@@ -50,9 +50,9 @@ public class RenderElderTools implements IItemRenderer
 				GL11.glTranslatef(-0.5F, 0.0F, 0.0F);
 			default:
 				GL11.glPushMatrix();
-					renderIcon(((ItemElderSword)stack.getItem()).handleIcon);
+					renderIcon(stack.getItem().getIcon(stack, 0));
 					GL11.glColor4f((float)colour.getRed() / 255, (float)colour.getGreen() / 255, (float)colour.getBlue() / 255, 1.0F);
-					renderIcon(((ItemElderSword)stack.getItem()).bladeIcon);
+					renderIcon(stack.getItem().getIcon(stack, 1));
 				GL11.glPopMatrix();
 				break;
 		}
@@ -76,6 +76,7 @@ public class RenderElderTools implements IItemRenderer
 	public static void registerElderItems()
 	{
 		registerElderItem(new ItemStack(Stygian.elderSword));
+		registerElderItem(new ItemStack(Stygian.elderPickaxe));
 	}
 	
 	private static void renderIcon(IIcon icon)

@@ -77,8 +77,9 @@ public class Stygian
 	public static ItemSpade darkResonanceShovel = (ItemSpade)new ItemSpade(darkResonanceToolMaterial).setUnlocalizedName("darkResonanceShovel").setTextureName("stygian:darkResonanceShovel");
 	public static ItemStygianAxe darkResonanceAxe = (ItemStygianAxe)new ItemStygianAxe(darkResonanceToolMaterial).setUnlocalizedName("darkResonanceAxe").setTextureName("stygian:darkResonanceAxe");
 	public static ItemHoe darkResonanceHoe = (ItemHoe)new ItemHoe(darkResonanceToolMaterial).setUnlocalizedName("darkResonanceHoe").setTextureName("stygian:darkResonanceHoe");
-	
+
 	public static ItemElderSword elderSword = (ItemElderSword)new ItemElderSword(elderToolMaterial).setUnlocalizedName("elderSword");
+	public static ItemElderPickaxe elderPickaxe = (ItemElderPickaxe)new ItemElderPickaxe(elderToolMaterial).setUnlocalizedName("elderPickaxe");
 	
 	public static ItemStygianArmour stygianHelmet;
 	public static ItemStygianArmour stygianChestplate;
@@ -165,8 +166,9 @@ public class Stygian
 		GameRegistry.registerItem(darkResonanceShovel, "darkResonanceShovel");
 		GameRegistry.registerItem(darkResonanceAxe, "darkResonanceAxe");
 		GameRegistry.registerItem(darkResonanceHoe, "darkResonanceHoe");
-		
+
 		GameRegistry.registerItem(elderSword, "elderSword");
+		GameRegistry.registerItem(elderPickaxe, "elderPickaxe");
 		
 		GameRegistry.registerItem(stygianHelmet, "stygianHelmet");
 		GameRegistry.registerItem(stygianChestplate, "stygianChestplate");
@@ -242,8 +244,9 @@ public class Stygian
 		darkResonanceShovel.setCreativeTab(tabStygian);
 		darkResonanceAxe.setCreativeTab(tabStygian);
 		darkResonanceHoe.setCreativeTab(tabStygian);
-		
+
 		elderSword.setCreativeTab(tabStygian);
+		elderPickaxe.setCreativeTab(tabStygian);
 		
 		stygianHelmet.setCreativeTab(tabStygian);
 		stygianChestplate.setCreativeTab(tabStygian);

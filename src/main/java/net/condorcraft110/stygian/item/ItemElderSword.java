@@ -6,8 +6,8 @@ import net.minecraft.client.renderer.texture.*;
 
 public class ItemElderSword extends ItemSword
 {
-	public IIcon handleIcon;
-	public IIcon bladeIcon;
+	private IIcon handleIcon;
+	private IIcon bladeIcon;
 	
 	public ItemElderSword(ToolMaterial material)
 	{
@@ -18,5 +18,10 @@ public class ItemElderSword extends ItemSword
 	{
 		handleIcon = register.registerIcon("stygian:elderSwordHandle");
 		bladeIcon = register.registerIcon("stygian:elderSword");
+	}
+	
+	public IIcon getIcon(ItemStack stack, int pass)
+	{
+		return MathHelper.clamp_int(pass, 0, 1) == 0 ? handleIcon : bladeIcon;
 	}
 }
