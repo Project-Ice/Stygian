@@ -7,8 +7,8 @@ import cpw.mods.fml.common.gameevent.TickEvent.*;
 public class ClientTickHandler
 {
 	@SubscribeEvent
-	public void onRenderTick(RenderTickEvent event)
+	public void onClientTick(ClientTickEvent event)
 	{
-		RenderElderTools.hue += 0.011F;
+		RenderElderTools.hue += 0.02F;
 	}
 }

@@ -21,7 +21,7 @@ public class ItemDarkResonanceArmour extends ItemArmor implements ISpecialArmor
 	
 	public void damageArmor(EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot)
 	{
-		stack.damageItem(damage, entity);
+		if(source != source.inFire && source != source.lava && source != source.onFire) stack.damageItem(damage, entity);
 	}
 	
 	public int getArmorDisplay(EntityPlayer player, ItemStack stack, int slot)
@@ -33,14 +33,14 @@ public class ItemDarkResonanceArmour extends ItemArmor implements ISpecialArmor
 	{
 		if(source == source.inFire || source == source.lava || source == source.onFire)
 		{
-			return new ArmorProperties(0, Integer.MAX_VALUE, getMaxDamage() + 1 - stack.getItemDamage());
+			return new ArmorProperties(0, 0.25, Integer.MAX_VALUE);
 		}
 		else if(source == source.wither || source == source.magic)
 		{
-			return new ArmorProperties(0, MathHelper.ceiling_double_int(damage * 0.5D), MathHelper.ceiling_double_int((getMaxDamage() + 1 - stack.getItemDamage()) * 0.5D));
+			return new ArmorProperties(0, 0.2, MathHelper.ceiling_double_int((getMaxDamage() + 1 - stack.getItemDamage()) * 0.5D));
 		}
 		
-		return new ArmorProperties(0, 0, 0);
+		return new ArmorProperties(0, damageReduceAmount / 25.0, getMaxDamage() + 1 - stack.getItemDamage());
 	}
 	
 	@SideOnly(Side.CLIENT)
