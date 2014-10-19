@@ -10,6 +10,7 @@ import net.minecraftforge.client.*;
 import net.minecraft.client.renderer.*;
 import net.condorcraft110.stygian.core.*;
 import net.condorcraft110.stygian.item.*;
+import net.condorcraft110.stygian.util.*;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.texture.*;
 
@@ -63,11 +64,11 @@ public class RenderElderTools implements IItemRenderer
 		if(!isElderItem(stack)) elderItems.add(stack);
 	}
 	
-	private static boolean isElderItem(ItemStack stack)
+	private static boolean isElderItem(ItemStack stack0)
 	{
 		for(ItemStack stack1 : elderItems)
 		{
-			if(ItemStack.areItemStacksEqual(stack, stack1)) return true;
+			if(StygianUtil.areItemStacksEqualIgnoringSizeAndDamage(stack0, stack1)) return true;
 		}
 		
 		return false;

@@ -1,6 +1,7 @@
 package net.condorcraft110.stygian.dimension;
 
 import net.minecraft.world.*;
+import net.minecraft.world.biome.*;
 
 public class WorldProviderStygian extends WorldProvider
 {
@@ -16,6 +17,11 @@ public class WorldProviderStygian extends WorldProvider
 	
 	public String getDepartMessage()
 	{
-		return "Returning to the Overworld";
+		return "Leaving the Sideworld";
+	}
+	
+	public void registerWorldChunkManager()
+	{
+		worldChunkMgr = new WorldChunkManagerHell(BiomeGenBase.forest, 0.0F);
 	}
 }

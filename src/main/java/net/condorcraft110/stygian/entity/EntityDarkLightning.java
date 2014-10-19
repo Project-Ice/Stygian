@@ -9,6 +9,4 @@ public class EntityDarkLightning extends EntityLightningBolt
 	{
 		super(world, x, y, z);
 	}
-	
-	
 }

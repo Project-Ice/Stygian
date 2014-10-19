@@ -53,7 +53,7 @@ public class ClientProxy extends CommonProxy
 	
 	public void registerCapes()
 	{
-		DevCapes.getInstance().registerConfig("http://files.condorcraft110.net/mods/stygian/capes/config.json");
+		if(StygianConfig.enableDevCapes) DevCapes.getInstance().registerConfig("http://files.condorcraft110.net/mods/stygian/capes/config.json");
 	}
 	
 	public void registerTickHandlers()

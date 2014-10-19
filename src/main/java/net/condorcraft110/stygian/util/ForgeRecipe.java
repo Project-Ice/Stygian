@@ -30,8 +30,12 @@ public class ForgeRecipe // Unrelated to Minecraft Forge
 		{
 			for(int j = 0; j < 3; j++)
 			{
-				matchFound = matchFound && ItemStack.areItemStacksEqual(recipe[i][j], input[i][j]);
+				matchFound = matchFound && StygianUtil.areItemStacksEqualIgnoringSize(recipe[i][j], input[i][j]);
+				
+				if(!matchFound) break;
 			}
+			
+			if(!matchFound) break;
 		}
 		
 		return matchFound ? output.copy() : null;

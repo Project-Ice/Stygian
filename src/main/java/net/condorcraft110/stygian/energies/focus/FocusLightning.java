@@ -51,7 +51,7 @@ public class FocusLightning implements ICoreFocus
 		{
 			EntityLightningBolt lightning = new EntityLightningBolt(world, entity.posX, entity.posY, entity.posZ);
 			
-			world.spawnEntityInWorld(lightning);
+			world.addWeatherEffect(lightning);
 			
 			return true;
 		}

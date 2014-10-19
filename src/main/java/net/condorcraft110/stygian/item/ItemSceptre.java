@@ -90,9 +90,9 @@ public class ItemSceptre extends Item
 		switch(stack.getItemDamage())
 		{
 			case 0:
-				return FocusRegistry.getFocus(stack.getTagCompound().getInteger("FocusID")).onItemRightClick(stack, world, player);
+				return FocusRegistry.getFocus(NBTHelper.getStackInt(stack, "FocusID")).onItemRightClick(stack, world, player);
 			case 1:
-				return ResonanceRegistry.getResonance(stack.getTagCompound().getInteger("ResonanceID")).onItemRightClick(stack, world, player);
+				return ResonanceRegistry.getResonance(NBTHelper.getStackInt(stack, "ResonanceID")).onItemRightClick(stack, world, player);
 			default:
 				return stack;
 		}

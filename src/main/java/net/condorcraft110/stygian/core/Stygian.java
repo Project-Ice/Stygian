@@ -5,11 +5,15 @@ import java.util.*;
 import net.minecraft.init.*;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
+import net.minecraft.world.WorldProviderSurface;
 import net.minecraft.block.*;
 import cpw.mods.fml.common.*;
 import net.minecraft.item.Item.*;
 import cpw.mods.fml.common.Mod.*;
+
 import org.apache.logging.log4j.*;
+
+import net.minecraftforge.common.*;
 import net.minecraft.creativetab.*;
 import cpw.mods.fml.common.event.*;
 import net.minecraftforge.fluids.*;
@@ -27,6 +31,7 @@ import net.condorcraft110.stygian.fluid.*;
 import net.condorcraft110.stygian.entity.*;
 import net.condorcraft110.stygian.registry.*;
 import net.condorcraft110.stygian.worldgen.*;
+import net.condorcraft110.stygian.dimension.*;
 
 @Mod(name = "Stygian", modid = "stygian", version = "2.6")
 public class Stygian
@@ -53,8 +58,11 @@ public class Stygian
 	public static final ToolMaterial resonanceToolMaterial = EnumHelper.addToolMaterial("resonance", 6, 9366, 48.0F, 18.0F, 60);
 	public static final ToolMaterial darkResonanceToolMaterial = EnumHelper.addToolMaterial("darkResonance", 7, 18732, 96.0F, 36, 120);
 	public static final ToolMaterial elderToolMaterial = EnumHelper.addToolMaterial("stygianElder", 8, 75928, 384, 144, 480);
-	
+
 	public static Block stygianBlock = Reflection.getRawBlockInstance(Material.rock).setBlockName("blockStygian").setHardness(12.0F).setResistance(6000000.0F);
+	
+	public static Block stygianStone = Reflection.getRawBlockInstance(Material.rock).setBlockName("blockStygianStone").setHardness(12.0F).setResistance(6000000.0F);
+	public static Block stygianDirt = Reflection.getRawBlockInstance(Material.rock).setBlockName("blockStygianDirt").setHardness(12.0F).setResistance(6000000.0F);
 	
 	public static ItemStygianCrystal stygianCrystal = new ItemStygianCrystal();
 	
@@ -126,10 +134,17 @@ public class Stygian
 	public static FluidLiquidDarkness liquidDarkness = new FluidLiquidDarkness();
 	public static BlockFluidLiquidDarkness liquidDarknessBlock;
 	
+	public static int sideworldDimensionID;
+	public static WorldProviderStygian sideworldProvider = new WorldProviderStygian();
+	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
+		logger.info("Reticulating splines...");
+		
 		StygianConfig.readAndSet(event.getModConfigurationDirectory());
+		
+		MinecraftForge.EVENT_BUS.register(new StygianEventHandler());
 		
 		stygianArmourRenderIndex = proxy.getStygianRenderIndex();
 		voidChestRenderIndex = proxy.getVoidChestRenderingIndex();
@@ -221,9 +236,13 @@ public class Stygian
 		
 		GameRegistry.registerWorldGenerator(new WorldGenHandler(), 0);
 		
-		EntityRegistry.registerGlobalEntityID(EntityDarkLightning.class, "darkLightningBolt", 300);
+		EntityRegistry.registerGlobalEntityID(EntityDarkLightning.class, "darkLightningBolt", 301);
 		
 		//EntityRegistry.registerModEntity(EntityDarkLightning.class, "darkLightningBolt", 0, this, 80, 3, false);
+		
+		sideworldDimensionID = DimensionManager.getNextFreeDimId();
+		DimensionManager.registerProviderType(sideworldDimensionID, WorldProviderSurface.class, true);
+		DimensionManager.registerDimension(sideworldDimensionID, sideworldDimensionID);
 	}
 	
 	@EventHandler
@@ -315,5 +334,7 @@ public class Stygian
 		ResonanceRegistry.registerResonances();
 		
 		RecipeManager.registerRecipes();
+		
+		IntegrationManager.init();
 	}
 }

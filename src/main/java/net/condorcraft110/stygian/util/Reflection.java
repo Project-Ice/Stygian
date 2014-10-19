@@ -26,31 +26,4 @@ public class Reflection
 		
 		return block;
 	}
-	
-	public static PotionEffect createIncurablePotionEffect(int potionID, int duration, int amplifier)
-	{
-		PotionEffect effect = new PotionEffect(potionID, duration, amplifier);
-		
-		for(Field field : effect.getClass().getFields())
-		{
-			if(field.getType() == ArrayList.class)
-			{
-				field.setAccessible(true);
-				
-				try
-				{
-					ArrayList list = (ArrayList)field.get(effect);
-					list.clear();
-				}
-				catch(Exception e)
-				{
-					throw new StygianException(e); // should never happen
-				}
-				
-				break;
-			}
-		}
-		
-		return effect;
-	}
 }

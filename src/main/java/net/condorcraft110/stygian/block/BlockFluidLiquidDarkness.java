@@ -24,7 +24,7 @@ public class BlockFluidLiquidDarkness extends BlockFluidClassic
 		{
 			EntityLivingBase entity1 = (EntityLivingBase)entity;
 			
-			PotionEffect effect = Reflection.createIncurablePotionEffect(Potion.blindness.id, 60, Integer.MAX_VALUE);
+			PotionEffect effect = StygianUtil.createIncurablePotionEffect(Potion.blindness.id, 60, Integer.MAX_VALUE);
 			
 			entity1.addPotionEffect(effect);
 		}
@@ -32,6 +32,6 @@ public class BlockFluidLiquidDarkness extends BlockFluidClassic
 	
 	public void registerBlockIcons(IIconRegister register)
 	{
-		fluidIcon = register.registerIcon("stygian:black");
+		blockIcon = fluidIcon = register.registerIcon("stygian:black");
 	}
 }
