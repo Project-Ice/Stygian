@@ -11,7 +11,7 @@ import net.condorcraft110.stygian.energies.resonance.*;
 
 public class ResonanceLightning implements IResonance
 {
-	public String resonanceName()
+	public String getResonanceName()
 	{
 		return "lightning";
 	}

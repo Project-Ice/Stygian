@@ -9,7 +9,7 @@ import net.minecraft.entity.player.*;
 
 public class FocusWind implements ICoreFocus
 {
-	public String focusName()
+	public String getFocusName()
 	{
 		return "wind";
 	}

@@ -68,15 +68,14 @@ container.soulForge=Soul Forge
 container.voidChest=Void Chest
 container.netherForge=Nether Forge
 
-focus.lightning.name=Lightning
-focus.fire.name=Fire
-focus.wind.name=Wind
-focus.death.name=Death
+focus.lightning.name=Luxe
+focus.fire.name=Pyrus
+focus.wind.name=Aeros
+focus.death.name=Endi
 focus.teleporter.name=Teleporter
 
-resonance.lightning.name=Lightning
-resonance.fire.name=Fire
-resonance.wind.name=Wind
-resonance.death.name=Death
+resonance.lightning.name=Luxe
+resonance.recall.name=Recall
+resonance.displacement.name=Displacement
 
 info.resonanceStar=Causes the subtle energies pervading the universe to resonate to a specific frequency, causing effects far more powerful than those obtained with Focus.

@@ -7,7 +7,7 @@ import net.minecraft.entity.player.*;
 
 public interface IResonance
 {
-	public String resonanceName();
+	public String getResonanceName();
 	
 	public boolean hitEntity(ItemStack stack, EntityLivingBase victim, EntityLivingBase attacker);
 	

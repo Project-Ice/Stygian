@@ -10,7 +10,7 @@ import net.condorcraft110.stygian.core.*;
 
 public class FocusLightning implements ICoreFocus
 {
-	public String focusName()
+	public String getFocusName()
 	{
 		return "lightning";
 	}

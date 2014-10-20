@@ -1,6 +1,7 @@
 package net.condorcraft110.stygian.registry;
 
 import java.util.*;
+
 import net.minecraft.nbt.*;
 import net.minecraft.init.*;
 import net.minecraft.item.*;
@@ -43,7 +44,7 @@ public class ResonanceRegistry
 	
 	public static String getLocalResonanceName(int id)
 	{
-		return StatCollector.translateToLocal("resonance." + getResonance(id).resonanceName() + ".name");
+		return StatCollector.translateToLocal("resonance." + getResonance(id).getResonanceName() + ".name");
 	}
 	
 	public static int registeredResonances()
@@ -56,6 +57,8 @@ public class ResonanceRegistry
 		if(registered) return;
 		
 		registerResonance(new ResonanceLightning());
+		registerResonance(new ResonanceRecall());
+		registerResonance(new ResonanceDisplacement());
 		
 		registered = true;
 	}

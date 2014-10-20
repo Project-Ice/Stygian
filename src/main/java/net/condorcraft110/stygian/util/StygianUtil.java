@@ -1,7 +1,9 @@
 package net.condorcraft110.stygian.util;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionEffect;
+import net.minecraft.nbt.*;
+import net.minecraft.item.*;
+import net.minecraft.potion.*;
+import net.minecraft.entity.player.*;
 
 public class StygianUtil
 {
@@ -115,5 +117,20 @@ public class StygianUtil
 		result = result && ItemStack.areItemStacksEqual(cleanedStack0, cleanedStack1);
 		
 		return result;
+	}
+	
+	public static NBTTagCompound writePlayerPositionToTag(EntityPlayer player)
+	{
+		NBTTagCompound tag = new NBTTagCompound();
+		
+		tag.setInteger("Dimension", player.dimension);
+		tag.setDouble("X", player.posX);
+		tag.setDouble("Y", player.posY);
+		tag.setDouble("Z", player.posZ);
+		tag.setFloat("Yaw", player.rotationYaw);
+		tag.setFloat("HeadYaw", player.rotationYawHead);
+		tag.setFloat("Pitch", player.rotationPitch);
+		
+		return tag;
 	}
 }

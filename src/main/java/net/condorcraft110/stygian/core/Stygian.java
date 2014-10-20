@@ -236,7 +236,7 @@ public class Stygian
 		
 		GameRegistry.registerWorldGenerator(new WorldGenHandler(), 0);
 		
-		EntityRegistry.registerGlobalEntityID(EntityDarkLightning.class, "darkLightningBolt", 301);
+		//EntityRegistry.registerGlobalEntityID(EntityDarkLightning.class, "darkLightningBolt", 301);
 		
 		//EntityRegistry.registerModEntity(EntityDarkLightning.class, "darkLightningBolt", 0, this, 80, 3, false);
 		

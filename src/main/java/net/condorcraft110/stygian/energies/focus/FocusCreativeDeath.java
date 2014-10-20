@@ -9,7 +9,7 @@ import net.minecraft.entity.player.*;
 
 public class FocusCreativeDeath implements ICoreFocus
 {
-	public String focusName()
+	public String getFocusName()
 	{
 		return "death";
 	}

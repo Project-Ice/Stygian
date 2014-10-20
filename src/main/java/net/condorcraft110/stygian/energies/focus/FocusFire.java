@@ -8,7 +8,7 @@ import net.minecraft.entity.player.*;
 
 public class FocusFire implements ICoreFocus
 {
-	public String focusName()
+	public String getFocusName()
 	{
 		return "fire";
 	}

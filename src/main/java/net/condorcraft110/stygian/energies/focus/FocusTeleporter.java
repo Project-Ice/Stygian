@@ -15,7 +15,7 @@ import net.condorcraft110.stygian.dimension.*;
 
 public class FocusTeleporter implements ICoreFocus
 {
-	public String focusName()
+	public String getFocusName()
 	{
 		return "teleporter";
 	}
@@ -54,17 +54,7 @@ public class FocusTeleporter implements ICoreFocus
 
 				if(playerMP.dimension != Stygian.sideworldDimensionID)
 				{
-					NBTTagCompound tag = new NBTTagCompound();
-					
-					tag.setInteger("Dimension", player.dimension);
-					tag.setDouble("X", player.posX);
-					tag.setDouble("Y", player.posY);
-					tag.setDouble("Z", player.posZ);
-					tag.setFloat("Yaw", player.rotationYaw);
-					tag.setFloat("HeadYaw", player.rotationYawHead);
-					tag.setFloat("Pitch", player.rotationPitch);
-					
-					NBTHelper.setStackCompoundTag(stack, "PreviousPlayerData", tag);
+					NBTHelper.setStackCompoundTag(stack, "PreviousPlayerData", StygianUtil.writePlayerPositionToTag(playerMP));
 					
 					server.getConfigurationManager().transferPlayerToDimension(playerMP, Stygian.sideworldDimensionID, new TeleporterSideworld(server.worldServerForDimension(Stygian.sideworldDimensionID)));
 					playerMP.addPotionEffect(StygianUtil.createIncurablePotionEffect(Potion.blindness.id, 20, 10));

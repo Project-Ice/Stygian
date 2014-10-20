@@ -46,7 +46,7 @@ public class FocusRegistry
 	
 	public static String getLocalFocusName(int id)
 	{
-		return StatCollector.translateToLocal("focus." + getFocus(id).focusName() + ".name");
+		return StatCollector.translateToLocal("focus." + getFocus(id).getFocusName() + ".name");
 	}
 	
 	public static int registeredFoci()

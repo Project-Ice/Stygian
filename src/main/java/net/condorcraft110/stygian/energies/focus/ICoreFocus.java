@@ -7,7 +7,7 @@ import net.minecraft.entity.player.*;
 
 public interface ICoreFocus
 {
-	public String focusName();
+	public String getFocusName();
 	
 	public boolean hitEntity(ItemStack stack, EntityLivingBase victim, EntityLivingBase attacker);
 	
