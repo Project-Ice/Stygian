@@ -1,7 +1,6 @@
 package net.condorcraft110.stygian.registry;
 
 import java.util.*;
-
 import net.minecraft.nbt.*;
 import net.minecraft.init.*;
 import net.minecraft.item.*;

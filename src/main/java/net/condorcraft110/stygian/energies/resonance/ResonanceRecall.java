@@ -6,7 +6,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
-import net.condorcraft110.stygian.core.Stygian;
+import net.condorcraft110.stygian.core.*;
 import net.condorcraft110.stygian.util.*;
 
 public class ResonanceRecall implements IResonance
@@ -42,13 +42,15 @@ public class ResonanceRecall implements IResonance
 			{
 				if(player.dimension == tag.getInteger("Dimension"))
 				{
-					player.setLocationAndAngles(tag.getDouble("X"),
-							tag.getDouble("Y"),
-							tag.getDouble("Z"),
-							tag.getFloat("Yaw"),
-							tag.getFloat("Pitch"));
+					double x = tag.getDouble("X");
+					double y = tag.getDouble("Y");
+					double z = tag.getDouble("Z");
+					
+					player.setLocationAndAngles(x, y, z, tag.getFloat("Yaw"), tag.getFloat("Pitch"));
 					
 					player.rotationYawHead = tag.getFloat("YawHead");
+					
+					StygianUtil.doEnderTeleportEffects(player, x, y, z);
 				}
 				else
 				{

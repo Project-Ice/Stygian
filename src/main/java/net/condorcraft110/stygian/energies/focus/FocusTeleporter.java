@@ -1,5 +1,7 @@
 package net.condorcraft110.stygian.energies.focus;
 
+import java.util.List;
+
 import net.minecraft.nbt.*;
 import net.minecraft.item.*;
 import net.minecraft.world.*;
@@ -108,5 +110,15 @@ public class FocusTeleporter implements ICoreFocus
 		}
 		
 		return stack;
+	}
+	
+	public void onUpdate(ItemStack stack, World world, Entity entity, int i, boolean b)
+	{
+		
+	}
+	
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean b)
+	{
+		
 	}
 }

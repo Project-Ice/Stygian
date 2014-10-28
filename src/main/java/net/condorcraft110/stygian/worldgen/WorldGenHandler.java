@@ -1,11 +1,10 @@
 package net.condorcraft110.stygian.worldgen;
 
 import java.util.*;
-
-import net.condorcraft110.stygian.core.Stygian;
 import net.minecraft.world.*;
 import cpw.mods.fml.common.*;
 import net.minecraft.world.chunk.*;
+import net.condorcraft110.stygian.core.*;
 
 public class WorldGenHandler implements IWorldGenerator
 {

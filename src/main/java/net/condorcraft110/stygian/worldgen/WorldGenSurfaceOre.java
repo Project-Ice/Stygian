@@ -1,7 +1,6 @@
 package net.condorcraft110.stygian.worldgen;
 
-import java.util.Random;
-
+import java.util.*;
 import net.minecraft.init.*;
 import net.minecraft.util.*;
 import net.minecraft.block.*;
@@ -41,8 +40,8 @@ public class WorldGenSurfaceOre extends WorldGenerator
 			double d7 = d4 + ((d5 - d4) * (double)blockNum) / (double)numberOfBlocks;
 			double d8 = d2 + ((d3 - d2) * (double)blockNum) / (double)numberOfBlocks;
 			double d9 = (random.nextDouble() * (double)numberOfBlocks) / 16D;
-			double d10 = (double)(MathHelper.sin(((float)blockNum * 3.141593F) / (float)numberOfBlocks) + 1.0F) * d9 + 1.0D;
-			double d11 = (double)(MathHelper.sin(((float)blockNum * 3.141593F) / (float)numberOfBlocks) + 1.0F) * d9 + 1.0D;
+			double d10 = (double)(MathHelper.sin(((float)blockNum * (float)Math.PI) / (float)numberOfBlocks) + 1.0F) * d9 + 1.0D;
+			double d11 = (double)(MathHelper.sin(((float)blockNum * (float)Math.PI) / (float)numberOfBlocks) + 1.0F) * d9 + 1.0D;
 			int xStart = MathHelper.floor_double(d6 - d10 / 2D);
 			int yStart = MathHelper.floor_double(d7 - d11 / 2D);
 			int zStart = MathHelper.floor_double(d8 - d10 / 2D);

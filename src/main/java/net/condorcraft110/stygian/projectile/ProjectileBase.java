@@ -24,19 +24,23 @@ public class ProjectileBase extends EntityThrowable
 	
 	protected void onImpact(MovingObjectPosition position)
 	{
-		if(position.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY)
+		switch(position.typeOfHit)
 		{
-			hitEntity(position.entityHit);
-		}
-		else if(position.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
-		{
-			hitBlock(position.blockX, position.blockY, position.blockZ, position.sideHit);
+			case ENTITY:
+				hitEntity(position.entityHit);
+			case BLOCK:
+				hitBlock(position.blockX, position.blockZ, position.blockZ, position.sideHit);
+			case MISS:
+				miss();
 		}
 	}
 	
 	public void hitEntity(Entity entity) {}
 	
-	public void hitBlock(int x, int y, int z, int side) {}
+	public void hitBlock(int x, int y, int z, int side)
+	{
+		setDead();
+	}
 	
 	public void miss() {}
 }

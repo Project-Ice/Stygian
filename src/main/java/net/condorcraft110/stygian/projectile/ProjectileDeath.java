@@ -1,9 +1,11 @@
 package net.condorcraft110.stygian.projectile;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.DamageSource;
-import net.minecraft.world.World;
+import net.minecraft.init.*;
+import net.minecraft.util.*;
+import net.minecraft.block.*;
+import net.minecraft.world.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.boss.*;
 
 public class ProjectileDeath extends ProjectileBase
 {
@@ -24,11 +26,25 @@ public class ProjectileDeath extends ProjectileBase
 	
 	public void hitEntity(Entity entity)
 	{
-		entity.attackEntityFrom(DamageSource.generic, Float.POSITIVE_INFINITY);
+		if(entity instanceof EntityDragon)
+		{
+			BossUtil.attackDragonFrom((EntityDragon)entity, DamageSource.generic, Float.POSITIVE_INFINITY);
+		}
+		else entity.attackEntityFrom(DamageSource.generic, Float.POSITIVE_INFINITY);
 	}
 	
 	protected float getGravityVelocity()
 	{
 		return 0.0F;
+	}
+	
+	public void hitBlock(int x, int y, int z, int side)
+	{
+		Block block = worldObj.getBlock(x, y, z);
+		
+		if(block != Blocks.glass && block != Blocks.glass_pane)
+		{
+			setDead();
+		}
 	}
 }

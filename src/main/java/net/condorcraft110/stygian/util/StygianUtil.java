@@ -1,9 +1,13 @@
 package net.condorcraft110.stygian.util;
 
+import java.lang.reflect.*;
+
 import net.minecraft.nbt.*;
 import net.minecraft.item.*;
+import net.minecraft.entity.*;
 import net.minecraft.potion.*;
 import net.minecraft.entity.player.*;
+import net.condorcraft110.stygian.core.*;
 
 public class StygianUtil
 {
@@ -19,6 +23,7 @@ public class StygianUtil
 	public static boolean areItemStacksEqualIgnoringSize(ItemStack stack0, ItemStack stack1)
 	{
 		if(stack0 == stack1) return true;
+		else if(!(stack0 != null && stack1 != null)) return false;
 		
 		boolean result = stack0 != null && stack1 != null;
 		
@@ -132,5 +137,25 @@ public class StygianUtil
 		tag.setFloat("Pitch", player.rotationPitch);
 		
 		return tag;
+	}
+	
+	public static void doEnderTeleportEffects(Entity entity, double x, double y, double z)
+	{
+		short short1 = 128;
+		
+		for(int l = 0; l < short1; l++)
+		{
+			double d6 = (double)l / ((double)short1 - 1.0D);
+			float f = (Stygian.stygianRandom.nextFloat() - 0.5F) * 0.2F;
+			float f1 = (Stygian.stygianRandom.nextFloat() - 0.5F) * 0.2F;
+			float f2 = (Stygian.stygianRandom.nextFloat() - 0.5F) * 0.2F;
+			double d7 = x + (entity.posX - x) * d6 + (Stygian.stygianRandom.nextDouble() - 0.5D) * (double)entity.width * 2.0D;
+			double d8 = y + (entity.posY - y) * d6 + Stygian.stygianRandom.nextDouble() * (double)entity.height;
+			double d9 = z + (entity.posZ - z) * d6 + (Stygian.stygianRandom.nextDouble() - 0.5D) * (double)entity.width * 2.0D;
+			entity.worldObj.spawnParticle("portal", d7, d8, d9, (double)f, (double)f1, (double)f2);
+		}
+
+		entity.worldObj.playSoundEffect(x, y, z, "mob.endermen.portal", 1.0F, 1.0F);
+		entity.playSound("mob.endermen.portal", 1.0F, 1.0F);
 	}
 }

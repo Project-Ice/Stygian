@@ -1,12 +1,8 @@
 package net.condorcraft110.stygian.registry;
 
 import java.util.*;
-
-import net.minecraft.nbt.*;
-import net.minecraft.init.*;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
-import cpw.mods.fml.common.registry.*;
 import net.condorcraft110.stygian.core.*;
 import net.condorcraft110.stygian.util.*;
 import net.condorcraft110.stygian.energies.resonance.*;
@@ -58,7 +54,8 @@ public class ResonanceRegistry
 		
 		registerResonance(new ResonanceLightning());
 		registerResonance(new ResonanceRecall());
-		registerResonance(new ResonanceDisplacement());
+		//registerResonance(new ResonanceDisplacement());
+		registerResonance(new ResonanceDestroyWatchmaker());
 		
 		registered = true;
 	}

@@ -60,9 +60,4 @@ public class ClientProxy extends CommonProxy
 	{
 		FMLCommonHandler.instance().bus().register(new ClientTickHandler());
 	}
-	
-	public void registerElderItems()
-	{
-		RenderElderTools.registerElderItems();
-	}
 }

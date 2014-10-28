@@ -6,7 +6,7 @@ import net.minecraft.block.*;
 import net.minecraft.potion.*;
 import net.minecraft.block.material.*;
 
-public class Reflection
+public class ReflectionHelper
 {
 	public static Block getRawBlockInstance(Material material)
 	{
@@ -25,5 +25,23 @@ public class Reflection
 		}
 		
 		return block;
+	}
+	
+	public static void setFinalField(Field field, Object obj, Object value)
+	{
+		try
+		{
+			Field modifiersField = Field.class.getDeclaredField("modifiers");
+			modifiersField.setAccessible(true);
+			modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+			
+			field.setAccessible(true);
+			
+			field.set(obj, value);
+		}
+		catch(Exception e)
+		{
+			throw new StygianException(e);
+		}
 	}
 }

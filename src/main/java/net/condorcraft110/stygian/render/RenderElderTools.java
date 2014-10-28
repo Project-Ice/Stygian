@@ -16,17 +16,16 @@ import net.minecraft.client.renderer.texture.*;
 
 public class RenderElderTools implements IItemRenderer
 {
-	private static ArrayList<ItemStack> elderItems = new ArrayList<ItemStack>();
 	public static float hue = 0.0F;
 	
 	public boolean handleRenderType(ItemStack stack, ItemRenderType type)
 	{
-		return type != ItemRenderType.FIRST_PERSON_MAP && isElderItem(stack);
+		return type != ItemRenderType.FIRST_PERSON_MAP;
 	}
 	
 	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack stack, ItemRendererHelper helper)
 	{
-		return type != ItemRenderType.FIRST_PERSON_MAP && (helper == ItemRendererHelper.ENTITY_BOBBING || helper == ItemRendererHelper.ENTITY_ROTATION) && isElderItem(stack);
+		return type != ItemRenderType.FIRST_PERSON_MAP && (helper == ItemRendererHelper.ENTITY_BOBBING || helper == ItemRendererHelper.ENTITY_ROTATION);
 	}
 	
 	public void renderItem(ItemRenderType type, ItemStack stack, Object... data)
@@ -57,30 +56,6 @@ public class RenderElderTools implements IItemRenderer
 				GL11.glPopMatrix();
 				break;
 		}
-	}
-	
-	public static void registerElderItem(ItemStack stack)
-	{
-		if(!isElderItem(stack)) elderItems.add(stack);
-	}
-	
-	private static boolean isElderItem(ItemStack stack0)
-	{
-		for(ItemStack stack1 : elderItems)
-		{
-			if(StygianUtil.areItemStacksEqualIgnoringSizeAndDamage(stack0, stack1)) return true;
-		}
-		
-		return false;
-	}
-	
-	public static void registerElderItems()
-	{
-		registerElderItem(new ItemStack(Stygian.elderSword));
-		registerElderItem(new ItemStack(Stygian.elderPickaxe));
-		registerElderItem(new ItemStack(Stygian.elderShovel));
-		registerElderItem(new ItemStack(Stygian.elderAxe));
-		registerElderItem(new ItemStack(Stygian.elderHoe));
 	}
 	
 	private static void renderIcon(IIcon icon)

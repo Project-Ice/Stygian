@@ -8,6 +8,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.WorldProviderSurface;
 import net.minecraft.block.*;
 import cpw.mods.fml.common.*;
+import net.minecraft.potion.*;
 import net.minecraft.item.Item.*;
 import cpw.mods.fml.common.Mod.*;
 
@@ -29,6 +30,7 @@ import net.condorcraft110.stygian.util.*;
 import net.condorcraft110.stygian.block.*;
 import net.condorcraft110.stygian.fluid.*;
 import net.condorcraft110.stygian.entity.*;
+import net.condorcraft110.stygian.potion.*;
 import net.condorcraft110.stygian.registry.*;
 import net.condorcraft110.stygian.worldgen.*;
 import net.condorcraft110.stygian.dimension.*;
@@ -58,16 +60,16 @@ public class Stygian
 	public static final ToolMaterial resonanceToolMaterial = EnumHelper.addToolMaterial("resonance", 6, 9366, 48.0F, 18.0F, 60);
 	public static final ToolMaterial darkResonanceToolMaterial = EnumHelper.addToolMaterial("darkResonance", 7, 18732, 96.0F, 36, 120);
 	public static final ToolMaterial elderToolMaterial = EnumHelper.addToolMaterial("stygianElder", 8, 75928, 384, 144, 480);
-
-	public static Block stygianBlock = Reflection.getRawBlockInstance(Material.rock).setBlockName("blockStygian").setHardness(12.0F).setResistance(6000000.0F);
 	
-	public static Block stygianStone = Reflection.getRawBlockInstance(Material.rock).setBlockName("blockStygianStone").setHardness(12.0F).setResistance(6000000.0F);
-	public static Block stygianDirt = Reflection.getRawBlockInstance(Material.rock).setBlockName("blockStygianDirt").setHardness(12.0F).setResistance(6000000.0F);
+	public static Block stygianBlock = ReflectionHelper.getRawBlockInstance(Material.rock).setBlockName("blockStygian").setHardness(12.0F).setResistance(6000000.0F).setBlockTextureName("stygian:stygianBlock");
+	
+	public static Block stygianStone = ReflectionHelper.getRawBlockInstance(Material.rock).setBlockName("blockStygianStone").setHardness(12.0F).setResistance(6000000.0F);
+	public static Block stygianDirt = ReflectionHelper.getRawBlockInstance(Material.rock).setBlockName("blockStygianDirt").setHardness(12.0F).setResistance(6000000.0F);
 	
 	public static ItemStygianCrystal stygianCrystal = new ItemStygianCrystal();
 	
 	public static ItemResource resource = new ItemResource();
-
+	
 	public static ItemStygianSword stygianSword = (ItemStygianSword)new ItemStygianSword(stygianToolMaterial).setUnlocalizedName("stygianSword").setTextureName("stygian:stygianSword");
 	public static ItemStygianPickaxe stygianPickaxe = (ItemStygianPickaxe)new ItemStygianPickaxe(stygianToolMaterial).setUnlocalizedName("stygianPickaxe").setTextureName("stygian:stygianPickaxe");
 	public static ItemSpade stygianShovel = (ItemSpade)new ItemSpade(stygianToolMaterial).setUnlocalizedName("stygianShovel").setTextureName("stygian:stygianShovel");
@@ -117,8 +119,10 @@ public class Stygian
 	public static ItemStygianCore focusCore = (ItemStygianCore)new ItemStygianCore().setUnlocalizedName("stygianCore").setTextureName("stygian:focusCore");
 	
 	public static ItemResonanceStar resonanceStar = (ItemResonanceStar)new ItemResonanceStar().setUnlocalizedName("resonanceStar").setTextureName("stygian:resonanceStar");
-	
+
 	public static DamageSource damageSourceDrain = new DamageSource("stygianDrain").setDamageBypassesArmor().setDamageIsAbsolute().setMagicDamage();
+	public static DamageSource damageSourceAttackWatchmaker = new DamageSource("watchmakerAttack");
+	public static DamageSource damageSourceTime = new DamageSource("time").setDamageBypassesArmor().setDamageIsAbsolute();
 
 	public static BlockStygianOre stygianOre = (BlockStygianOre)new BlockStygianOre(stygianCrystal, 0, "stygianOre", 10, 50).setBlockName("oreStygian").setBlockTextureName("stygian:oreStygian").setHardness(10.0F).setResistance(6000000.0F);
 	public static BlockStygianOre pyroniumOre = (BlockStygianOre)new BlockStygianOre(resource, 0, "pyroniumOre", 4, 8).setBlockName("pyroniumOre").setBlockTextureName("stygian:pyroniumOre");
@@ -136,6 +140,8 @@ public class Stygian
 	
 	public static int sideworldDimensionID;
 	public static WorldProviderStygian sideworldProvider = new WorldProviderStygian();
+	
+	public static PotionTimeSickness potionTimeSickness = (PotionTimeSickness)new PotionTimeSickness(598).setPotionName("potion.timeSickness");
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
@@ -166,6 +172,8 @@ public class Stygian
 		darkResonanceBoots = (ItemDarkResonanceArmour)new ItemDarkResonanceArmour(darkResonanceArmourMaterial, darkResonanceArmourRenderIndex, 3).setUnlocalizedName("darkResonanceBoots").setTextureName("stygian:darkResonanceBoots");
 		
 		GameRegistry.registerItem(stygianCrystal, "stygianCrystal");
+		
+		GameRegistry.registerItem(resource, "resource");
 		
 		GameRegistry.registerItem(stygianSword, "stygianSword");
 		GameRegistry.registerItem(stygianPickaxe, "stygianPickaxe");
@@ -230,9 +238,10 @@ public class Stygian
 		
 		FluidRegistry.registerFluid(liquidDarkness);
 		
-		liquidDarknessBlock = (BlockFluidLiquidDarkness)new BlockFluidLiquidDarkness(liquidDarkness, liquidDarknessMaterial).setBlockName("liquidDarkness");
+		liquidDarknessBlock = (BlockFluidLiquidDarkness)new BlockFluidLiquidDarkness(liquidDarkness, liquidDarknessMaterial).setBlockName("liquidDarkness").setBlockTextureName("stygian:black");
 		
 		GameRegistry.registerBlock(liquidDarknessBlock, "liquidDarkness");
+		liquidDarkness.setBlock(liquidDarknessBlock);
 		
 		GameRegistry.registerWorldGenerator(new WorldGenHandler(), 0);
 		
@@ -243,6 +252,10 @@ public class Stygian
 		sideworldDimensionID = DimensionManager.getNextFreeDimId();
 		DimensionManager.registerProviderType(sideworldDimensionID, WorldProviderSurface.class, true);
 		DimensionManager.registerDimension(sideworldDimensionID, sideworldDimensionID);
+		
+		Potion[] potionTypesModified = new Potion[2048];
+		System.arraycopy(Potion.potionTypes, 0, potionTypesModified, 0, Potion.potionTypes.length);
+		ReflectionHelper.setFinalField(cpw.mods.fml.relauncher.ReflectionHelper.findField(Potion.class, "potionTypes", "a"), null, potionTypesModified);
 	}
 	
 	@EventHandler
@@ -251,6 +264,8 @@ public class Stygian
 		liquidDarkness.setIcons(liquidDarknessBlock.fluidIcon);
 		
 		stygianCrystal.setCreativeTab(tabStygian);
+		
+		resource.setCreativeTab(tabStygian);
 		
 		stygianSword.setCreativeTab(tabStygian);
 		stygianPickaxe.setCreativeTab(tabStygian);
@@ -328,13 +343,16 @@ public class Stygian
 		proxy.registerRenderers();
 		proxy.registerCapes();
 		proxy.registerTickHandlers();
-		proxy.registerElderItems();
 		
 		FocusRegistry.registerFoci();
 		ResonanceRegistry.registerResonances();
 		
 		RecipeManager.registerRecipes();
-		
+	}
+	
+	@EventHandler
+	public void postInit(FMLPostInitializationEvent event)
+	{
 		IntegrationManager.init();
 	}
 }

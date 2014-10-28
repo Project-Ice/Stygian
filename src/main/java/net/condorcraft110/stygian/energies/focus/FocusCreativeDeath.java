@@ -1,11 +1,14 @@
 package net.condorcraft110.stygian.energies.focus;
 
-import net.condorcraft110.stygian.projectile.ProjectileDeath;
+import java.util.List;
+
 import net.minecraft.item.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.entity.*;
+import net.minecraft.entity.boss.*;
 import net.minecraft.entity.player.*;
+import net.condorcraft110.stygian.projectile.*;
 
 public class FocusCreativeDeath implements ICoreFocus
 {
@@ -16,7 +19,11 @@ public class FocusCreativeDeath implements ICoreFocus
 	
 	public boolean hitEntity(ItemStack stack, EntityLivingBase victim, EntityLivingBase attacker)
 	{
-		victim.attackEntityFrom(DamageSource.generic, Float.POSITIVE_INFINITY);
+		if(victim instanceof EntityDragon)
+		{
+			BossUtil.attackDragonFrom((EntityDragon)victim, DamageSource.generic, Float.POSITIVE_INFINITY);
+		}
+		else victim.attackEntityFrom(DamageSource.generic, Float.POSITIVE_INFINITY);
 		
 		return true;
 	}
@@ -41,5 +48,15 @@ public class FocusCreativeDeath implements ICoreFocus
 		world.spawnEntityInWorld(new ProjectileDeath(world, player));
 		
 		return stack;
+	}
+	
+	public void onUpdate(ItemStack stack, World world, Entity entity, int i, boolean b)
+	{
+		
+	}
+	
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean b)
+	{
+		list.add("Creative only");
 	}
 }

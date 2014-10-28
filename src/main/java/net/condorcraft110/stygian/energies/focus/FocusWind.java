@@ -1,5 +1,7 @@
 package net.condorcraft110.stygian.energies.focus;
 
+import java.util.List;
+
 import net.minecraft.item.*;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.*;
@@ -53,5 +55,15 @@ public class FocusWind implements ICoreFocus
 	public boolean crackedTick(ItemStack stack, World world, Entity entity, int i, boolean b)
 	{
 		return false; // NYI
+	}
+	
+	public void onUpdate(ItemStack stack, World world, Entity entity, int i, boolean b)
+	{
+		
+	}
+	
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean b)
+	{
+		
 	}
 }

@@ -1,5 +1,6 @@
 package net.condorcraft110.stygian.energies.focus;
 
+import java.util.*;
 import net.minecraft.item.*;
 import net.minecraft.world.*;
 import net.minecraft.entity.*;
@@ -20,4 +21,8 @@ public interface ICoreFocus
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player);
 	
 	//public boolean isUnstable();
+	
+	public void onUpdate(ItemStack stack, World world, Entity entity, int i, boolean b);
+	
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean b);
 }

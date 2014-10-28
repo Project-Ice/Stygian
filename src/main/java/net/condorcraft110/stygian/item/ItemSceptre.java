@@ -1,6 +1,7 @@
 package net.condorcraft110.stygian.item;
 
 import java.util.*;
+
 import net.minecraft.nbt.*;
 import net.minecraft.item.*;
 import net.minecraft.world.*;
@@ -56,10 +57,13 @@ public class ItemSceptre extends Item
 		switch(stack.getItemDamage())
 		{
 			case 0:
-				list.add(FocusRegistry.getLocalFocusName(stack.getTagCompound().getInteger("FocusID")));
+				int focusID = NBTHelper.getStackInt(stack, "FocusID");
+				list.add(FocusRegistry.getLocalFocusName(focusID));
+				FocusRegistry.getFocus(focusID).addInformation(stack, player, list, b);
 				break;
 			case 1:
-				list.add(ResonanceRegistry.getLocalResonanceName(stack.getTagCompound().getInteger("ResonanceID")));
+				int resonanceID = NBTHelper.getStackInt(stack, "ResonanceID");
+				list.add(ResonanceRegistry.getLocalResonanceName(resonanceID));
 				break;
 		}
 	}
@@ -119,6 +123,19 @@ public class ItemSceptre extends Item
 				return "item.focusSceptre";
 			case 1:
 				return "item.resonanceSceptre";
+		}
+	}
+	
+	public void onUpdate(ItemStack stack, World world, Entity entity, int i, boolean b)
+	{
+		switch(stack.getItemDamage())
+		{
+			case 0:
+				FocusRegistry.getFocus(NBTHelper.getStackInt(stack, "FocusID")).onUpdate(stack, world, entity, i, b);
+				break;
+			case 1:
+				//ResonanceRegistry.getResonance(NBTHelper.getStackInt(stack, "ResonanceID")).onUpdate(stack, world, entity, i, b);
+				break;
 		}
 	}
 }
