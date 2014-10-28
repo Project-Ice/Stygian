@@ -62,6 +62,7 @@ public class FocusRegistry
 		registerFocus(new FocusWind());
 		registerFocus(new FocusCreativeDeath());
 		registerFocus(new FocusTeleporter());
+		registerFocus(new FocusRepulsion());
 		
 		registered = true;
 	}

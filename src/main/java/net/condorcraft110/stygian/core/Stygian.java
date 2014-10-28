@@ -141,11 +141,15 @@ public class Stygian
 	public static int sideworldDimensionID;
 	public static WorldProviderStygian sideworldProvider = new WorldProviderStygian();
 	
-	public static PotionTimeSickness potionTimeSickness = (PotionTimeSickness)new PotionTimeSickness(598).setPotionName("potion.timeSickness");
+	public static PotionTimeSickness potionTimeSickness;
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
+		Potion[] potionTypesModified = new Potion[2048];
+		System.arraycopy(Potion.potionTypes, 0, potionTypesModified, 0, Potion.potionTypes.length);
+		ReflectionHelper.setFinalField(cpw.mods.fml.relauncher.ReflectionHelper.findField(Potion.class, "potionTypes", "a"), null, potionTypesModified);
+		
 		logger.info("Reticulating splines...");
 		
 		StygianConfig.readAndSet(event.getModConfigurationDirectory());
@@ -170,6 +174,8 @@ public class Stygian
 		darkResonanceChestplate = (ItemDarkResonanceArmour)new ItemDarkResonanceArmour(darkResonanceArmourMaterial, darkResonanceArmourRenderIndex, 1).setUnlocalizedName("darkResonanceChestplate").setTextureName("stygian:darkResonanceChestplate");
 		darkResonanceLeggings = (ItemDarkResonanceArmour)new ItemDarkResonanceArmour(darkResonanceArmourMaterial, darkResonanceArmourRenderIndex, 2).setUnlocalizedName("darkResonanceLeggings").setTextureName("stygian:darkResonanceLeggings");
 		darkResonanceBoots = (ItemDarkResonanceArmour)new ItemDarkResonanceArmour(darkResonanceArmourMaterial, darkResonanceArmourRenderIndex, 3).setUnlocalizedName("darkResonanceBoots").setTextureName("stygian:darkResonanceBoots");
+		
+		potionTimeSickness = (PotionTimeSickness)new PotionTimeSickness(598).setPotionName("potion.timeSickness");
 		
 		GameRegistry.registerItem(stygianCrystal, "stygianCrystal");
 		
@@ -252,10 +258,6 @@ public class Stygian
 		sideworldDimensionID = DimensionManager.getNextFreeDimId();
 		DimensionManager.registerProviderType(sideworldDimensionID, WorldProviderSurface.class, true);
 		DimensionManager.registerDimension(sideworldDimensionID, sideworldDimensionID);
-		
-		Potion[] potionTypesModified = new Potion[2048];
-		System.arraycopy(Potion.potionTypes, 0, potionTypesModified, 0, Potion.potionTypes.length);
-		ReflectionHelper.setFinalField(cpw.mods.fml.relauncher.ReflectionHelper.findField(Potion.class, "potionTypes", "a"), null, potionTypesModified);
 	}
 	
 	@EventHandler

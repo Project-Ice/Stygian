@@ -47,7 +47,7 @@ public class FocusRepulsion implements ICoreFocus
 		{
 			tag.setInteger("Mode", (tag.getInteger("Mode") + 1) % 3);
 			
-			if(!world.isRemote) player.addChatMessage(new ChatComponentText("Switched to mode " + tag.getInteger("Mode") + 1));//new ChatComponentTranslation("message.focus.repulsion.mode", tag.getInteger("Mode") + 1));
+			if(!world.isRemote) player.addChatMessage(new ChatComponentText("Switched to mode " + (tag.getInteger("Mode") + 1)));//new ChatComponentTranslation("message.focus.repulsion.mode", tag.getInteger("Mode") + 1));
 		}
 		else
 		{
@@ -55,8 +55,6 @@ public class FocusRepulsion implements ICoreFocus
 			
 			if(!world.isRemote) player.addChatMessage(new ChatComponentText("Now " + (tag.getBoolean("Active") ? "active" : "inactive")));
 		}
-		
-		stack.setTagCompound(tag);
 		
 		return stack;
 	}
@@ -79,7 +77,7 @@ public class FocusRepulsion implements ICoreFocus
 			{
 				default:
 					//TODO more modes
-				case 1:
+				case 0:
 					for(Entity toRepel : entities)
 					{
 						Vec3 playerVec3 = Vec3.createVectorHelper(player.posX, player.posY, player.posZ);
