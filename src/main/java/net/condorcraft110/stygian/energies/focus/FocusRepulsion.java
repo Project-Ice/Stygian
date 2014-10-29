@@ -41,7 +41,7 @@ public class FocusRepulsion implements ICoreFocus
 	
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
 	{
-		NBTTagCompound tag = NBTHelper.getStackCompoundTag(stack, "RepulsionData", new NBTTagCompound(), false);
+		NBTTagCompound tag = NBTHelper.getStackCompoundTag(stack, "RepulsionData", new NBTTagCompound(), true);
 		
 		if(player.isSneaking())
 		{
@@ -86,12 +86,18 @@ public class FocusRepulsion implements ICoreFocus
 						double distance = playerVec3.distanceTo(toRepelVec3);
 						
 						Vec3 vec3 = Vec3.createVectorHelper(toRepelVec3.xCoord - playerVec3.xCoord, toRepelVec3.yCoord - playerVec3.yCoord, toRepelVec3.zCoord - playerVec3.zCoord);
-
+						
 						toRepel.motionX += vec3.xCoord / 1.5 / distance;
 						toRepel.motionY += vec3.yCoord / 1.5 / distance;
 						toRepel.motionZ += vec3.zCoord / 1.5 / distance;
 					}
 			}
+			
+			int damageTimer = tag.getInteger("DamageTimer");
+			
+			if(damageTimer == 79) player.attackEntityFrom(DamageSource.generic, 1.0F);
+			
+			tag.setInteger("DamageTimer", (damageTimer + 1) % 80);
 		}
 	}
 	
