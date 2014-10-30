@@ -32,11 +32,6 @@ public class CommonProxy
 		GameRegistry.registerTileEntity(TileEntityNetherForge.class, "netherForge");
 	}
 	
-	public void registerGuiHandler()
-	{
-		
-	}
-	
 	public void registerRenderers()
 	{
 		

@@ -19,10 +19,12 @@ import net.minecraft.creativetab.*;
 import cpw.mods.fml.common.event.*;
 import net.minecraftforge.fluids.*;
 import net.condorcraft110.stygian.*;
+import cpw.mods.fml.common.network.*;
 import net.minecraft.block.material.*;
 import cpw.mods.fml.client.registry.*;
 import cpw.mods.fml.common.registry.*;
 import net.minecraft.item.ItemArmor.*;
+import net.condorcraft110.stygian.gui.*;
 import net.minecraftforge.common.util.*;
 import net.condorcraft110.stygian.item.*;
 import net.condorcraft110.stygian.misc.*;
@@ -341,10 +343,11 @@ public class Stygian
 		GameRegistry.addSmelting(new ItemStack(stygianCrystal, 1, 0), new ItemStack(stygianCrystal, 1, 1), 48.0F);
 		
 		proxy.registerTileEntities();
-		proxy.registerGuiHandler();
 		proxy.registerRenderers();
 		proxy.registerCapes();
 		proxy.registerTickHandlers();
+		
+		NetworkRegistry.INSTANCE.registerGuiHandler(INSTANCE, new StygianGuiHandler());
 		
 		FocusRegistry.registerFoci();
 		ResonanceRegistry.registerResonances();
