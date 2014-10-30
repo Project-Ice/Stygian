@@ -95,7 +95,7 @@ public class FocusRepulsion implements ICoreFocus
 			
 			int damageTimer = tag.getInteger("DamageTimer");
 			
-			if(damageTimer == 79) player.attackEntityFrom(DamageSource.generic, 1.0F);
+			if(damageTimer == 39) player.attackEntityFrom(DamageSource.generic, 1.0F);
 			
 			tag.setInteger("DamageTimer", (damageTimer + 1) % 80);
 		}

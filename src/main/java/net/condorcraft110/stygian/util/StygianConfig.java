@@ -10,7 +10,7 @@ public class StygianConfig
 	
 	public static void readAndSet(File configDir)
 	{
-		Configuration config = new Configuration(new File(configDir, "stygiance.cfg"));
+		Configuration config = new Configuration(new File(configDir, "stygian.cfg"));
 		
 		showDescriptions = config.get("misc", "ShowItemDescriptions", false).getBoolean();
 		enableDevCapes = config.get("misc", "EnableDevCapes", true).getBoolean();
@@ -29,6 +29,8 @@ public class StygianConfig
 		WorldGenHandler.cryoniteClusterSize = config.get("oregen", "CryoniteClusterSize", 8).getInt();
 		WorldGenHandler.cryoniteMaxY = config.get("oregen", "CryoniteClusterMaxY", 32).getInt();
 		WorldGenHandler.cryoniteMinY = config.get("oregen", "CryoniteClusterMinY", 0).getInt();
+		
+		WorldGenHandler.stupidGeneration = config.get("stupidity", "StupidGeneration", false).getBoolean();
 		
 		if(config.hasChanged()) config.save();
 	}

@@ -1,6 +1,6 @@
 package net.condorcraft110.stygian.energies.focus;
 
-import java.util.List;
+import java.util.*;
 
 import net.minecraft.item.*;
 import net.minecraft.world.*;
@@ -23,6 +23,13 @@ public class FocusLightning implements ICoreFocus
 		
 		victim.worldObj.spawnEntityInWorld(lightning);
 		
+		if((!(attacker instanceof EntityPlayer) || !((EntityPlayer)attacker).capabilities.disableDamage) && Stygian.stygianRandom.nextInt(10) == 0)
+		{
+			EntityLightningBolt attackerLightning = new EntityLightningBolt(attacker.worldObj, attacker.posX, attacker.posY, attacker.posZ);
+			
+			attacker.worldObj.spawnEntityInWorld(lightning);
+		}
+		
 		return true;
 	}
 	
@@ -31,6 +38,13 @@ public class FocusLightning implements ICoreFocus
 		EntityLightningBolt lightning = new EntityLightningBolt(world, x, y, z);
 		
 		world.spawnEntityInWorld(lightning);
+		
+		if(!player.capabilities.disableDamage && Stygian.stygianRandom.nextInt(10) == 0)
+		{
+			EntityLightningBolt playerLightning = new EntityLightningBolt(world, player.posX, player.posY, player.posZ);
+			
+			world.spawnEntityInWorld(lightning);
+		}
 		
 		return true;
 	}

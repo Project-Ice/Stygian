@@ -127,7 +127,7 @@ public class Stygian
 	public static BlockStygianOre stygianOre = (BlockStygianOre)new BlockStygianOre(stygianCrystal, 0, "stygianOre", 10, 50).setBlockName("oreStygian").setBlockTextureName("stygian:oreStygian").setHardness(10.0F).setResistance(6000000.0F);
 	public static BlockStygianOre pyroniumOre = (BlockStygianOre)new BlockStygianOre(resource, 0, "pyroniumOre", 4, 8).setBlockName("pyroniumOre").setBlockTextureName("stygian:pyroniumOre");
 	public static BlockStygianOre cryoniteOre = (BlockStygianOre)new BlockStygianOre(resource, 1, "cryoniteOre", 4, 8).setBlockName("cryoniteOre").setBlockTextureName("stygian:cryoniteOre");
-
+	
 	public static BlockSoulForge soulForgeInactive = (BlockSoulForge)new BlockSoulForge(false).setBlockName("soulForge").setBlockTextureName("stygian:soulForge");
 	public static BlockSoulForge soulForgeActive = (BlockSoulForge)new BlockSoulForge(true).setBlockName("soulForge").setBlockTextureName("stygian:soulForge");
 	
@@ -146,9 +146,9 @@ public class Stygian
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		Potion[] potionTypesModified = new Potion[2048];
-		System.arraycopy(Potion.potionTypes, 0, potionTypesModified, 0, Potion.potionTypes.length);
-		ReflectionHelper.setFinalField(cpw.mods.fml.relauncher.ReflectionHelper.findField(Potion.class, "potionTypes", "a"), null, potionTypesModified);
+//		Potion[] potionTypesModified = new Potion[2048];
+//		System.arraycopy(Potion.potionTypes, 0, potionTypesModified, 0, Potion.potionTypes.length);
+//		ReflectionHelper.setFinalField(cpw.mods.fml.relauncher.ReflectionHelper.findField(Potion.class, "potionTypes", "a"), null, potionTypesModified);
 		
 		logger.info("Reticulating splines...");
 		
@@ -175,7 +175,7 @@ public class Stygian
 		darkResonanceLeggings = (ItemDarkResonanceArmour)new ItemDarkResonanceArmour(darkResonanceArmourMaterial, darkResonanceArmourRenderIndex, 2).setUnlocalizedName("darkResonanceLeggings").setTextureName("stygian:darkResonanceLeggings");
 		darkResonanceBoots = (ItemDarkResonanceArmour)new ItemDarkResonanceArmour(darkResonanceArmourMaterial, darkResonanceArmourRenderIndex, 3).setUnlocalizedName("darkResonanceBoots").setTextureName("stygian:darkResonanceBoots");
 		
-		potionTimeSickness = (PotionTimeSickness)new PotionTimeSickness(598).setPotionName("potion.timeSickness");
+//		potionTimeSickness = (PotionTimeSickness)new PotionTimeSickness(598).setPotionName("potion.timeSickness");
 		
 		GameRegistry.registerItem(stygianCrystal, "stygianCrystal");
 		

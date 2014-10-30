@@ -65,7 +65,7 @@ public class WorldGenSurfaceOre extends WorldGenerator
 					for(int blockZ = zStart; blockZ <= zStop; blockZ++)
 					{
 						double d14 = (((double)blockZ + 0.5D) - d8) / (d10 / 2D);
-						if(d12 * d12 + d13 * d13 + d14 * d14 < 1.0D && world.getBlock(blockX, blockY, blockZ) == Blocks.stone)
+						if(d12 * d12 + d13 * d13 + d14 * d14 < 1.0D && (WorldGenHandler.stupidGeneration || world.getBlock(blockX, blockY, blockZ) == Blocks.stone))
 						{
 							world.setBlock(blockX, blockY, blockZ, block, metadata, 2);
 						}

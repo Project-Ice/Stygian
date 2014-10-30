@@ -10,8 +10,8 @@ public class WorldGenHandler implements IWorldGenerator
 {
 	public static int stygianClusters = 1;
 	public static int stygianClusterSize = 8;
-	public static int stygianMaxY = 8;
-	public static int stygianMinY = 16;
+	public static int stygianMaxY = 16;
+	public static int stygianMinY = 8;
 	
 	public static int pyroniumClusters = 6;
 	public static int pyroniumClusterSize = 8;
@@ -22,6 +22,8 @@ public class WorldGenHandler implements IWorldGenerator
 	public static int cryoniteClusterSize = 8;
 	public static int cryoniteMaxY = 32;
 	public static int cryoniteMinY = 0;
+	
+	public static boolean stupidGeneration = false;
 	
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)

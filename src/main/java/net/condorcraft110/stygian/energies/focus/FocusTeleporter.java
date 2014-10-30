@@ -1,7 +1,6 @@
 package net.condorcraft110.stygian.energies.focus;
 
-import java.util.List;
-
+import java.util.*;
 import net.minecraft.nbt.*;
 import net.minecraft.item.*;
 import net.minecraft.world.*;
@@ -60,6 +59,7 @@ public class FocusTeleporter implements ICoreFocus
 					
 					server.getConfigurationManager().transferPlayerToDimension(playerMP, Stygian.sideworldDimensionID, new TeleporterSideworld(server.worldServerForDimension(Stygian.sideworldDimensionID)));
 					playerMP.addPotionEffect(StygianUtil.createIncurablePotionEffect(Potion.blindness.id, 20, 10));
+					if(!playerMP.capabilities.disableDamage) playerMP.setHealth(playerMP.getHealth() * 0.75f);
 				}
 				else
 				{
@@ -70,10 +70,11 @@ public class FocusTeleporter implements ICoreFocus
 						int dimension = tag.getInteger("Dimension");
 						server.getConfigurationManager().transferPlayerToDimension(playerMP, dimension, new TeleporterSideworld(server.worldServerForDimension(dimension)));
 						playerMP.addPotionEffect(StygianUtil.createIncurablePotionEffect(Potion.blindness.id, 20, 10));
+						if(!playerMP.capabilities.disableDamage) playerMP.setHealth(playerMP.getHealth() * 0.75f);
 					}
 					else
 					{
-						Stygian.logger.info("ItemStack " + stack.toString() + " does not have a PreviousPlayerData tag, weird things may happen >:)");
+						Stygian.logger.info("Teleporter ItemStack " + stack.toString() + " does not have a PreviousPlayerData NBT tag, weird things may happen >:)");
 						
 						switch(Stygian.stygianRandom.nextInt(7))
 						{
@@ -96,7 +97,7 @@ public class FocusTeleporter implements ICoreFocus
 								playerMP.addPotionEffect(StygianUtil.createIncurablePotionEffect(Potion.wither.id, 300, 0));
 								break;
 							case 4:
-								if(Stygian.stygianRandom.nextInt(3) == 0)
+								if(Stygian.stygianRandom.nextInt(1) == 0)
 								{
 									EntityGiantZombie giant = new EntityGiantZombie(world);
 									giant.setLocationAndAngles(playerMP.posX, playerMP.posY + 1.0, playerMP.posZ, playerMP.rotationYaw, playerMP.rotationPitch);

@@ -2,9 +2,11 @@ package net.condorcraft110.stygian.energies.focus;
 
 import java.util.List;
 
+import net.condorcraft110.stygian.core.Stygian;
 import net.minecraft.init.*;
 import net.minecraft.item.*;
 import net.minecraft.world.*;
+import net.minecraft.block.Block;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 
@@ -25,6 +27,8 @@ public class FocusFire implements ICoreFocus
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int i, float f, float g, float h)
 	{
 		world.setBlock(x, y + 1, z, Blocks.fire);
+		
+		if(Stygian.stygianRandom.nextInt(10) == 0) player.setFire(Stygian.stygianRandom.nextInt(5) + 2);
 		
 		return true;
 	}

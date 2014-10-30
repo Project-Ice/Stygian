@@ -1,13 +1,13 @@
 package net.condorcraft110.stygian.energies.focus;
 
-import java.util.List;
-
+import java.util.*;
 import net.minecraft.item.*;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
+import net.condorcraft110.stygian.core.*;
 
 public class FocusWind implements ICoreFocus
 {
@@ -19,21 +19,26 @@ public class FocusWind implements ICoreFocus
 	public boolean hitEntity(ItemStack stack, EntityLivingBase victim, EntityLivingBase attacker)
 	{
 		double d1 = attacker.posX - victim.posX;
-        double d0;
+		double d0;
 
-        for(d0 = attacker.posZ - victim.posZ; d1 * d1 + d0 * d0 < 1.0E-3D; d0 = (Math.random() - Math.random()) * 0.1D)
-        {
-            d1 = (Math.random() - Math.random()) * 0.1D;
-        }
-        
-        victim.isAirBorne = true;
-        victim.motionX /= 2.0D;
-        victim.motionY /= 2.0D;
-        victim.motionZ /= 2.0D;
-        victim.motionX -= d1 * 2;
-        victim.motionY += 2.0;
-        victim.motionZ -= d0 * 2;
-        
+		for(d0 = attacker.posZ - victim.posZ; d1 * d1 + d0 * d0 < 1.0E-3; d0 = (Math.random() - Math.random()) * 0.1)
+		{
+			d1 = (Math.random() - Math.random()) * 0.1;
+		}
+		
+		victim.isAirBorne = true;
+		victim.motionX /= 2.0;
+		victim.motionY /= 2.0;
+		victim.motionZ /= 2.0;
+		victim.motionX -= d1 * 2;
+		victim.motionY += 2.0;
+		victim.motionZ -= d0 * 2;
+		
+		if((!(attacker instanceof EntityPlayer) || !((EntityPlayer)attacker).capabilities.isCreativeMode) && Stygian.stygianRandom.nextInt(10) == 0)
+		{
+			attacker.motionY += 2.0;
+		}
+		
 		return true;
 	}
 	
