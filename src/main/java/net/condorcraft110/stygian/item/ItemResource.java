@@ -39,6 +39,6 @@ public class ItemResource extends Item
 	
 	public String getUnlocalizedName(ItemStack stack)
 	{
-		return iconNames[stack.getItemDamage()];
+		return "item." + iconNames[stack.getItemDamage()];
 	}
 }

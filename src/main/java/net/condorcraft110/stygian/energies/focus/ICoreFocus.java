@@ -25,4 +25,6 @@ public interface ICoreFocus
 	public void onUpdate(ItemStack stack, World world, Entity entity, int i, boolean b);
 	
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean b);
+	
+	//public int[] getRGBAColours();
 }

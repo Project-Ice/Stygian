@@ -57,4 +57,9 @@ public class FocusFire implements ICoreFocus
 	{
 		
 	}
+	
+	public int[] getRGBAColours()
+	{
+		return new int[]{165, 42, 0, 255};
+	}
 }

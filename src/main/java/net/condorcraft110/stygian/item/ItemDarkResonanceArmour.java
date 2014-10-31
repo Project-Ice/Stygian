@@ -12,7 +12,7 @@ import net.minecraftforge.common.ISpecialArmor.*;
 
 public class ItemDarkResonanceArmour extends ItemArmor implements ISpecialArmor
 {
-	private IIcon[] icons = new IIcon[4];
+	private static IIcon[] icons = new IIcon[4];
 	
 	public ItemDarkResonanceArmour(ArmorMaterial material, int renderIndex, int type)
 	{

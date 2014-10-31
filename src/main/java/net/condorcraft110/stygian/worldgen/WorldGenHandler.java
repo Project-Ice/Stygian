@@ -1,6 +1,7 @@
 package net.condorcraft110.stygian.worldgen;
 
 import java.util.*;
+import net.minecraft.init.*;
 import net.minecraft.world.*;
 import cpw.mods.fml.common.*;
 import net.minecraft.world.chunk.*;
@@ -25,6 +26,10 @@ public class WorldGenHandler implements IWorldGenerator
 	
 	public static boolean stupidGeneration = false;
 	
+	private static final WorldGenOre generateStygian = new WorldGenOre(Blocks.netherrack, Stygian.stygianOre, 0, stygianClusterSize);
+	private static final WorldGenOre generatePyronium = new WorldGenOre(Blocks.stone, Stygian.pyroniumOre, 0, pyroniumClusterSize);
+	private static final WorldGenOre generateCryonite = new WorldGenOre(Blocks.stone, Stygian.cryoniteOre, 0, cryoniteClusterSize);
+	
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
 	{
@@ -46,7 +51,7 @@ public class WorldGenHandler implements IWorldGenerator
 			int x = chunkX + random.nextInt(16); 
 			int y = pyroniumMinY + random.nextInt(pyroniumMaxY - pyroniumMinY);
 			int z = chunkZ + random.nextInt(16);
-			new WorldGenSurfaceOre(Stygian.pyroniumOre, 0, pyroniumClusterSize).generate(world, random, x, y, z);
+			generatePyronium.generate(world, random, x, y, z);
 		}
 		
 		for(int i = 0; i < cryoniteClusters; i++)
@@ -54,7 +59,7 @@ public class WorldGenHandler implements IWorldGenerator
 			int x = chunkX + random.nextInt(16); 
 			int y = cryoniteMinY + random.nextInt(cryoniteMaxY - cryoniteMinY);
 			int z = chunkZ + random.nextInt(16);
-			new WorldGenSurfaceOre(Stygian.cryoniteOre, 0, cryoniteClusterSize).generate(world, random, x, y, z);
+			generateCryonite.generate(world, random, x, y, z);
 		}
 	}
 	
@@ -65,7 +70,7 @@ public class WorldGenHandler implements IWorldGenerator
 			int x = chunkX + random.nextInt(16); 
 			int y = stygianMinY + random.nextInt(stygianMaxY - stygianMinY);
 			int z = chunkZ + random.nextInt(16);
-			new WorldGenNetherOre(Stygian.stygianOre, 0, stygianClusterSize).generate(world, random, x, y, z);
+			generateStygian.generate(world, random, x, y, z);
 		}
 	}
 }

@@ -19,10 +19,12 @@ import net.minecraft.creativetab.*;
 import cpw.mods.fml.common.event.*;
 import net.minecraftforge.fluids.*;
 import net.condorcraft110.stygian.*;
+import cpw.mods.fml.common.network.*;
 import net.minecraft.block.material.*;
 import cpw.mods.fml.client.registry.*;
 import cpw.mods.fml.common.registry.*;
 import net.minecraft.item.ItemArmor.*;
+import net.condorcraft110.stygian.gui.*;
 import net.minecraftforge.common.util.*;
 import net.condorcraft110.stygian.item.*;
 import net.condorcraft110.stygian.misc.*;
@@ -55,6 +57,8 @@ public class Stygian
 	public static int voidChestRenderIndex;
 	public static int resonanceArmourRenderIndex;
 	public static int darkResonanceArmourRenderIndex;
+	public static int cryoniteArmourRenderIndex;
+	public static int pyroniumArmourRenderIndex;
 	public static final CreativeTabs tabStygian = new CreativeTabStygian(); 
 	public static final ToolMaterial stygianToolMaterial = EnumHelper.addToolMaterial("stygian", 5, 4683, 24.0F, 9.0F, 30);
 	public static final ToolMaterial resonanceToolMaterial = EnumHelper.addToolMaterial("resonance", 6, 9366, 48.0F, 18.0F, 60);
@@ -64,11 +68,13 @@ public class Stygian
 	public static Block stygianBlock = ReflectionHelper.getRawBlockInstance(Material.rock).setBlockName("blockStygian").setHardness(12.0F).setResistance(6000000.0F).setBlockTextureName("stygian:stygianBlock");
 	
 	public static Block stygianStone = ReflectionHelper.getRawBlockInstance(Material.rock).setBlockName("blockStygianStone").setHardness(12.0F).setResistance(6000000.0F);
-	public static Block stygianDirt = ReflectionHelper.getRawBlockInstance(Material.rock).setBlockName("blockStygianDirt").setHardness(12.0F).setResistance(6000000.0F);
+	public static Block stygianDirt = ReflectionHelper.getRawBlockInstance(Material.ground).setBlockName("blockStygianDirt").setHardness(12.0F).setResistance(6000000.0F);
 	
 	public static ItemStygianCrystal stygianCrystal = new ItemStygianCrystal();
 	
 	public static ItemResource resource = new ItemResource();
+	
+	public static ItemFocusNode itemNode = (ItemFocusNode)new ItemFocusNode().setUnlocalizedName("focusNode").setTextureName("string");
 	
 	public static ItemStygianSword stygianSword = (ItemStygianSword)new ItemStygianSword(stygianToolMaterial).setUnlocalizedName("stygianSword").setTextureName("stygian:stygianSword");
 	public static ItemStygianPickaxe stygianPickaxe = (ItemStygianPickaxe)new ItemStygianPickaxe(stygianToolMaterial).setUnlocalizedName("stygianPickaxe").setTextureName("stygian:stygianPickaxe");
@@ -87,6 +93,18 @@ public class Stygian
 	public static ItemSpade darkResonanceShovel = (ItemSpade)new ItemSpade(darkResonanceToolMaterial).setUnlocalizedName("darkResonanceShovel").setTextureName("stygian:darkResonanceShovel");
 	public static ItemStygianAxe darkResonanceAxe = (ItemStygianAxe)new ItemStygianAxe(darkResonanceToolMaterial).setUnlocalizedName("darkResonanceAxe").setTextureName("stygian:darkResonanceAxe");
 	public static ItemHoe darkResonanceHoe = (ItemHoe)new ItemHoe(darkResonanceToolMaterial).setUnlocalizedName("darkResonanceHoe").setTextureName("stygian:darkResonanceHoe");
+	
+	public static ItemResourceSword cryoniteSword = (ItemResourceSword)new ItemResourceSword(ToolMaterial.EMERALD).setUnlocalizedName("cryoniteSword").setTextureName("stygian:cryoniteSword");
+	public static ItemStygianPickaxe cryonitePickaxe = (ItemStygianPickaxe)new ItemStygianPickaxe(ToolMaterial.EMERALD).setUnlocalizedName("cryonitePickaxe").setTextureName("stygian:cryonitePickaxe");
+	public static ItemSpade cryoniteShovel = (ItemSpade)new ItemSpade(ToolMaterial.EMERALD).setUnlocalizedName("cryoniteShovel").setTextureName("stygian:cryoniteShovel");
+	public static ItemStygianAxe cryoniteAxe = (ItemStygianAxe)new ItemStygianAxe(ToolMaterial.EMERALD).setUnlocalizedName("cryoniteAxe").setTextureName("stygian:cryoniteAxe");
+	public static ItemHoe cryoniteHoe = (ItemHoe)new ItemHoe(ToolMaterial.EMERALD).setUnlocalizedName("cryoniteHoe").setTextureName("stygian:cryoniteHoe");
+	
+	public static ItemResourceSword pyroniumSword = (ItemResourceSword)new ItemResourceSword(ToolMaterial.EMERALD).setUnlocalizedName("pyroniumSword").setTextureName("stygian:pyroniumSword");
+	public static ItemStygianPickaxe pyroniumPickaxe = (ItemStygianPickaxe)new ItemStygianPickaxe(ToolMaterial.EMERALD).setUnlocalizedName("pyroniumPickaxe").setTextureName("stygian:pyroniumPickaxe");
+	public static ItemSpade pyroniumShovel = (ItemSpade)new ItemSpade(ToolMaterial.EMERALD).setUnlocalizedName("pyroniumShovel").setTextureName("stygian:pyroniumShovel");
+	public static ItemStygianAxe pyroniumAxe = (ItemStygianAxe)new ItemStygianAxe(ToolMaterial.EMERALD).setUnlocalizedName("pyroniumAxe").setTextureName("stygian:pyroniumAxe");
+	public static ItemHoe pyroniumHoe = (ItemHoe)new ItemHoe(ToolMaterial.EMERALD).setUnlocalizedName("pyroniumHoe").setTextureName("stygian:pyroniumHoe");
 
 	public static ItemElderSword elderSword = (ItemElderSword)new ItemElderSword(elderToolMaterial).setUnlocalizedName("elderSword");
 	public static ItemElderPickaxe elderPickaxe = (ItemElderPickaxe)new ItemElderPickaxe(elderToolMaterial).setUnlocalizedName("elderPickaxe");
@@ -109,12 +127,22 @@ public class Stygian
 	public static ItemDarkResonanceArmour darkResonanceLeggings;
 	public static ItemDarkResonanceArmour darkResonanceBoots;
 	
+	public static ItemResourceArmour cryoniteHelmet;
+	public static ItemResourceArmour cryoniteChestplate;
+	public static ItemResourceArmour cryoniteLeggings;
+	public static ItemResourceArmour cryoniteBoots;
+	
+	public static ItemResourceArmour pyroniumHelmet;
+	public static ItemResourceArmour pyroniumChestplate;
+	public static ItemResourceArmour pyroniumLeggings;
+	public static ItemResourceArmour pyroniumBoots;
+	
 	public static Item sceptreCoreCradle = new Item().setUnlocalizedName("sceptreCoreCradle").setTextureName("stygian:sceptreCoreCradle");
 	
 	public static ItemHourglass hourglass = (ItemHourglass)new ItemHourglass(false).setUnlocalizedName("hourglassIntact").setTextureName("stygian:hourglass");
 	public static ItemHourglass hourglassCracked = (ItemHourglass)new ItemHourglass(true).setUnlocalizedName("hourglassCracked").setTextureName("stygian:hourglassCracked");
 
-	public static Item stygianCore = new Item().setUnlocalizedName("stygianCore").setTextureName("stygian:focusCore");
+	public static ItemEmptyCore stygianCore = (ItemEmptyCore)new ItemEmptyCore().setUnlocalizedName("stygianCore").setTextureName("stygian:focusCore").setMaxStackSize(1);
 	public static ItemSceptre sceptre = (ItemSceptre)new ItemSceptre().setUnlocalizedName("focusSceptre").setTextureName("stygian:sceptre").setFull3D();
 	public static ItemStygianCore focusCore = (ItemStygianCore)new ItemStygianCore().setUnlocalizedName("stygianCore").setTextureName("stygian:focusCore");
 	
@@ -123,7 +151,7 @@ public class Stygian
 	public static DamageSource damageSourceDrain = new DamageSource("stygianDrain").setDamageBypassesArmor().setDamageIsAbsolute().setMagicDamage();
 	public static DamageSource damageSourceAttackWatchmaker = new DamageSource("watchmakerAttack");
 	public static DamageSource damageSourceTime = new DamageSource("time").setDamageBypassesArmor().setDamageIsAbsolute();
-
+	
 	public static BlockStygianOre stygianOre = (BlockStygianOre)new BlockStygianOre(stygianCrystal, 0, "stygianOre", 10, 50).setBlockName("oreStygian").setBlockTextureName("stygian:oreStygian").setHardness(10.0F).setResistance(6000000.0F);
 	public static BlockStygianOre pyroniumOre = (BlockStygianOre)new BlockStygianOre(resource, 0, "pyroniumOre", 4, 8).setBlockName("pyroniumOre").setBlockTextureName("stygian:pyroniumOre");
 	public static BlockStygianOre cryoniteOre = (BlockStygianOre)new BlockStygianOre(resource, 1, "cryoniteOre", 4, 8).setBlockName("cryoniteOre").setBlockTextureName("stygian:cryoniteOre");
@@ -146,9 +174,9 @@ public class Stygian
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
-//		Potion[] potionTypesModified = new Potion[2048];
-//		System.arraycopy(Potion.potionTypes, 0, potionTypesModified, 0, Potion.potionTypes.length);
-//		ReflectionHelper.setFinalField(cpw.mods.fml.relauncher.ReflectionHelper.findField(Potion.class, "potionTypes", "a"), null, potionTypesModified);
+		Potion[] potionTypesModified = new Potion[2048];
+		System.arraycopy(Potion.potionTypes, 0, potionTypesModified, 0, Potion.potionTypes.length);
+		ReflectionHelper.setFinalField(cpw.mods.fml.relauncher.ReflectionHelper.findField(Potion.class, "potionTypes", "field_76423_a"), null, potionTypesModified);
 		
 		logger.info("Reticulating splines...");
 		
@@ -159,6 +187,9 @@ public class Stygian
 		stygianArmourRenderIndex = proxy.getStygianRenderIndex();
 		voidChestRenderIndex = proxy.getVoidChestRenderingIndex();
 		resonanceArmourRenderIndex = proxy.getResonanceRenderIndex();
+		darkResonanceArmourRenderIndex = proxy.getDarkResonanceRenderIndex();
+		cryoniteArmourRenderIndex = proxy.getCryoniteRenderIndex();
+		pyroniumArmourRenderIndex = proxy.getPyroniumRenderIndex();
 		
 		stygianHelmet = (ItemStygianArmour)new ItemStygianArmour(stygianArmourMaterial, stygianArmourRenderIndex, 0).setUnlocalizedName("stygianHelmet").setTextureName("stygian:stygianHelmet");
 		stygianChestplate = (ItemStygianArmour)new ItemStygianArmour(stygianArmourMaterial, stygianArmourRenderIndex, 1).setUnlocalizedName("stygianChestplate").setTextureName("stygian:stygianChestplate");
@@ -175,11 +206,23 @@ public class Stygian
 		darkResonanceLeggings = (ItemDarkResonanceArmour)new ItemDarkResonanceArmour(darkResonanceArmourMaterial, darkResonanceArmourRenderIndex, 2).setUnlocalizedName("darkResonanceLeggings").setTextureName("stygian:darkResonanceLeggings");
 		darkResonanceBoots = (ItemDarkResonanceArmour)new ItemDarkResonanceArmour(darkResonanceArmourMaterial, darkResonanceArmourRenderIndex, 3).setUnlocalizedName("darkResonanceBoots").setTextureName("stygian:darkResonanceBoots");
 		
-//		potionTimeSickness = (PotionTimeSickness)new PotionTimeSickness(598).setPotionName("potion.timeSickness");
+		cryoniteHelmet = (ItemResourceArmour)new ItemResourceArmour(ArmorMaterial.DIAMOND, cryoniteArmourRenderIndex, 0).setUnlocalizedName("cryoniteHelmet").setTextureName("stygian:cryoniteHelmet");
+		cryoniteChestplate = (ItemResourceArmour)new ItemResourceArmour(ArmorMaterial.DIAMOND, cryoniteArmourRenderIndex, 1).setUnlocalizedName("cryoniteChestplate").setTextureName("stygian:cryoniteChestplate");
+		cryoniteLeggings = (ItemResourceArmour)new ItemResourceArmour(ArmorMaterial.DIAMOND, cryoniteArmourRenderIndex, 2).setUnlocalizedName("cryoniteLeggings").setTextureName("stygian:cryoniteLeggings");
+		cryoniteBoots = (ItemResourceArmour)new ItemResourceArmour(ArmorMaterial.DIAMOND, cryoniteArmourRenderIndex, 3).setUnlocalizedName("cryoniteBoots").setTextureName("stygian:cryoniteBoots");
+		
+		pyroniumHelmet = (ItemResourceArmour)new ItemResourceArmour(ArmorMaterial.DIAMOND, pyroniumArmourRenderIndex, 0).setUnlocalizedName("pyroniumHelmet").setTextureName("stygian:pyroniumHelmet");
+		pyroniumChestplate = (ItemResourceArmour)new ItemResourceArmour(ArmorMaterial.DIAMOND, pyroniumArmourRenderIndex, 1).setUnlocalizedName("pyroniumChestplate").setTextureName("stygian:pyroniumChestplate");
+		pyroniumLeggings = (ItemResourceArmour)new ItemResourceArmour(ArmorMaterial.DIAMOND, pyroniumArmourRenderIndex, 2).setUnlocalizedName("pyroniumLeggings").setTextureName("stygian:pyroniumLeggings");
+		pyroniumBoots = (ItemResourceArmour)new ItemResourceArmour(ArmorMaterial.DIAMOND, pyroniumArmourRenderIndex, 3).setUnlocalizedName("pyroniumBoots").setTextureName("stygian:pyroniumBoots");
+		
+		potionTimeSickness = (PotionTimeSickness)new PotionTimeSickness(598).setPotionName("potion.timeSickness");
 		
 		GameRegistry.registerItem(stygianCrystal, "stygianCrystal");
 		
 		GameRegistry.registerItem(resource, "resource");
+		
+		GameRegistry.registerItem(itemNode, "itemFocusNode");
 		
 		GameRegistry.registerItem(stygianSword, "stygianSword");
 		GameRegistry.registerItem(stygianPickaxe, "stygianPickaxe");
@@ -198,6 +241,18 @@ public class Stygian
 		GameRegistry.registerItem(darkResonanceShovel, "darkResonanceShovel");
 		GameRegistry.registerItem(darkResonanceAxe, "darkResonanceAxe");
 		GameRegistry.registerItem(darkResonanceHoe, "darkResonanceHoe");
+		
+		GameRegistry.registerItem(cryoniteSword, "cryoniteSword");
+		GameRegistry.registerItem(cryonitePickaxe, "cryonitePickaxe");
+		GameRegistry.registerItem(cryoniteShovel, "cryoniteShovel");
+		GameRegistry.registerItem(cryoniteAxe, "cryoniteAxe");
+		GameRegistry.registerItem(cryoniteHoe, "cryoniteHoe");
+		
+		GameRegistry.registerItem(pyroniumSword, "pyroniumSword");
+		GameRegistry.registerItem(pyroniumPickaxe, "pyroniumPickaxe");
+		GameRegistry.registerItem(pyroniumShovel, "pyroniumShovel");
+		GameRegistry.registerItem(pyroniumAxe, "pyroniumAxe");
+		GameRegistry.registerItem(pyroniumHoe, "pyroniumHoe");
 
 		GameRegistry.registerItem(elderSword, "elderSword");
 		GameRegistry.registerItem(elderPickaxe, "elderPickaxe");
@@ -219,6 +274,16 @@ public class Stygian
 		GameRegistry.registerItem(darkResonanceChestplate, "darkResonanceChestplate");
 		GameRegistry.registerItem(darkResonanceLeggings, "darkResonanceLeggings");
 		GameRegistry.registerItem(darkResonanceBoots, "darkResonanceBoots");
+		
+		GameRegistry.registerItem(cryoniteHelmet, "cryoniteHelmet");
+		GameRegistry.registerItem(cryoniteChestplate, "cryoniteChestplate");
+		GameRegistry.registerItem(cryoniteLeggings, "cryoniteLeggings");
+		GameRegistry.registerItem(cryoniteBoots, "cryoniteBoots");
+		
+		GameRegistry.registerItem(pyroniumHelmet, "pyroniumHelmet");
+		GameRegistry.registerItem(pyroniumChestplate, "pyroniumChestplate");
+		GameRegistry.registerItem(pyroniumLeggings, "pyroniumLeggings");
+		GameRegistry.registerItem(pyroniumBoots, "pyroniumBoots");
 		
 		GameRegistry.registerItem(sceptreCoreCradle, "sceptreCoreCradle");
 		
@@ -269,6 +334,8 @@ public class Stygian
 		
 		resource.setCreativeTab(tabStygian);
 		
+		itemNode.setCreativeTab(tabStygian);
+		
 		stygianSword.setCreativeTab(tabStygian);
 		stygianPickaxe.setCreativeTab(tabStygian);
 		stygianShovel.setCreativeTab(tabStygian);
@@ -286,6 +353,18 @@ public class Stygian
 		darkResonanceShovel.setCreativeTab(tabStygian);
 		darkResonanceAxe.setCreativeTab(tabStygian);
 		darkResonanceHoe.setCreativeTab(tabStygian);
+		
+		cryoniteSword.setCreativeTab(tabStygian);
+		cryonitePickaxe.setCreativeTab(tabStygian);
+		cryoniteShovel.setCreativeTab(tabStygian);
+		cryoniteAxe.setCreativeTab(tabStygian);
+		cryoniteHoe.setCreativeTab(tabStygian);
+		
+		pyroniumSword.setCreativeTab(tabStygian);
+		pyroniumPickaxe.setCreativeTab(tabStygian);
+		pyroniumShovel.setCreativeTab(tabStygian);
+		pyroniumAxe.setCreativeTab(tabStygian);
+		pyroniumHoe.setCreativeTab(tabStygian);
 
 		elderSword.setCreativeTab(tabStygian);
 		elderPickaxe.setCreativeTab(tabStygian);
@@ -307,6 +386,16 @@ public class Stygian
 		darkResonanceChestplate.setCreativeTab(tabStygian);
 		darkResonanceLeggings.setCreativeTab(tabStygian);
 		darkResonanceBoots.setCreativeTab(tabStygian);
+		
+		cryoniteHelmet.setCreativeTab(tabStygian);
+		cryoniteChestplate.setCreativeTab(tabStygian);
+		cryoniteLeggings.setCreativeTab(tabStygian);
+		cryoniteBoots.setCreativeTab(tabStygian);
+		
+		pyroniumHelmet.setCreativeTab(tabStygian);
+		pyroniumChestplate.setCreativeTab(tabStygian);
+		pyroniumLeggings.setCreativeTab(tabStygian);
+		pyroniumBoots.setCreativeTab(tabStygian);
 		
 		hourglass.setCreativeTab(tabStygian);
 		hourglassCracked.setCreativeTab(tabStygian);
@@ -341,10 +430,11 @@ public class Stygian
 		GameRegistry.addSmelting(new ItemStack(stygianCrystal, 1, 0), new ItemStack(stygianCrystal, 1, 1), 48.0F);
 		
 		proxy.registerTileEntities();
-		proxy.registerGuiHandler();
 		proxy.registerRenderers();
 		proxy.registerCapes();
 		proxy.registerTickHandlers();
+		
+		NetworkRegistry.INSTANCE.registerGuiHandler(INSTANCE, new StygianGuiHandler());
 		
 		FocusRegistry.registerFoci();
 		ResonanceRegistry.registerResonances();

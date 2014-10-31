@@ -122,4 +122,9 @@ public class FocusTeleporter implements ICoreFocus
 	{
 		
 	}
+	
+	public int[] getRGBAColours()
+	{
+		return new int[]{0, 0, 255, 255};
+	}
 }

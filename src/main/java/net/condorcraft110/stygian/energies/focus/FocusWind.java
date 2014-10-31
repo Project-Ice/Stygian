@@ -71,4 +71,9 @@ public class FocusWind implements ICoreFocus
 	{
 		
 	}
+	
+	public int[] getRGBAColours()
+	{
+		return new int[]{0, 255, 0, 255};
+	}
 }

@@ -1,27 +1,30 @@
 package net.condorcraft110.stygian.block;
 
 import java.util.*;
-
-import net.condorcraft110.stygian.registry.FocusRegistry;
 import net.minecraft.item.*;
 import net.minecraft.block.*;
-import net.minecraft.creativetab.*;
 import net.minecraft.block.material.*;
+import net.condorcraft110.stygian.core.*;
+import net.condorcraft110.stygian.registry.*;
 
 public class BlockFocusNode extends Block
 {
-	public BlockFocusNode()
+	public final int focusID;
+	
+	public BlockFocusNode(int focusID)
 	{
 		super(Material.rock);
+		
+		this.focusID = focusID;
 	}
 	
-	public void getSubBlocks(Item item, CreativeTabs tab, List list)
+	public Item getItemDropped(int i, Random random, int j)
 	{
-		for(int i = 0; i < FocusRegistry.registeredFoci(); i++)
-		{
-			ItemStack stack = new ItemStack(item, 1);
-			stack.getTagCompound().setInteger("FocusID", i);
-			list.add(stack);
-		}
+		return Stygian.itemNode;
+	}
+	
+	public int damageDropped(int i)
+	{
+		return focusID;
 	}
 }

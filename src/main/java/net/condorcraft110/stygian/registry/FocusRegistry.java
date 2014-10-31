@@ -8,6 +8,7 @@ import net.minecraft.util.*;
 import cpw.mods.fml.common.registry.*;
 import net.condorcraft110.stygian.core.*;
 import net.condorcraft110.stygian.util.*;
+import net.condorcraft110.stygian.block.*;
 import net.condorcraft110.stygian.energies.focus.*;
 
 public class FocusRegistry
@@ -15,13 +16,14 @@ public class FocusRegistry
 	private static boolean registered;
 	
 	private static ArrayList<ICoreFocus> focusRegistry = new ArrayList<ICoreFocus>();
+	private static ArrayList<BlockFocusNode> nodeRegistry = new ArrayList<BlockFocusNode>();
 
-	public static void registerFocus(ICoreFocus focus)
+	public static void registerFocus(ICoreFocus focus, boolean registerNode)
 	{
-		registerFocus(focusRegistry.size(), focus);
+		registerFocus(focusRegistry.size(), focus, registerNode);
 	}
 	
-	public static void registerFocus(int id, ICoreFocus focus)
+	public static void registerFocus(int id, ICoreFocus focus, boolean registerNode)
 	{
 		focusRegistry.add(id, focus);
 		
@@ -31,6 +33,13 @@ public class FocusRegistry
 		ItemStack coreStack = new ItemStack(Stygian.focusCore, 1, id);
 		
 		RecipeManager.registerForgeRecipe(new ForgeRecipe(sceptreStack, new ItemStack[][]{new ItemStack[]{null, null, coreStack}, new ItemStack[]{null, new ItemStack(Stygian.sceptreCoreCradle), null}, new ItemStack[]{new ItemStack(Items.blaze_rod), null, null}}));
+		
+		if(registerNode)
+		{
+			BlockFocusNode node = (BlockFocusNode)new BlockFocusNode(id).setBlockName("focusNode").setBlockTextureName("stygian:black");
+			nodeRegistry.add(id, node);
+			GameRegistry.registerBlock(node, "focusNode_" + id);
+		}
 	}
 	
 	public static ICoreFocus getFocus(int id)
@@ -53,16 +62,21 @@ public class FocusRegistry
 		return focusRegistry.size();
 	}
 	
+	public static BlockFocusNode getNode(int id)
+	{
+		return nodeRegistry.get(id);
+	}
+	
 	public static void registerFoci()
 	{
 		if(registered) return;
 		
-		registerFocus(new FocusLightning());
-		registerFocus(new FocusFire());
-		registerFocus(new FocusWind());
-		registerFocus(new FocusCreativeDeath());
-		registerFocus(new FocusTeleporter());
-		registerFocus(new FocusRepulsion());
+		registerFocus(new FocusLightning(), true);
+		registerFocus(new FocusFire(), true);
+		registerFocus(new FocusWind(), true);
+		registerFocus(new FocusCreativeDeath(), true);
+		registerFocus(new FocusTeleporter(), true);
+		registerFocus(new FocusRepulsion(), true);
 		
 		registered = true;
 	}

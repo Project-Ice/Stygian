@@ -59,4 +59,9 @@ public class FocusCreativeDeath implements ICoreFocus
 	{
 		list.add("Creative only");
 	}
+	
+	public int[] getRGBAColours()
+	{
+		return new int[]{0, 0, 0, 255};
+	}
 }

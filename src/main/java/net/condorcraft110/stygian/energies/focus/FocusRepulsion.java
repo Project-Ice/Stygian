@@ -105,4 +105,9 @@ public class FocusRepulsion implements ICoreFocus
 	{
 		list.add(NBTHelper.getStackCompoundTag(stack, "RepulsionData", new NBTTagCompound(), true).getBoolean("Active") ? "Active" : "Inactive");
 	}
+	
+	public int[] getRGBAColours()
+	{
+		return new int[]{255, 0, 0, 255};
+	}
 }

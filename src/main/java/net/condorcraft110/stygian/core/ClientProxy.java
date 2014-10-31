@@ -33,9 +33,14 @@ public class ClientProxy extends CommonProxy
 		return RenderingRegistry.addNewArmourRendererPrefix("darkResonance");
 	}
 	
-	public void registerGuiHandler()
+	public int getCryoniteRenderIndex()
 	{
-		NetworkRegistry.INSTANCE.registerGuiHandler(Stygian.INSTANCE, new StygianGuiHandler());
+		return RenderingRegistry.addNewArmourRendererPrefix("cryonite");
+	}
+	
+	public int getPyroniumRenderIndex()
+	{
+		return RenderingRegistry.addNewArmourRendererPrefix("pyronium");
 	}
 	
 	public void registerRenderers()

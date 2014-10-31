@@ -25,16 +25,21 @@ public class CommonProxy
 		return -1;
 	}
 	
+	public int getCryoniteRenderIndex()
+	{
+		return -1;
+	}
+	
+	public int getPyroniumRenderIndex()
+	{
+		return -1;
+	}
+	
 	public void registerTileEntities()
 	{
 		GameRegistry.registerTileEntity(TileEntitySoulForge.class, "soulForge");
 		GameRegistry.registerTileEntity(TileEntityVoidChest.class, "voidChest");
 		GameRegistry.registerTileEntity(TileEntityNetherForge.class, "netherForge");
-	}
-	
-	public void registerGuiHandler()
-	{
-		
 	}
 	
 	public void registerRenderers()

@@ -12,17 +12,17 @@ import net.minecraft.world.gen.feature.*;
  * @author powercrystals
  * @author condorcraft110
  */
-public class WorldGenSurfaceOre extends WorldGenerator
+public class WorldGenOre extends WorldGenerator
 {
-	private Block block;
-	private int metadata;
-	private int numberOfBlocks;
+	private Block target, block;
+	private int metadata, numberOfBlocks;
 	
-	public WorldGenSurfaceOre(Block block, int metadata, int numBlocks)
+	public WorldGenOre(Block target, Block block, int metadata, int numBlocks)
 	{
+		this.target = target;
 		this.block = block;
 		this.metadata = metadata;
-		numberOfBlocks = numBlocks;
+		this.numberOfBlocks = numBlocks;
 	}
 	
 	public boolean generate(World world, Random random, int chunkX, int y, int chunkZ)
@@ -40,8 +40,8 @@ public class WorldGenSurfaceOre extends WorldGenerator
 			double d7 = d4 + ((d5 - d4) * (double)blockNum) / (double)numberOfBlocks;
 			double d8 = d2 + ((d3 - d2) * (double)blockNum) / (double)numberOfBlocks;
 			double d9 = (random.nextDouble() * (double)numberOfBlocks) / 16D;
-			double d10 = (double)(MathHelper.sin(((float)blockNum * (float)Math.PI) / (float)numberOfBlocks) + 1.0F) * d9 + 1.0D;
-			double d11 = (double)(MathHelper.sin(((float)blockNum * (float)Math.PI) / (float)numberOfBlocks) + 1.0F) * d9 + 1.0D;
+			double d10 = (double)(MathHelper.sin(((float)blockNum * 3.141593F) / (float)numberOfBlocks) + 1.0F) * d9 + 1.0D;
+			double d11 = (double)(MathHelper.sin(((float)blockNum * 3.141593F) / (float)numberOfBlocks) + 1.0F) * d9 + 1.0D;
 			int xStart = MathHelper.floor_double(d6 - d10 / 2D);
 			int yStart = MathHelper.floor_double(d7 - d11 / 2D);
 			int zStart = MathHelper.floor_double(d8 - d10 / 2D);
@@ -65,7 +65,7 @@ public class WorldGenSurfaceOre extends WorldGenerator
 					for(int blockZ = zStart; blockZ <= zStop; blockZ++)
 					{
 						double d14 = (((double)blockZ + 0.5D) - d8) / (d10 / 2D);
-						if(d12 * d12 + d13 * d13 + d14 * d14 < 1.0D && (WorldGenHandler.stupidGeneration || world.getBlock(blockX, blockY, blockZ) == Blocks.stone))
+						if(d12 * d12 + d13 * d13 + d14 * d14 < 1.0D && (WorldGenHandler.stupidGeneration || world.getBlock(blockX, blockY, blockZ) == target))
 						{
 							world.setBlock(blockX, blockY, blockZ, block, metadata, 2);
 						}

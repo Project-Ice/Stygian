@@ -1,4 +1,6 @@
 tile.oreStygian.name=Stygian Ore
+tile.cryoniteOre.name=Cryonite ore
+tile.pyroniumOre.name=Pyronium Ore
 tile.blockStygian.name=Stygian Block
 tile.soulForge.name=Soul Forge
 tile.voidChest.name=Void Chest
@@ -6,6 +8,11 @@ tile.netherForge.name=Nether Forge
 
 item.iStygianCrystal.name=Inactive Stygian Crystal
 item.stygianCrystal.name=Active Stygian Crystal
+
+item.pyroniumIngot.name=Pyronium Ingot
+item.cryoniteCrystal.name=Cryonite Crystal
+
+item.focusNode.name=Focus Node
 
 item.stygianSword.name=Stygian Sword
 item.stygianPickaxe.name=Stygian Pickaxe
@@ -24,6 +31,18 @@ item.darkResonancePickaxe.name=Dark Resonance Pickaxe
 item.darkResonanceShovel.name=Dark Resonance Shovel
 item.darkResonanceAxe.name=Dark Resonance Axe
 item.darkResonanceHoe.name=Dark Resonance Hoe
+
+item.cryoniteSword.name=Cryonite Sword
+item.cryonitePickaxe.name=Cryonite Pickaxe
+item.cryoniteShovel.name=Cryonite Shovel
+item.cryoniteAxe.name=Cryonite Axe
+item.cryoniteHoe.name=Cryonite Hoe
+
+item.pyroniumSword.name=Pyronium Sword
+item.pyroniumPickaxe.name=Pyronium Pickaxe
+item.pyroniumShovel.name=Pyronium Shovel
+item.pyroniumAxe.name=Pyronium Axe
+item.pyroniumHoe.name=Pyronium Hoe
 
 item.elderSword.name=Elder Sword
 item.elderPickaxe.name=Elder Pickaxe
@@ -45,6 +64,16 @@ item.darkResonanceHelmet.name=Dark Resonance Helmet
 item.darkResonanceChestplate.name=Dark Resonance Chestplate
 item.darkResonanceLeggings.name=Dark Resonance Leggings
 item.darkResonanceBoots.name=Dark Resonance Boots
+
+item.cryoniteHelmet.name=Cryonite Helmet
+item.cryoniteChestplate.name=Cryonite Chestplate
+item.cryoniteLeggings.name=Cryonite Leggings
+item.cryoniteBoots.name=Cryonite Boots
+
+item.pyroniumHelmet.name=Pyronium Helmet
+item.pyroniumChestplate.name=Pyronium Chestplate
+item.pyroniumLeggings.name=Pyronium Leggings
+item.pyroniumBoots.name=Pyronium Boots
 
 item.hourglassIntact.name=Hourglass
 item.hourglassCracked.name=Cracked Hourglass
@@ -73,6 +102,7 @@ focus.fire.name=Pyrus
 focus.wind.name=Aeros
 focus.death.name=Endi
 focus.teleporter.name=Teleporter
+focus.repulsion.name=Repulsion
 
 resonance.lightning.name=Luxe
 resonance.recall.name=Recall

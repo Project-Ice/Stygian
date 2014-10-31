@@ -84,4 +84,9 @@ public class FocusLightning implements ICoreFocus
 	{
 		
 	}
+	
+	public int[] getRGBAColours()
+	{
+		return new int[]{3, 80, 150, 255};
+	}
 }
