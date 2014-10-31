@@ -2,9 +2,7 @@ package net.condorcraft110.stygian.core;
 
 import cpw.mods.fml.common.*;
 import net.minecraftforge.client.*;
-import cpw.mods.fml.common.network.*;
 import cpw.mods.fml.client.registry.*;
-import net.condorcraft110.stygian.gui.*;
 import com.jadarstudios.developercapes.*;
 import net.condorcraft110.stygian.util.*;
 import net.condorcraft110.stygian.entity.*;
