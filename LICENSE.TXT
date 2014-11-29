@@ -5,20 +5,22 @@ This license states what you can and cannot do with any piece of code written by
 You may:
 	- Download and use our software in binary or source form to use without restriction, providing that all terms in this license are followed.
 
-	- Redistribute our software, provided that:
-		a) You make it clear to any user of the pack which of pieces of software are your pack and that they are written by us.
-		b) You do not make any money with the pack. This includes adverts and URL shorteners such as Adfly.
+	- Redistribute our software in binary or source form, provided that:
+		a) You do not make any money by redistributing our software. This includes, but is not limited to, adverts and URL shorteners such as Adfly.
 		c) You provide a clearly visible link back to the Project Ice GitHub page (https://www.github.com/Project-Ice/).
-
+	  If our software is redistributed in a 'pack' of software (defined as one or more pieces of software bundled together), the following terms also apply:
+		a) You make it clear to any user of the pack which of our pieces of software are in your pack and that they are written by us.
+		b) You provide a copy of this license with your pack.
+	
 	- Use our code in any of your projects, provided that:
 		a) You do not relicense the code in your project that was written by Project Ice under any other license, including other versions of this license.
-		b) You do not make any money using our code. This includes adverts and URL shorteners such as Adfly.
+		b) You do not make any money using our code. This includes, but is not limited to, adverts and URL shorteners such as Adfly.
 		c) You make it clear to any user that our code was written by us.
 
 You may not:
 	- Redistribute any of our code under any license except the Ice License without the express permission of one of Project Ice's owners.
 
-	- Make any money using our code. This includes adverts and URL shorteners such as Adfly.
+	- Make any money using our code. This includes, but is not limited to, adverts and URL shorteners such as Adfly.
 
 	- Claim that you wrote any of our code. We put a lot of work into what we do, and it makes us sad to see it taken away from us. :(
 
