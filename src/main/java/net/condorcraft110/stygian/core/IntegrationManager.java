@@ -21,7 +21,7 @@ public class IntegrationManager
 		
 		stack.writeToNBT(tag);
 		
-		NBTHelper.setStackInt(stack, "EMC", emc);
+		tag.setInteger("EMC", emc);
 		
 		FMLInterModComms.sendMessage("ProjectE", "registerEMC", tag);
 	}

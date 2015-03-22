@@ -321,7 +321,7 @@ public class Stygian
 		//EntityRegistry.registerModEntity(EntityDarkLightning.class, "darkLightningBolt", 0, this, 80, 3, false);
 		
 		sideworldDimensionID = DimensionManager.getNextFreeDimId();
-		DimensionManager.registerProviderType(sideworldDimensionID, WorldProviderSurface.class, true);
+		DimensionManager.registerProviderType(sideworldDimensionID, WorldProviderStygian.class, true);
 		DimensionManager.registerDimension(sideworldDimensionID, sideworldDimensionID);
 	}
 	

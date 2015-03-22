@@ -97,7 +97,7 @@ public class FocusTeleporter implements ICoreFocus
 								playerMP.addPotionEffect(StygianUtil.createIncurablePotionEffect(Potion.wither.id, 300, 0));
 								break;
 							case 4:
-								if(Stygian.stygianRandom.nextInt(1) == 0)
+								if(Stygian.stygianRandom.nextInt(2) == 0)
 								{
 									EntityGiantZombie giant = new EntityGiantZombie(world);
 									giant.setLocationAndAngles(playerMP.posX, playerMP.posY + 1.0, playerMP.posZ, playerMP.rotationYaw, playerMP.rotationPitch);

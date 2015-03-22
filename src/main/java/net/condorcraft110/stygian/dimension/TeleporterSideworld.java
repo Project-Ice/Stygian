@@ -13,9 +13,13 @@ import net.minecraft.nbt.*;
 
 public class TeleporterSideworld extends Teleporter
 {
-	public TeleporterSideworld(WorldServer server)
+	private final WorldServer world;
+	
+	public TeleporterSideworld(WorldServer worldServer)
 	{
-		super(server);
+		super(worldServer);
+		
+		this.world = worldServer;
 	}
 	
 	public void placeInPortal(Entity entity, double x, double y, double z, float f)
@@ -24,7 +28,6 @@ public class TeleporterSideworld extends Teleporter
 		{
 			EntityPlayer player = (EntityPlayer)entity;
 			ItemStack stack = player.getHeldItem();
-			ChunkCoordinates spawnPoint = player.worldObj.getSpawnPoint();
 			
 			if(player.dimension != Stygian.sideworldDimensionID)
 			{
@@ -49,7 +52,8 @@ public class TeleporterSideworld extends Teleporter
 				
 				//player.setLocationAndAngles(0.0, 64.0, 0.0, player.rotationPitch, player.rotationYaw);
 				player.setLocationAndAngles(tag.getDouble("X"),
-						tag.getDouble("Y"),
+						(double)world.getTopSolidOrLiquidBlock(MathHelper.floor_double(tag.getDouble("X")),
+								MathHelper.floor_double(tag.getDouble("Z"))),
 						tag.getDouble("Z"),
 						tag.getFloat("Yaw"),
 						tag.getFloat("Pitch"));
